@@ -1,0 +1,9 @@
+/* CSS for EdflexXBlock */
+
+.edflex_block .count {
+    font-weight: bold;
+}
+
+.edflex_block p {
+    cursor: pointer;
+}

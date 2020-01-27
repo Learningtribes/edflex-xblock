@@ -1,0 +1,65 @@
+{% load i18n %}
+<div class="edflex_block wrapper-comp-settings is-active editor-with-buttons" id="settings-tab">
+  <div class="list-input settings-list">
+      <div class="edflex_format">
+          <p>{% trans "Which format of content do you need?" %}</p>
+          <p>{% trans "Choose a format." %}</p>
+          <p>
+              <input id="id-podcast" name="format" type="radio" value="podcast">
+              <label for="id-podcast">{% trans "Podcast" %}</label>
+          </p>
+          <p>
+              <input id="id-video" name="format" type="radio" value="video">
+              <label for="id-video">{% trans "Video" %}</label>
+          </p>
+          <p>
+              <input id="id-mooc" name="format" type="radio" value="mooc">
+              <label for="id-mooc">{% trans "Mooc" %}</label>
+          </p>
+          <p>
+              <input id="id-article" name="format" type="radio" value="article">
+              <label for="id-article">{% trans "Article" %}</label>
+          </p>
+      </div>
+      <div class="edflex_category">
+          <p>{% trans "Select one of the category bellow" %}</p>
+          <p>{% trans "Choose a category." %}</p>
+          {% for category in categories %}
+          <p>
+              <input id="id-{{ category.id }}" name="category" type="radio" value="{{ category.id }}">
+              <label for="id-{{ category.id }}">{{ category.name }}</label>
+          </p>
+          {% endfor %}
+      </div>
+      <div class="edflex_language">
+          <p>{% trans "Which language for the content?" %}</p>
+          <p>{% trans "Choose a language." %}</p>
+          <p>
+              <select name="language">
+                  {% for language in languages %}
+                  <option value="{{ language }}">{{ language }}</option>
+                  {% endfor %}
+              </select>
+          </p>
+      </div>
+      <div class="edflex_resource">
+          <p>{% trans "Select the title of the content" %}</p>
+          <p>{% trans "Choose a content." %}</p>
+          <p>
+              <select name="resource">
+              </select>
+          </p>
+      </div>
+  </div>
+
+  <div class="xblock-actions">
+    <ul>
+      <li class="action-item">
+        <a href="#" class="button action-primary save-button">{% trans "Save" %}</a>
+      </li>
+      <li class="action-item">
+        <a href="#" class="button cancel-button">{% trans "Cancel" %}</a>
+      </li>
+    </ul>
+  </div>
+</div>
