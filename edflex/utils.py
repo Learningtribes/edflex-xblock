@@ -3,6 +3,22 @@ from django.core.exceptions import ImproperlyConfigured
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 
 
+def get_edflex_configuration_for_org(org):
+    client_id = configuration_helpers.get_value_for_org(org, 'EDFLEX_CLIENT_ID')
+    client_secret = configuration_helpers.get_value_for_org(org, 'EDFLEX_CLIENT_SECRET')
+    base_api_url = configuration_helpers.get_value_for_org(org, 'EDFLEX_BASE_API_URL')
+
+    if not (client_id and client_secret and base_api_url):
+        configuration = get_edflex_configuration()
+        return configuration
+
+    return {
+        'client_id': client_id,
+        'client_secret': client_secret,
+        'base_api_url': base_api_url
+    }
+
+
 def get_edflex_configuration():
     client_id = configuration_helpers.get_value(
         'EDFLEX_CLIENT_ID',
