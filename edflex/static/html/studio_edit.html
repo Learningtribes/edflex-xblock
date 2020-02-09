@@ -1,65 +1,174 @@
 {% load i18n %}
-<div class="edflex_block wrapper-comp-settings is-active editor-with-buttons" id="settings-tab">
-  <div class="list-input settings-list">
-      <div class="edflex_format">
-          <p>{% trans "Which format of content do you need?" %}</p>
-          <p>{% trans "Choose a format." %}</p>
-          <p>
-              <input id="id-podcast" name="format" type="radio" value="podcast">
-              <label for="id-podcast">{% trans "Podcast" %}</label>
-          </p>
-          <p>
-              <input id="id-video" name="format" type="radio" value="video">
-              <label for="id-video">{% trans "Video" %}</label>
-          </p>
-          <p>
-              <input id="id-mooc" name="format" type="radio" value="mooc">
-              <label for="id-mooc">{% trans "Mooc" %}</label>
-          </p>
-          <p>
-              <input id="id-article" name="format" type="radio" value="article">
-              <label for="id-article">{% trans "Article" %}</label>
-          </p>
-      </div>
-      <div class="edflex_category">
-          <p>{% trans "Select one of the category bellow" %}</p>
-          <p>{% trans "Choose a category." %}</p>
-          {% for category in categories %}
-          <p>
-              <input id="id-{{ category.id }}" name="category" type="radio" value="{{ category.id }}">
-              <label for="id-{{ category.id }}">{{ category.name }}</label>
-          </p>
-          {% endfor %}
-      </div>
-      <div class="edflex_language">
-          <p>{% trans "Which language for the content?" %}</p>
-          <p>{% trans "Choose a language." %}</p>
-          <p>
-              <select name="language">
-                  {% for language in languages %}
-                  <option value="{{ language }}">{{ language }}</option>
-                  {% endfor %}
-              </select>
-          </p>
-      </div>
-      <div class="edflex_resource">
-          <p>{% trans "Select the title of the content" %}</p>
-          <p>{% trans "Choose a content." %}</p>
-          <p>
-              <select name="resource">
-              </select>
-          </p>
-      </div>
-  </div>
 
-  <div class="xblock-actions">
-    <ul>
-      <li class="action-item">
-        <a href="#" class="button action-primary save-button">{% trans "Save" %}</a>
-      </li>
-      <li class="action-item">
-        <a href="#" class="button cancel-button">{% trans "Cancel" %}</a>
-      </li>
-    </ul>
-  </div>
+<script type="text/template" id="resource-template">
+    <div class="js-old-resource" hidden>
+        {% trans "This information is out of date. What you see is the last saved version." %}
+    </div>
+    <div class="features-block-template">
+        <h4 class="small-title"><%- resource.title %></h4>
+        <ul class="features-list">
+            <li>
+                <div class="ef-rating">
+                    <% if (resource.note) { %>
+                    <div class="ef-stars">
+                        <strong><%- resource.note.global %></strong>
+                        <%
+                            var full = (Math.floor(resource.note.global));
+                            var empty = (Math.floor(5 - (resource.note.global)));
+                            var half = (5 - full - empty);
+                        %>
+
+                        <% _.each(new Array(full), function() { %>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        <% }) %>
+                        <% _.each(new Array(half), function() { %>
+                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                        <% }) %>
+                        <% _.each(new Array(empty), function() { %>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <% }) %>
+                    </div>
+                    <div class="reviews">
+                        <strong><%- resource.note.total_reviews %></strong>
+                        <span>{% trans "users’ reviews" %}</span>
+                    </div>
+                    <% } else { %>
+                    <div class="ef-stars">
+                        <strong>-</strong>
+                        <% _.each(new Array(5), function() { %>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <% }) %>
+                    </div>
+                    <% } %>
+                </div>
+            </li>
+
+            <% if (resource.price) { %>
+            <li class="icon-creditcard">
+                <% if (resource.price.amount === 0 ) { %>
+                    <span>{% trans "<b>Free</b> access" %}</span>
+                <% } else { %>
+                    <span>{% trans "<b>Paid</b> access" %}</span>
+                <% } %>
+            </li>
+            <% } %>
+            <% if (resource.is_certifying) { %>
+            <li class="icon-pocket">
+                <% if (resource.is_free_certification) { %>
+                    <span><b>Free</b> certificate</span>
+                <% } else { %>
+                    <span><b>Paid</b> certificate</span>
+                <% } %>
+            </li>
+            <% } %>
+            <% if (resource.duration) { %>
+            <li class="icon-duration">
+                <span><%= renderDuration(resource.duration) %></span>
+            </li>
+            <% } %>
+        </ul>
+        <%= resource.description %>
+    </div>
+</script>
+
+<!--<div class="edflex_block wrapper-comp-settings is-active editor-with-buttons" id="settings-tab">-->
+<div class="edflex_block is-active editor-with-buttons" id="settings-tab">
+    <div class="list-input settings-list">
+        <div class="edflex_section edflex_format">
+            <div class="ef-title">
+                <h2>{% trans "Which format of content do you need?" %}</h2>
+                <span class="title-help">{% trans "Choose a format." %}</span>
+            </div>
+            <ul class="format-list">
+                <li>
+                    <input id="id-podcast" name="format" value="podcast" type="radio">
+                    <label for="id-podcast">
+                        <svg class="icon-box">
+                            <use xlink:href="/static/studio/images/sprite.svg#podcast"></use>
+                        </svg>
+                    </label>
+                    <span class="format-name">{% trans "Podcast" %}</span>
+                </li>
+                <li>
+                    <input id="id-video" name="format" value="video" type="radio">
+                    <label for="id-video">
+                        <svg class="icon-box">
+                            <use xlink:href="/static/studio/images/sprite.svg#video"></use>
+                        </svg>
+                    </label>
+                    <span class="format-name">{% trans "Video" %}</span>
+                </li>
+                <li>
+                    <input id="id-mooc" name="format" value="mooc" type="radio">
+                    <label for="id-mooc">
+                        <svg class="icon-box">
+                            <use xlink:href="/static/studio/images/sprite.svg#mooc"></use>
+                        </svg>
+                    </label>
+                    <span class="format-name">{% trans "Mooc" %}</span>
+                </li>
+                <li>
+                    <input id="id-article" name="format" value="article" type="radio">
+                    <label for="id-article">
+                        <svg class="icon-box">
+                            <use xlink:href="/static/studio/images/sprite.svg#article"></use>
+                        </svg>
+                    </label>
+                    <span class="format-name">{% trans "Article" %}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="edflex_section edflex_category">
+            <div class="ef-title">
+                <h2>{% trans "Select one of the category bellow" %}</h2>
+                <span class="title-help">{% trans "Choose a category." %}</span>
+            </div>
+            <select name="category">
+                <option value="">-------</option>
+                {% for category in categories %}
+                <option value="{{ category.category_id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="edflex_section edflex_language">
+            <div class="ef-title">
+                <h2>{% trans "Which language for the content?" %}</h2>
+                <span class="title-help">{% trans "Choose a language." %}</span>
+            </div>
+            <select name="language">
+                <option value="">-------</option>
+                {% for language in languages %}
+                <option class="{{ language }}" value="{{ language }}">{{ language }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="edflex_section edflex_resource">
+            <div class="ef-title">
+                <h2>{% trans "Select the title of the content" %}</h2>
+                <span class="title-help">{% trans "Choose a content." %}</span>
+            </div>
+            <select name="resource" disabled>
+            </select>
+        </div>
+
+        <div class="features-block"></div>
+
+        <div class="edflex_section edflex_weight">
+            <div class="ef-title">
+                <h2>{% trans "Weight" %}</h2>
+                <span class="title-help">{% trans "Relative weight in this course section" %}</span>
+            </div>
+            <input type="number" name="weight" value="{{ weight }}" min="0.1" step="0.5">
+        </div>
+    </div>
+    <div class="xblock-actions">
+        <ul>
+            <li class="action-item">
+                <a href="#" class="button action-primary save-button is-disabled">{% trans "Add this content" %}</a>
+            </li>
+            <li class="action-item">
+                <a href="#" class="button cancel-button">{% trans "Cancel" %}</a>
+            </li>
+        </ul>
+    </div>
 </div>
