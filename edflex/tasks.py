@@ -5,28 +5,22 @@ from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 
 from .api import EdflexOauthClient
 from .models import Category, Resource
+from .utils import EDFLEX_CLIENT_ID, EDFLEX_CLIENT_SECRET, EDFLEX_BASE_API_URL
 
-
-cron_grade_settings = getattr(
-    settings, 'EDFLEX_RESOURCES_UPDATE_CRON',
-    {
-        'minute': str(settings.FEATURES.get('EDFLEX_RESOURCES_UPDATE_CRON_MINUTE', '0')),
-        'hour': str(settings.FEATURES.get('EDFLEX_RESOURCES_UPDATE_CRON_HOUR', '0')),
-        'day_of_month': str(settings.FEATURES.get('EDFLEX_RESOURCES_UPDATE_CRON_DOM', '*')),
-        'day_of_week': str(settings.FEATURES.get('EDFLEX_RESOURCES_UPDATE_CRON_DOW', '*')),
-        'month_of_year': str(settings.FEATURES.get('EDFLEX_RESOURCES_UPDATE_CRON_MONTH', '1')),
-    }
-)
+EDFLEX_RESOURCES_UPDATE_CRON = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_RESOURCES_UPDATE_CRON', {})
+cron_grade_settings = {
+    'minute': str(EDFLEX_RESOURCES_UPDATE_CRON.get('MINUTE', '0')),
+    'hour': str(EDFLEX_RESOURCES_UPDATE_CRON.get('HOUR', '0')),
+    'day_of_month': str(EDFLEX_RESOURCES_UPDATE_CRON.get('DAY_OF_MONTH', '0')),
+    'month_of_year': str(EDFLEX_RESOURCES_UPDATE_CRON.get('MONTH_OF_YEAR', '0')),
+    'day_of_week': str(EDFLEX_RESOURCES_UPDATE_CRON.get('DAY_OF_WEEK', '0')),
+}
 
 
 @periodic_task(run_every=crontab(**cron_grade_settings))
 def fetch_edflex_data():
-    client_id = getattr(settings, 'EDFLEX_CLIENT_ID', None)
-    client_secret = getattr(settings, 'EDFLEX_CLIENT_SECRET', None)
-    base_api_url = getattr(settings, 'EDFLEX_BASE_API_URL', None)
-
-    if client_id and client_secret and base_api_url:
-        resources_update(client_id, client_secret, base_api_url)
+    if EDFLEX_CLIENT_ID and EDFLEX_CLIENT_SECRET and EDFLEX_BASE_API_URL:
+        resources_update(EDFLEX_CLIENT_ID, EDFLEX_CLIENT_SECRET, EDFLEX_BASE_API_URL)
 
     for site_configuration in SiteConfiguration.objects.filter(enabled=True):
         client_id = site_configuration.get_value('EDFLEX_CLIENT_ID')

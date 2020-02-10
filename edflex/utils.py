@@ -2,6 +2,11 @@ from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 
+# default settings
+EDFLEX_CLIENT_ID = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_CLIENT_ID')
+EDFLEX_CLIENT_SECRET = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_CLIENT_SECRET')
+EDFLEX_BASE_API_URL = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_BASE_API_URL')
+
 
 def get_edflex_configuration_for_org(org):
     client_id = configuration_helpers.get_value_for_org(org, 'EDFLEX_CLIENT_ID')
@@ -20,18 +25,9 @@ def get_edflex_configuration_for_org(org):
 
 
 def get_edflex_configuration():
-    client_id = configuration_helpers.get_value(
-        'EDFLEX_CLIENT_ID',
-        getattr(settings, 'EDFLEX_CLIENT_ID', None)
-    )
-    client_secret = configuration_helpers.get_value(
-        'EDFLEX_CLIENT_SECRET',
-        getattr(settings, 'EDFLEX_CLIENT_SECRET', None)
-    )
-    base_api_url = configuration_helpers.get_value(
-        'EDFLEX_BASE_API_URL',
-        getattr(settings, 'EDFLEX_BASE_API_URL', None)
-    )
+    client_id = configuration_helpers.get_value('EDFLEX_CLIENT_ID', EDFLEX_CLIENT_ID)
+    client_secret = configuration_helpers.get_value('EDFLEX_CLIENT_SECRET', EDFLEX_CLIENT_SECRET)
+    base_api_url = configuration_helpers.get_value('EDFLEX_BASE_API_URL', EDFLEX_BASE_API_URL)
 
     if not (client_id and client_secret and base_api_url):
         raise ImproperlyConfigured(
