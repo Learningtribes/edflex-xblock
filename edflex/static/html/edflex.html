@@ -1,3 +1,108 @@
-<div class="edflex_block">
-dwefd
+{% load i18n %}
+
+<div class="edflex_block" data-format="{{ resource.type }}">
+    <p>{{ resource.title }}</p>
+    <p>{{ resource.type }}</p>
+
+    {% if resource.type == 'mooc' or resource.type == 'article' %}
+    <div class="block-details__media">
+        {% if resource.embed_url %}
+        <div class="block-details__video">
+            <iframe src="{{ resource.embed_url }}" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+        </div>
+        {% elif resource.image and resource.image.medium %}
+        <img src="{{ resource.image.medium }}" class="img-responsive" alt="{{ resource.title }}">
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if resource.type == 'video' %}
+    <div class="product-video">
+        <iframe
+            id="youtube-player"
+            type="text/html"
+            src="{{ resource.embed_url }}?enablejsapi=1"
+            frameborder="0"
+            allowfullscreen=""
+        ></iframe>
+    </div>
+    {% endif %}
+
+    {% if resource.type == 'podcast'%}
+    <div class="product-podcast">
+        <button class="btn js-access-podcast-resource" title="{{ resource.title }}">
+        {% trans "Access the resource" %}
+        </button>
+        <iframe
+            class="js-iframe-podcast"
+            src="{{ resource.embed_url }}"
+            scrolling="no"
+            width="100%"
+            frameborder="0"
+            hidden
+        ></iframe>
+    </div>
+    {% endif %}
+
+    <div class="ef-rating">
+        <div class="ef-stars">
+            <strong>{{ stars.average }}</strong>
+            {% for i in stars.full %}
+                <i class="fa fa-star" aria-hidden="true"></i>
+            {% endfor %}
+            {% for i in stars.half %}
+                <i class="fa fa-star-half-o" aria-hidden="true"></i>
+            {% endfor %}
+            {% for i in stars.empty %}
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+            {% endfor %}
+            {% if stars.total_reviews %}
+            <div class="reviews">
+                <strong>{{ stars.total_reviews }}</strong>
+                <span>{% trans "users’ reviews" %}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div>
+        <p>{% trans "About the content" %}</p>
+        {{ resource.description|safe }}
+    </div>
+
+    {% if resource.type == 'mooc' or resource.type == 'article' %}
+     <button class="btn js-access-resource" title="{{ resource.title }}">
+        {% trans "Access the resource" %}
+     </button>
+    {% endif %}
 </div>
+
+{% if resource.type == 'mooc' or resource.type == 'article' %}
+<div class="js-modal-dialog" hidden>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="js-close" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>
+                {% trans "External content" %}
+            </p>
+            <p>
+                {% blocktrans %}
+                You are about to leave the Triboo platform
+                to follow external training content.
+                We remind you that all content on this
+                portal is always free. However? the
+                certification may have a cost and it is not
+                supported by Triboo.
+                See you soon on Triboo!
+                {% endblocktrans %}
+            </p>
+            <button class="btn js-confirm-access" data-url="{{ resource.url }}">
+                {% trans "Access" %}
+            </button>
+        </div>
+    </div>
+</div>
+{% endif %}

@@ -37,7 +37,9 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         default=0,
         scope=Scope.user_state,
     )
-
+    icon_class = 'problem'
+    count_stars = 5
+    has_score = True
     has_author_view = True
     editable_fields = ['format', 'category', 'language', 'resource', 'weight']
 
@@ -51,12 +53,37 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         The primary view of the EdflexXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/edflex.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/edflex.css"))
-        frag.add_javascript(self.resource_string("static/js/src/edflex.js"))
-        frag.initialize_js('EdflexXBlock')
-        return frag
+        if context is None:
+            context = {}
+
+        self.update_student_context(context)
+        fragment = Fragment()
+        fragment.content = loader.render_django_template('static/html/edflex.html', context)
+        fragment.add_css(self.resource_string("static/css/edflex.css"))
+
+        if self.resource.get('type', '') == 'video':
+            fragment.add_javascript_url('https://www.youtube.com/iframe_api')
+
+        fragment.add_javascript(self.resource_string("static/js/src/edflex.js"))
+        fragment.initialize_js('EdflexXBlock')
+        return fragment
+
+    def update_student_context(self, context):
+        note = self.resource.get('note', {}) or {}
+        full_stars = int(note.get('global', 0))
+        empty_stars = int(self.count_stars - note.get('global', 0))
+        half_stars = int(self.count_stars - full_stars - empty_stars)
+        context.update({
+            'resource': self.resource,
+            'stars': {
+                'average': note.get('global', '-'),
+                'full': range(full_stars),
+                'empty': range(empty_stars),
+                'half': range(half_stars),
+                'total_reviews': note.get('total_reviews')
+            }
+        })
+        return context
 
     def author_view(self, context=None):
         html = loader.render_django_template("static/html/author_view.html", context)
@@ -75,7 +102,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         }
         self.update_studio_context(context)
         fragment = Fragment()
-        fragment.content = loader.render_template('static/html/studio_edit.html', context)
+        fragment.content = loader.render_django_template('static/html/studio_edit.html', context)
         fragment.add_css(self.resource_string("static/css/edflex.css"))
         fragment.add_css(self.resource_string("static/css/select2.css"))
         fragment.add_javascript(loader.load_unicode('static/js/src/studio_edit.js'))
@@ -147,6 +174,16 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         resource = edflex_client.get_resource(resource_id)
         return resource
 
+    @XBlock.json_handler
+    def set_grade(self, data, suffix=''):
+        score = data.get('score', 1)
+
+        if score > self.score:
+            self.score = score
+            self.publish_grade()
+
+        return {'status': 'ok'}
+
     def max_score(self):
         """
         Return the maximum score possible.
@@ -158,6 +195,6 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
             self,
             'grade',
             {
-                'value': self.score,
+                'value': self.score * self.weight,
                 'max_value': self.weight,
             })
