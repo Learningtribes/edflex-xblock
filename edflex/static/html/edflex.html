@@ -1,8 +1,11 @@
 {% load i18n %}
 
 <div class="edflex_block" data-format="{{ resource.type }}">
-    <p>{{ resource.title }}</p>
-    <p>{{ resource.type }}</p>
+    {% if resource %}
+    <div class="ef-title">
+        <h2 class="small-title">{{ resource.title }}</h2>
+        <span class="title-help icon-{{ resource.type }}">{{ resource.type }}</span>
+    </div>
 
     {% if resource.type == 'mooc' or resource.type == 'article' %}
     <div class="block-details__media">
@@ -31,7 +34,8 @@
     {% if resource.type == 'podcast'%}
     <div class="product-podcast">
         <button class="btn js-access-podcast-resource" title="{{ resource.title }}">
-        {% trans "Access the resource" %}
+            {% trans "Access the resource" %}
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
         <iframe
             class="js-iframe-podcast"
@@ -44,61 +48,69 @@
     </div>
     {% endif %}
 
-    <div class="ef-rating">
-        <div class="ef-stars">
-            <strong>{{ stars.average }}</strong>
-            {% for i in stars.full %}
-                <i class="fa fa-star" aria-hidden="true"></i>
-            {% endfor %}
-            {% for i in stars.half %}
-                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-            {% endfor %}
-            {% for i in stars.empty %}
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-            {% endfor %}
-            {% if stars.total_reviews %}
-            <div class="reviews">
-                <strong>{{ stars.total_reviews }}</strong>
-                <span>{% trans "users’ reviews" %}</span>
+    <ul class="features-list">
+        <li>
+            <div class="ef-rating">
+                <div class="ef-stars">
+                    <strong>{{ stars.average }}</strong>
+                    {% for i in stars.full %}
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    {% endfor %}
+                    {% for i in stars.half %}
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                    {% endfor %}
+                    {% for i in stars.empty %}
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    {% endfor %}
+                    {% if stars.total_reviews %}
+                    <div class="reviews">
+                        <strong>{{ stars.total_reviews }}</strong>
+                        <span>{% trans "users’ reviews" %}</span>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
+        </li>
+    </ul>
+
+    <div class="features-block">
+        <div class="features-block-template">
+            <p>{% trans "About the content" %}</p>
+            {{ resource.description|safe }}
+
+            {% if resource.type == 'mooc' or resource.type == 'article' %}
+            <button class="btn js-access-resource" title="{{ resource.title }}">
+                {% trans "Access the resource" %}
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </button>
             {% endif %}
+            <div class="powered-by-edflex">powered by</div>
         </div>
     </div>
-    <div>
-        <p>{% trans "About the content" %}</p>
-        {{ resource.description|safe }}
-    </div>
-
-    {% if resource.type == 'mooc' or resource.type == 'article' %}
-     <button class="btn js-access-resource" title="{{ resource.title }}">
-        {% trans "Access the resource" %}
-     </button>
     {% endif %}
 </div>
 
 {% if resource.type == 'mooc' or resource.type == 'article' %}
+<div class="js-modal-overlay" hidden></div>
 <div class="js-modal-dialog" hidden>
     <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="js-close" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-        </div>
+        <span class="js-close"></span>
+        <span class="icon-share"></span>
         <div class="modal-body">
-            <p>
-                {% trans "External content" %}
-            </p>
-            <p>
-                {% blocktrans %}
-                You are about to leave the Triboo platform
-                to follow external training content.
-                We remind you that all content on this
-                portal is always free. However? the
-                certification may have a cost and it is not
-                supported by Triboo.
-                See you soon on Triboo!
-                {% endblocktrans %}
-            </p>
+            <h3>{% trans "External content" %}</h3>
+            <div class="modal-body-text">
+                <p>
+                    {% blocktrans %}
+                    You are about to leave the Triboo platform
+                    to follow external training content.
+                    We remind you that <b>all content on this
+                    portal is always free.</b> However? the
+                    certification may have a cost and it is not
+                    supported by Triboo.
+                    {% endblocktrans %}
+                </p>
+                <i>{% trans "See you soon on Triboo!" %}</i>
+            </div>
             <button class="btn js-confirm-access" data-url="{{ resource.url }}">
                 {% trans "Access" %}
             </button>
