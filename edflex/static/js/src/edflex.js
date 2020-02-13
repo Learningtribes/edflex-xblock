@@ -2,6 +2,7 @@
 function EdflexXBlock(runtime, element) {
   var format = $('.edflex_block', element).data('format');
   var $modal = $('.js-modal-dialog', element);
+  var $modalOverlay = $('.js-modal-overlay', element);
   var publishGradeUrl = runtime.handlerUrl(element, 'set_grade');
 
   var publishGrade = function(score) {
@@ -20,6 +21,7 @@ function EdflexXBlock(runtime, element) {
   if (format === 'mooc' || format === 'article') {
     $('.js-access-resource', element).on('click', function() {
       $modal.prop('hidden', false);
+      $modalOverlay.prop('hidden', false);
     });
     $('.js-confirm-access', element).on('click', function() {
       publishGrade(1);
@@ -27,6 +29,7 @@ function EdflexXBlock(runtime, element) {
     });
     $('.js-close', element).on('click', function() {
       $modal.prop('hidden', true);
+      $modalOverlay.prop('hidden', true);
     })
   }
 

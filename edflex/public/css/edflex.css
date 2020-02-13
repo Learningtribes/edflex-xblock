@@ -1,18 +1,18 @@
 @font-face {
-  font-family: "NanumGothic";
-  src: url("/static/studio/fonts/NanumGothic.woff2") format("woff2"), url("/static/studio/fonts/NanumGothic.woff") format("woff");
+  font-family: NanumGothic;
+  src: url("../fonts/NanumGothic.woff2") format("woff2"), url("../fonts/NanumGothic.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "NanumGothicExtraBold";
-  src: url("/static/studio/fonts/NanumGothicExtraBold.woff2") format("woff2"), url("/static/studio/fonts/NanumGothicExtraBold.woff") format("woff");
+  font-family: NanumGothicExtraBold;
+  src: url("../fonts/NanumGothicExtraBold.woff2") format("woff2"), url("../fonts/NanumGothicExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
 }
 @font-face {
-  font-family: "NanumGothic";
-  src: url("/static/studio/fonts/NanumGothicBold.woff2") format("woff2"), url("/static/studio/fonts/NanumGothicBold.woff") format("woff");
+  font-family: NanumGothic;
+  src: url("../fonts/NanumGothicBold.woff2") format("woff2"), url("../fonts/NanumGothicBold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
@@ -65,7 +65,20 @@
   font-size: 14px;
 }
 
-.edflex_block {
+.xblock-studio_view-edflex button {
+  background: #a3a3a3;
+  box-shadow: none !important;
+  border: none !important;
+  color: #fff;
+  text-shadow: none;
+  font-weight: normal;
+  transition: all 0.2s ease;
+}
+.xblock-studio_view-edflex button:hover {
+  background: #e7413c;
+}
+
+.xblock-studio_view .edflex_block {
   padding: 20px;
 }
 
@@ -76,17 +89,49 @@
 
 .ef-title {
   margin-bottom: 30px;
+}
+.xblock-studio_view .ef-title {
   text-align: center;
 }
 .ef-title h2 {
-  font-family: "NanumGothic", sans-serif;
+  font-family: NanumGothic, sans-serif;
   font-weight: bold;
   font-size: 24px;
+  color: #000;
+  margin: 0;
 }
 .ef-title .title-help {
   display: block;
   color: #727272;
   margin-top: 10px;
+}
+.ef-title .title-help.icon-video {
+  background: url("../images/video.svg") no-repeat 0 9px;
+  -webkit-background-size: 20px 13px;
+  background-size: 20px 13px;
+  padding-left: 30px;
+  line-height: 30px;
+}
+.ef-title .title-help.icon-podcast {
+  background: url("../images/podcast.svg") no-repeat 0 7px;
+  -webkit-background-size: 20px 20px;
+  background-size: 20px 20px;
+  padding-left: 30px;
+  line-height: 30px;
+}
+.ef-title .title-help.icon-mooc {
+  background: url("../images/mooc.svg") no-repeat 0 8px;
+  -webkit-background-size: 20px 15px;
+  background-size: 20px 15px;
+  padding-left: 30px;
+  line-height: 30px;
+}
+.ef-title .title-help.icon-article {
+  background: url("../images/article.svg") no-repeat 0 7px;
+  -webkit-background-size: 17px 17px;
+  background-size: 17px 17px;
+  padding-left: 30px;
+  line-height: 30px;
 }
 
 .edflex_format .format-list {
@@ -217,76 +262,85 @@
 
 .features-block .features-block-template {
   background: #fcfcfc;
-  padding: 40px 55px;
+  padding: 30px;
   text-align: left;
+  overflow: hidden;
 }
-.features-block .features-list {
+.xblock-studio_view .features-block .features-block-template {
+  padding: 40px 55px;
+}
+.features-block p {
+  margin-bottom: 22px;
+  line-height: 24px;
+}
+
+.features-list {
   display: flex;
   align-items: center;
   margin-bottom: 44px;
+  padding: 0 !important;
 }
-.features-block .features-list li {
+.features-list li {
   margin-left: 90px;
   display: flex;
   align-items: center;
   color: #727272;
   line-height: 26px;
 }
-.features-block .features-list li.icon-creditcard {
-  background: url(/static/studio/images/creditcard-no.svg) no-repeat;
+.features-list li.icon-creditcard {
+  background: url("../images/creditcard-no.svg") no-repeat;
   padding-left: 36px;
 }
-.features-block .features-list li.icon-pocket {
-  background: url(/static/studio/images/pocket.svg) no-repeat;
+.features-list li.icon-pocket {
+  background: url("../images/pocket.svg") no-repeat;
   padding-left: 36px;
 }
-.features-block .features-list li.icon-duration {
-  background: url(/static/studio/images/stopwatch.svg) no-repeat;
+.features-list li.icon-duration {
+  background: url("../images/stopwatch.svg") no-repeat;
   padding-left: 36px;
 }
-.features-block .features-list li:first-child {
+.features-list li:first-child {
   margin-left: 0;
 }
-.features-block .features-list li svg {
+.features-list li svg {
   display: block;
   width: 24px;
   height: 24px;
   margin-right: 20px;
 }
-.features-block .features-list li b {
+.features-list li b {
   font-weight: 600;
 }
-.features-block .ef-stars strong {
+
+.ef-stars strong {
   color: #fec400;
   font-weight: bold;
   font-size: 24px;
-  font-family: "NanumGothic", sans-serif;
+  font-family: NanumGothic, sans-serif;
   display: inline-block;
 }
-.features-block .ef-stars .fa {
+.ef-stars .fa {
   color: #fec400;
   font-size: 20px;
   margin-left: 7px;
 }
-.features-block .reviews {
+
+.reviews {
   margin-top: 7px;
+  display: flex;
+  align-items: center;
 }
-.features-block .reviews strong {
+.reviews strong {
   color: #fec400;
   font-weight: bold;
   font-size: 24px;
-  font-family: "NanumGothic", sans-serif;
+  font-family: NanumGothic, sans-serif;
   display: inline-block;
 }
-.features-block .reviews span {
+.reviews span {
   color: #727272;
   font-size: 12px;
-  display: inline-block;
-  margin-left: 5px;
-}
-.features-block p {
-  margin-bottom: 22px;
-  line-height: 24px;
+  margin-left: 8px;
 }
 
 .select2-dropdown {
@@ -315,3 +369,144 @@
   box-shadow: 0 3px 4px rgba(29, 29, 27, 0.05);
   background: none;
 }
+
+.xblock-student_view-edflex .features-block {
+  margin-bottom: 20px;
+  clear: both;
+}
+.xblock-student_view-edflex .product-video,
+.xblock-student_view-edflex .block-details__video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  margin-bottom: 50px;
+}
+.xblock-student_view-edflex .product-video iframe,
+.xblock-student_view-edflex .block-details__video iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none !important;
+}
+.xblock-student_view-edflex .block-details__media {
+  margin: 0 50px 50px 0;
+  float: left;
+  width: 270px;
+}
+.xblock-student_view-edflex .block-details__media img {
+  display: block;
+}
+.xblock-student_view-edflex .product-podcast {
+  margin-bottom: 50px;
+}
+.xblock-student_view-edflex button {
+  background: #2ca5de;
+  box-shadow: none !important;
+  border: none !important;
+  color: #fff;
+  text-shadow: none !important;
+  font-weight: bold;
+  height: 50px;
+  padding: 0 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  padding-bottom: 3px;
+  transition: all 0.2s ease;
+}
+.xblock-student_view-edflex button .fa {
+  margin-left: 10px;
+}
+.xblock-student_view-edflex button:hover {
+  background: #e7413c;
+}
+.xblock-student_view-edflex .js-access-resource {
+  float: right;
+}
+
+.powered-by-edflex {
+  background: url("../images/edflex-image-small.png") no-repeat 100% 50%;
+  -webkit-background-size: 50px 18px;
+  background-size: 50px 18px;
+  padding-right: 65px;
+  line-height: 18px;
+  font-size: 11px;
+  color: #727272;
+  font-weight: 600;
+  float: right;
+  clear: both;
+  margin-top: 30px;
+}
+
+.js-modal-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(29, 29, 27, 0.4);
+  z-index: 9999;
+}
+
+.js-modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background: #fff;
+  text-align: center;
+  z-index: 10000;
+  padding: 70px 90px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  max-height: 100vh;
+  overflow: auto;
+}
+.js-modal-dialog .icon-share {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 50px;
+  background: url("../images/icon-share.svg") no-repeat 50% 50%;
+}
+.js-modal-dialog h3 {
+  font-family: NanumGothic, sans-serif !important;
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+  margin: 0 0 15px;
+  text-align: center;
+}
+.js-modal-dialog .modal-body-text {
+  margin-bottom: 50px;
+}
+.js-modal-dialog p {
+  text-align: center;
+}
+.js-modal-dialog i {
+  display: block;
+}
+.js-modal-dialog .btn {
+  min-width: 175px;
+  height: 50px;
+  background: #e7413c;
+  font-size: 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) !important;
+}
+.js-modal-dialog .js-close {
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: url("../images/icon-close.svg") no-repeat 50% 50%;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=edflex.css.map */
