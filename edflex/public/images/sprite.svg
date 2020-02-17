@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg style="display: none;">
     <symbol viewBox="0 0 35 35" id="podcast" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M14.782 8.812c.732-4.8 4.879-8.479 9.885-8.479 5.522 0 10 4.477 10 10 0 5.006-3.678 9.152-8.479 9.885L6.141 34.164.836 28.86 14.782 8.812zm6.335 10.873a10.03 10.03 0 01-5.802-5.802L5.165 28.474l1.361 1.362 14.591-10.15zm9.42-6.188a6.667 6.667 0 00-9.06-9.019c.503 1.574 2.237 4.212 3.535 5.51 1.277 1.277 3.87 2.973 5.524 3.51zm-2.482 2.579a6.667 6.667 0 01-9.147-9.104c.928 1.973 2.417 4.043 3.747 5.373 1.313 1.313 3.401 2.798 5.4 3.73z" fill-opacity=".65" />
     </symbol>
@@ -25,5 +25,562 @@
     </symbol>
     <symbol viewBox="0 0 13 12" id="icon-close" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M6.13652 5.28042L11.0627 0.665748L12.1574 1.69123L7.23123 6.30591L12.1574 10.9206L11.0627 11.9461L6.13652 7.33139L1.21034 11.9461L0.115634 10.9206L5.04181 6.30591L0.115634 1.69123L1.21034 0.665747L6.13652 5.28042Z" fill="#727272"/>
+    </symbol>
+    <symbol viewBox="0 0 30 30" id="icon-share" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.507 17.8452L26.6619 5.69036V13.3333H29.9952V0H16.6619V3.33333H24.3048L12.15 15.4882L14.507 17.8452ZM26.6667 26.6667V18.3333H23.3333V26.6667H3.33333V6.66667H11.6667V3.33333H3.33333C1.49238 3.33333 0 4.82572 0 6.66667V26.6667C0 28.5076 1.49238 30 3.33333 30H23.3333C25.1743 30 26.6667 28.5076 26.6667 26.6667Z" fill="#E7413C"/>
+    </symbol>
+    <symbol viewBox="0 0 512 512" id="lang-fr">
+        <svg id="fr" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+          <path d="M0,0H512V512H0Z" fill="#fff" fill-rule="evenodd"/>
+          <path d="M0,0H170.667V512H0Z" fill="#00267f" fill-rule="evenodd"/>
+          <path d="M341.333,0H512V512H341.333Z" transform="translate(-0.005)" fill="#f31830" fill-rule="evenodd"/>
+        </svg>
+    </symbol>
+    <symbol viewBox="0 0 512 512" id="lang-en">
+        <defs>
+          <clipPath>
+            <path d="M256,0H768V512H256Z" fill="rgba(0,0,0,0.67)"/>
+          </clipPath>
+        </defs>
+        <g id="gb" transform="translate(-256)" clip-path="url(#clip-path)">
+          <g>
+            <path d="M0,0H1024.021V512.01H0Z" fill="#006"/>
+            <path d="M0,0V57.245L909.535,512.013h114.485V454.769L114.485,0H0ZM1024.021,0V57.242L114.485,512.01H0V454.769L909.535,0Z" fill="#fff"/>
+            <path d="M426.675,0V512.01h170.67V0ZM0,170.67V341.34H1024.021V170.67Z" fill="#fff"/>
+            <path d="M0,204.8v102.4H1024.021V204.8ZM460.81,0V512.01h102.4V0ZM0,512.01,341.34,341.34h76.324L76.324,512.01ZM0,0,341.34,170.67H265.016L0,38.164ZM606.357,170.67,947.7,0h76.324L682.68,170.67Zm417.664,341.34L682.68,341.34H759l265.016,132.509Z" fill="#c00"/>
+          </g>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 512 512" id="lang-zh">
+        <defs>
+          <clipPath id="clip-path">
+            <path d="M-2.56-7.885h512v512h-512Z" transform="translate(0 0)"/>
+          </clipPath>
+        </defs>
+        <g id="cn" transform="translate(2.56 7.885)" clip-path="url(#clip-path)">
+          <path d="M-2.56-7.885h768v512h-768Z" transform="translate(0 0)" fill="#de2910"/>
+          <path d="M144.611,51.456,26.57,137.472,71.651-1.536,116.81,137.472-1.462,51.456Z" transform="translate(53.789 44.851)" fill="#ffde00"/>
+          <path d="M48.658,17.652,9.338,46.3,24.355,0,39.4,46.3,0,17.652Z" transform="matrix(-0.514, -0.858, 0.858, -0.514, 244.028, 77.36)" fill="#ffde00"/>
+          <path d="M48.691,17.664,9.344,46.336,24.371,0,39.424,46.336,0,17.664Z" transform="translate(282.727 122.239) rotate(-98.106)" fill="#ffde00"/>
+          <path d="M48.717,17.673,9.349,46.361,24.384,0,39.445,46.361,0,17.673Z" transform="matrix(0.275, -0.961, 0.961, 0.275, 273.311, 187.72)" fill="#ffde00"/>
+          <path d="M48.667,17.655,9.339,46.313,24.359,0,39.4,46.313,0,17.655Z" transform="matrix(0.625, -0.78, 0.78, 0.625, 218.24, 225.525)" fill="#ffde00"/>
+        </g>
+    </symbol>
+    <symbol viewBox="0 0 512 512" id="lang-ru">
+        <rect width="512.005" height="512" fill="#fff"/>
+        <rect width="512.005" height="341.333" transform="translate(0 170.667)" fill="#01017e"/>
+        <rect width="512.005" height="170.667" transform="translate(0 341.333)" fill="#fe0101"/>
+    </symbol>
+    <symbol viewBox="0 0 512 512" id="lang-pt">
+        <defs>
+          <clipPath id="clip-path">
+            <rect width="512" height="512" fill="rgba(0,0,0,0.67)"/>
+          </clipPath>
+        </defs>
+        <g id="flag" clip-path="url(#clip-path)">
+          <rect width="307.43" height="511.87" stroke-width="0.138" fill="#090" stroke="#707070" transform="translate(-114.94 0.065)"/>
+          <rect width="461.15" height="512" transform="translate(191.82)" fill="red"/>
+          <g id="g1527" transform="translate(23.562 74.592)">
+            <g id="g1009">
+              <rect" width="7.83" height="310.975" transform="matrix(0.121, -0.993, 0.993, 0.12, 150.787, 127.047)"/>
+              <rect" width="5.996" height="304.875" transform="matrix(0.121, -0.993, 0.993, 0.12, 152.156, 127.327)" fill="#efef00"/>
+              <g id="g1012">
+                <rect" width="2.57" height="314.113" transform="matrix(0.121, -0.993, 0.993, 0.12, 150.762, 117.872)"/>
+                <rect" width="0.728" height="308.531" transform="matrix(0.121, -0.993, 0.993, 0.12, 152.024, 118.176)" fill="#efef00"/>
+              </g>
+              <g id="g1015">
+                <rect" width="2.57" height="314.113" transform="matrix(0.121, -0.993, 0.993, 0.12, 149.727, 138.746)"/>
+                <rect" width="0.728" height="308.531" transform="matrix(0.121, -0.993, 0.993, 0.12, 150.989, 139.05)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g1000">
+              <rect" width="7.83" height="310.975" transform="matrix(0.121, -0.993, 0.993, 0.12, 170.174, 187.975)"/>
+              <rect" width="5.996" height="304.875" transform="matrix(0.121, -0.993, 0.993, 0.12, 171.543, 188.255)" fill="#efef00"/>
+              <g id="g1003">
+                <rect" width="2.57" height="314.113" transform="matrix(0.121, -0.993, 0.993, 0.12, 170.15, 178.8)"/>
+                <rect" width="0.728" height="308.531" transform="matrix(0.121, -0.993, 0.993, 0.12, 171.411, 179.104)" fill="#efef00"/>
+              </g>
+              <g id="g1006">
+                <rect" width="2.57" height="314.113" transform="matrix(0.121, -0.993, 0.993, 0.12, 169.115, 199.674)"/>
+                <rect" width="0.728" height="308.531" transform="matrix(0.121, -0.993, 0.993, 0.12, 170.376, 199.978)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g991">
+              <rect width="7.83" height="310.975" transform="matrix(0.121, -0.993, 0.993, 0.12, 162.417, 256.639)"/>
+              <rect width="5.996" height="304.875" transform="matrix(0.121, -0.993, 0.993, 0.12, 163.786, 256.919)" fill="#efef00"/>
+              <g id="g994">
+                <rect width="2.57" height="314.113" transform="matrix(0.121, -0.993, 0.993, 0.12, 162.393, 247.464)"/>
+                <rect width="0.728" height="308.531" transform="matrix(0.121, -0.993, 0.993, 0.12, 163.654, 247.768)" fill="#efef00"/>
+              </g>
+              <g id="g997">
+                <rect width="2.57" height="314.113" transform="matrix(0.121, -0.993, 0.993, 0.12, 161.358, 268.337)"/>
+                <rect width="0.728" height="308.531" transform="matrix(0.121, -0.993, 0.993, 0.12, 162.619, 268.642)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g982">
+              <rect width="7.83" height="310.975" transform="matrix(0.121, 0.993, -0.993, 0.12, 178.785, 244.031)"/>
+              <rect width="5.996" height="304.875" transform="matrix(0.121, 0.993, -0.993, 0.12, 177.637, 246.131)" fill="#efef00"/>
+              <g id="g985">
+                <rect width="2.57" height="314.113" transform="matrix(0.121, 0.993, -0.993, 0.12, 179.445, 240.077)"/>
+                <rect width="0.728" height="308.531" transform="matrix(0.121, 0.993, -0.993, 0.12, 178.406, 242.21)" fill="#efef00"/>
+              </g>
+              <g id="g988">
+                <rect width="2.57" height="314.113" transform="matrix(0.121, 0.993, -0.993, 0.12, 180.48, 260.951)"/>
+                <rect width="0.728" height="308.531" transform="matrix(0.121, 0.993, -0.993, 0.12, 179.441, 263.083)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g937">
+              <rect width="10.042" height="242.459" transform="matrix(-0.562, 0.827, -0.827, -0.562, 169.83, 188.832)"/>
+              <rect width="7.691" height="237.703" transform="matrix(-0.562, 0.827, -0.827, -0.562, 167.831, 190.695)" fill="#efef00"/>
+              <g id="g940">
+                <rect width="3.296" height="244.906" transform="matrix(-0.562, 0.827, -0.827, -0.562, 171.943, 185.288)"/>
+                <rect width="0.934" height="240.553" transform="matrix(-0.562, 0.827, -0.827, -0.562, 170.051, 187.183)" fill="#efef00"/>
+              </g>
+              <g id="g943">
+                <rect width="3.296" height="244.906" transform="matrix(-0.562, 0.827, -0.827, -0.562, 165.768, 204.11)"/>
+                <rect width="0.934" height="240.553" transform="matrix(-0.562, 0.827, -0.827, -0.562, 163.877, 206.005)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g928">
+              <rect width="15.185" height="160.347" transform="matrix(-0.916, 0.401, -0.403, -0.915, 153.026, 186.083)"/>
+              <rect width="11.629" height="157.202" transform="matrix(-0.916, 0.401, -0.403, -0.915, 150.418, 187.126)" fill="#efef00"/>
+              <g id="g931">
+                <rect width="4.984" height="161.965" transform="matrix(-0.916, 0.401, -0.403, -0.915, 156.645, 183.428)"/>
+                <rect width="1.412" height="159.087" transform="matrix(-0.916, 0.401, -0.403, -0.915, 154.105, 184.545)" fill="#efef00"/>
+              </g>
+              <g id="g934">
+                <rect width="4.984" height="161.965" transform="matrix(-0.916, 0.401, -0.403, -0.915, 141.429, 199.529)"/>
+                <rect width="1.412" height="159.087" transform="matrix(-0.916, 0.401, -0.403, -0.915, 138.889, 200.647)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g606" transform="translate(355.72 82.204)">
+              <path d="M-59.5-70.084c.049,63.648-51.68,115.3-115.468,115.3-63.79.1-115.6-51.472-115.654-115.118-.154-63.65,51.493-115.386,115.282-115.489,63.79-.2,115.685,51.29,115.84,114.933,0,.129,0,.238,0,.367Zm27.107,0c.06,78.578-63.8,142.346-142.551,142.346-78.752.125-142.726-63.547-142.778-142.12-.191-78.58,63.572-142.45,142.323-142.573C-96.641-212.68-32.576-149.109-32.39-70.537c0,.159,0,.294,0,.453Z" transform="translate(-15.479 174.223)" fill="#efef00" fill-rule="evenodd"/>
+              <path d="M30.038,265.132c.059,77.007-62.526,139.5-139.7,139.5-77.178.122-139.872-62.276-139.932-139.277-.186-77.008,62.3-139.6,139.487-139.722,77.178-.244,139.963,62.055,140.145,139.055,0,.157,0,.289,0,.444Zm-2.8,0C27.3,340.6-34.034,401.844-109.664,401.844c-75.635.119-137.068-61.031-137.128-136.5-.183-75.467,61.054-136.813,136.693-136.934,75.635-.24,137.159,60.812,137.341,136.278,0,.154,0,.283,0,.435Z" transform="translate(-80.76 -160.99)" fill-rule="evenodd"/>
+              <path d="M26.059,230c.051,66.8-54.242,121.017-121.191,121.017-66.953.106-121.34-54.025-121.393-120.824-.162-66.8,54.047-121.1,121.006-121.21C-28.566,108.775,25.9,162.82,26.059,229.619c0,.136,0,.251,0,.386Zm-2.426,0c.05,65.468-53.158,118.6-118.767,118.6-65.614.1-118.908-52.945-118.96-118.415C-214.254,164.72-161.129,111.5-95.512,111.4c65.614-.209,118.987,52.755,119.145,118.222,0,.133,0,.245,0,.378Z" transform="translate(-95.305 -125.867)" fill-rule="evenodd"/>
+            </g>
+            <g  transform="translate(0.969 5.442)">
+              <rect width="17.718" height="286.274" transform="translate(157.858 38.205)"/>
+              <rect width="13.569" height="280.658" transform="translate(159.924 41.012)" fill="#efef00"/>
+              <g  transform="translate(0.969 0)">
+                <rect width="5.816" height="289.163" transform="translate(153.138 36.284)"/>
+                <rect width="1.648" height="284.024" transform="translate(155.224 38.852)" fill="#efef00"/>
+              </g>
+              <g  transform="translate(20.354 0)">
+                <rect width="5.816" height="289.163" transform="translate(153.138 36.284)"/>
+                <rect width="1.648" height="284.024" transform="translate(155.224 38.852)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g892">
+              <rectwidth="10.105" height="240.958" transform="translate(160.429 210.863) rotate(49.365)"/>
+              <rectwidth="7.738" height="236.231" transform="translate(159.959 213.208) rotate(49.365)" fill="#efef00"/>
+              <g id="g895">
+                <rectwidth="3.317" height="243.39" transform="translate(159.883 206.892) rotate(49.365)"/>
+                <rectwidth="0.94" height="239.064" transform="translate(159.526 209.236) rotate(49.365)" fill="#efef00"/>
+              </g>
+              <g id="g1963">
+                <rectwidth="3.317" height="243.39" transform="translate(167.083 226.516) rotate(49.365)"/>
+                <rect width="0.94" height="239.064" transform="translate(166.725 228.86) rotate(49.365)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g901">
+              <rectwidth="8.067" height="301.831" transform="matrix(0.106, 0.994, -0.994, 0.105, 153.738, 157.445)"/>
+              <rect width="6.178" height="295.91" transform="matrix(0.106, 0.994, -0.994, 0.105, 152.54, 159.72)" fill="#efef00"/>
+              <g id="g904">
+                <rectwidth="2.648" height="304.877" transform="matrix(0.106, 0.994, -0.994, 0.105, 154.445, 153.474)"/>
+                <rectwidth="0.75" height="299.459" transform="matrix(0.106, 0.994, -0.994, 0.105, 153.359, 155.758)" fill="#efef00"/>
+              </g>
+              <g id="g907">
+                <rectwidth="2.648" height="304.877" transform="matrix(0.106, 0.994, -0.994, 0.105, 155.379, 173.499)"/>
+                <rectwidth="0.75" height="299.459" transform="matrix(0.106, 0.994, -0.994, 0.105, 154.293, 175.783)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g910">
+              <rectwidth="12.891" height="188.877" transform="matrix(-0.851, 0.525, -0.525, -0.851, 156.985, 153.92)"/>
+              <rectwidth="9.872" height="185.171" transform="matrix(-0.851, 0.525, -0.525, -0.851, 154.613, 155.422)" fill="#efef00"/>
+              <g id="g1978">
+                <rect width="4.231" height="190.783" transform="matrix(-0.851, 0.525, -0.525, -0.851, 160.056, 150.648)"/>
+                <rectwidth="1.199" height="187.392" transform="matrix(-0.851, 0.525, -0.525, -0.851, 157.764, 152.211)" fill="#efef00"/>
+              </g>
+              <g id="g1981">
+                <rect width="4.231" height="190.783" transform="matrix(-0.851, 0.525, -0.525, -0.851, 148.054, 169.259)"/>
+                <rectwidth="1.199" height="187.392" transform="matrix(-0.851, 0.525, -0.525, -0.851, 145.762, 170.822)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g946">
+              <rectwidth="8.066" height="301.893" transform="matrix(-0.029, 1, -1, -0.029, 309.698, 159.109)"/>
+              <rectwidth="6.177" height="295.971" transform="matrix(-0.029, 1, -1, -0.029, 308.366, 161.178)" fill="#efef00"/>
+              <g id="g949">
+                <rectwidth="2.647" height="304.939" transform="matrix(-0.029, 1, -1, -0.029, 310.641, 155.279)"/>
+                <rectwidth="0.75" height="299.52" transform="matrix(-0.029, 1, -1, -0.029, 309.42, 157.375)" fill="#efef00"/>
+              </g>
+              <g id="g952">
+                <rectwidth="2.647" height="304.939" transform="matrix(-0.029, 1, -1, -0.029, 310.381, 175.292)"/>
+                <rectwidth="0.75" height="299.52" transform="matrix(-0.029, 1, -1, -0.029, 309.16, 177.388)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g964">
+              <rectwidth="8.466" height="210.389" transform="matrix(0.616, 0.788, -0.788, 0.616, 285.727, 106.346)"/>
+              <rectwidth="6.484" height="206.262" transform="matrix(0.616, 0.788, -0.788, 0.616, 285.258, 108.222)" fill="#efef00"/>
+              <g id="g967">
+                <rectwidth="2.779" height="212.512" transform="matrix(0.616, 0.788, -0.788, 0.616, 285.361, 102.901)"/>
+                <rectwidth="0.787" height="208.735" transform="matrix(0.616, 0.788, -0.788, 0.616, 284.989, 104.799)" fill="#efef00"/>
+              </g>
+              <g id="g970">
+                <rectwidth="2.779" height="212.512" transform="matrix(0.616, 0.788, -0.788, 0.616, 291.063, 120.823)"/>
+                <rectwidth="0.787" height="208.735" transform="matrix(0.616, 0.788, -0.788, 0.616, 290.692, 122.721)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g973">
+              <rectwidth="10.857" height="224.258" transform="matrix(-0.729, 0.685, -0.685, -0.729, 300.5, 235.859)"/>
+              <rectwidth="8.315" height="219.859" transform="matrix(-0.729, 0.685, -0.685, -0.729, 298.377, 237.403)" fill="#efef00"/>
+              <g id="g976">
+                <rectwidth="3.564" height="226.521" transform="matrix(-0.729, 0.685, -0.685, -0.729, 302.996, 232.559)"/>
+                <rectwidth="1.01" height="222.495" transform="matrix(-0.729, 0.685, -0.685, -0.729, 300.967, 234.161)" fill="#efef00"/>
+              </g>
+              <g id="g979">
+                <rectwidth="3.564" height="226.521" transform="matrix(-0.729, 0.685, -0.685, -0.729, 294.342, 251.158)"/>
+                <rectwidth="1.01" height="222.495" transform="matrix(-0.729, 0.685, -0.685, -0.729, 292.312, 252.759)" fill="#efef00"/>
+              </g>
+            </g>
+            <g id="g1287">
+              <g id="g2012" transform="translate(40.138 -64.657)">
+                <g id="g2013" transform="translate(130.311 893.571)">
+                  <g id="g2014">
+                    <rect width="164.324" height="120.694" transform="translate(-87.888 -736.57)" fill="#f6f6fb"/>
+                    <ellipse cx="82.16" cy="76.287" rx="82.16" ry="76.287" transform="translate(-87.897 -695.546)" fill="#f6f6fb"/>
+                  </g>
+                  <g id="g2017" transform="translate(-616.001 -356.959)">
+                    <rect width="88.735" height="65.173" transform="translate(565.905 -344.293)" fill="#f6f6fb"/>
+                    <ellipse cx="44.368" cy="41.195" rx="44.368" ry="41.195" transform="translate(565.908 -313.05)" fill="#f6f6fb"/>
+                  </g>
+                </g>
+                <g id="g2020" transform="translate(-476.219 472.788)">
+                  <g id="g2021" transform="translate(606.23 388.794)">
+                    <g id="g2022">
+                      <rect width="156.108" height="114.659" transform="translate(-83.494 -699.741)" fill="red"/>
+                      <ellipse cx="78.052" cy="72.472" rx="78.052" ry="72.472" transform="translate(-83.502 -660.769)" fill="red"/>
+                    </g>
+                    <g id="g2025" transform="translate(-585.201 -339.111)">
+                      <rect width="84.299" height="61.914" transform="translate(537.61 -327.078)" fill="red"/>
+                      <ellipse cx="42.149" cy="39.135" rx="42.149" ry="39.135" transform="translate(537.613 -297.397)" fill="red"/>
+                    </g>
+                  </g>
+                  <g id="g2028" transform="translate(604.04 143.748)">
+                    <g id="g2029">
+                      <rect width="93.172" height="68.433" transform="translate(-49.833 -417.635)" fill="#400"/>
+                      <ellipse cx="46.585" cy="43.255" rx="46.585" ry="43.255" transform="translate(-49.837 -394.375)" fill="#400"/>
+                    </g>
+                    <g id="g2032" transform="translate(-349.273 -202.396)">
+                      <rect width="50.313" height="36.953" transform="translate(320.868 -195.214)" fill="#400"/>
+                      <ellipse cx="25.156" cy="23.357" rx="25.156" ry="23.357" transform="translate(320.87 -177.499)" fill="#400"/>
+                    </g>
+                  </g>
+                  <g id="g2035" transform="translate(603.72 108.378)">
+                    <g id="g2036">
+                      <rect width="84.088" height="61.761" transform="translate(-44.974 -376.918)" fill="#fff"/>
+                      <ellipse cx="42.043" cy="39.037" rx="42.043" ry="39.037" transform="translate(-44.978 -355.925)" fill="#fff"/>
+                    </g>
+                    <g id="g2039" transform="translate(-315.22 -182.663)">
+                      <rect width="45.408" height="33.35" transform="translate(289.585 -176.181)" fill="#fff"/>
+                      <ellipse cx="22.704" cy="21.08" rx="22.704" ry="21.08" transform="translate(289.586 -160.194)" fill="#fff"/>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g id="g2042" transform="translate(-141.507 402.686)">
+                <g id="g2043" transform="translate(288.179 -220.621)">
+                  <g id="g2044" transform="translate(19.547 134.036)">
+                    <g id="g2045">
+                      <rect width="24.649" height="18.104" transform="translate(-13.183 -110.485)" fill="#3b3bff"/>
+                      <ellipse cx="12.324" cy="11.443" rx="12.324" ry="11.443" transform="translate(-13.184 -104.332)" fill="#3b3bff"/>
+                    </g>
+                    <g id="g2048" transform="translate(-92.4 -53.544)">
+                      <rect width="13.31" height="9.776" transform="translate(84.886 -51.644)" fill="#3b3bff"/>
+                      <ellipse cx="6.655" cy="6.179" rx="6.655" ry="6.179" transform="translate(84.886 -46.957)" fill="#3b3bff"/>
+                    </g>
+                  </g>
+                  <g id="g2051" transform="translate(-71.433 70.918)">
+                    <g id="g2052" transform="translate(90.934 58.319)">
+                      <g id="g2053">
+                        <rect width="23.416" height="17.199" transform="translate(-12.524 -104.961)" fill="#3b3bff"/>
+                        <ellipse cx="11.708" cy="10.871" rx="11.708" ry="10.871" transform="translate(-12.525 -99.115)" fill="#3b3bff"/>
+                      </g>
+                      <g id="g2056" transform="translate(-87.78 -50.867)">
+                        <rect width="12.645" height="9.287" transform="translate(80.642 -49.062)" fill="#3b3bff"/>
+                        <ellipse cx="6.322" cy="5.87" rx="6.322" ry="5.87" transform="translate(80.642 -44.61)" fill="#3b3bff"/>
+                      </g>
+                    </g>
+                    <g id="g2059" transform="translate(90.606 21.562)">
+                      <g id="g2060">
+                        <rect width="13.976" height="10.265" transform="translate(-7.475 -62.645)" fill="#3b3bff"/>
+                        <ellipse cx="6.988" cy="6.488" rx="6.988" ry="6.488" transform="translate(-7.476 -59.156)" fill="#3b3bff"/>
+                      </g>
+                      <g id="g2063" transform="translate(-52.391 -30.359)">
+                        <rect width="7.547" height="5.543" transform="translate(48.13 -29.282)" fill="#3b3bff"/>
+                        <ellipse cx="3.773" cy="3.504" rx="3.773" ry="3.504" transform="translate(48.13 -26.625)" fill="#3b3bff"/>
+                      </g>
+                    </g>
+                    <g id="g2066" transform="translate(90.558 16.257)">
+                      <g id="g2067">
+                        <rect width="12.613" height="9.264" transform="translate(-6.746 -56.538)" fill="#3b3bff"/>
+                        <ellipse cx="6.306" cy="5.856" rx="6.306" ry="5.856" transform="translate(-6.747 -53.389)" fill="#3b3bff"/>
+                      </g>
+                      <g id="g2070" transform="translate(-47.283 -27.399)">
+                        <rect width="6.811" height="5.003" transform="translate(43.438 -26.427)" fill="#3b3bff"/>
+                        <ellipse cx="3.406" cy="3.162" rx="3.406" ry="3.162" transform="translate(43.438 -24.029)" fill="#3b3bff"/>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+                <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(295.774 -195.623)" fill="#fff"/>
+                <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.591 -195.623)" fill="#fff"/>
+                <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(302.561 -187.878)" fill="#fff"/>
+                <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(296.311 -180.375)" fill="#fff"/>
+                <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.445 -180.132)" fill="#fff"/>
+              </g>
+              <path d="M-44.818,56.172V58.51H-13.57V56.172Zm2.711-6.452v6.508h26.56V49.72h-26.56Zm-2.343,21.4v2.339H-13.2V71.117Zm8.374-.723a7.5,7.5,0,0,1,7.3-7.69,7.5,7.5,0,0,1,7.31,7.678c0,.034,0,.062,0,.1m-15.419.339a8.334,8.334,0,0,1,8.109-8.545A8.332,8.332,0,0,1-20.658,70.8c0,.037,0,.069,0,.106M-42.106,59.151V70.843h26.56V59.151ZM-44.819,47.49V49.7h31.247V47.49Zm0-3.119v3.142h2.407V44.371Zm28.855,0v3.142h2.407V44.371Zm-24.056.063v3.142h2.407V44.434Zm19.131-.064v3.142h2.407V44.37Zm-14.46-2.96v3.142h2.407V41.41Zm9.6,0v3.142h2.407V41.409Zm-4.672-.063v3.142h2.407V41.346Zm-4.932,3.228v3h12v-3Z" transform="translate(133.936 57.859)" fill="#ff0" fill-rule="evenodd"/>
+              <g id="g2079" transform="translate(134.525 57.916)">
+                <rect width="2.407" height="3.142" transform="translate(-36.044 49.221)" fill="red"/>
+                <rect width="2.407" height="3.142" transform="translate(-25.247 49.158)" fill="red"/>
+              </g>
+              <path d="M-44.818,56.172V58.51H-13.57V56.172Zm2.711-6.452v6.508h26.56V49.72h-26.56Zm-2.343,21.4v2.339H-13.2V71.117Zm8.374-.723a7.5,7.5,0,0,1,7.3-7.69,7.5,7.5,0,0,1,7.31,7.678c0,.034,0,.062,0,.1m-15.419.339a8.334,8.334,0,0,1,8.109-8.545A8.332,8.332,0,0,1-20.658,70.8c0,.037,0,.069,0,.106M-42.106,59.151V70.843h26.56V59.151ZM-44.819,47.49V49.7h31.247V47.49Zm0-3.119v3.142h2.407V44.371Zm28.855,0v3.142h2.407V44.371Zm-24.056.063v3.142h2.407V44.434Zm19.131-.064v3.142h2.407V44.37Zm-14.46-2.96v3.142h2.407V41.41Zm9.6,0v3.142h2.407V41.409Zm-4.672-.063v3.142h2.407V41.346Zm-4.932,3.228v3h12v-3Z" transform="translate(253.876 58.233)" fill="#ff0" fill-rule="evenodd"/>
+              <g id="g2083" transform="translate(254.455 58.29)">
+                <rect width="2.407" height="3.142" transform="translate(-36.044 49.221)" fill="red"/>
+                <rect width="2.407" height="3.142" transform="translate(-25.247 49.158)" fill="red"/>
+              </g>
+              <path d="M-44.818,56.172V58.51H-13.57V56.172Zm2.711-6.452v6.508h26.56V49.72h-26.56Zm-2.343,21.4v2.339H-13.2V71.117Zm8.374-.723a7.5,7.5,0,0,1,7.3-7.69,7.5,7.5,0,0,1,7.31,7.678c0,.034,0,.062,0,.1m-15.419.339a8.334,8.334,0,0,1,8.109-8.545A8.332,8.332,0,0,1-20.658,70.8c0,.037,0,.069,0,.106M-42.106,59.151V70.843h26.56V59.151ZM-44.819,47.49V49.7h31.247V47.49Zm0-3.119v3.142h2.407V44.371Zm28.855,0v3.142h2.407V44.371Zm-24.056.063v3.142h2.407V44.434Zm19.131-.064v3.142h2.407V44.37Zm-14.46-2.96v3.142h2.407V41.41Zm9.6,0v3.142h2.407V41.409Zm-4.672-.063v3.142h2.407V41.346Zm-4.932,3.228v3h12v-3Z" transform="translate(195.032 58.233)" fill="#ff0" fill-rule="evenodd"/>
+              <g id="g2087" transform="translate(195.611 58.29)">
+                <rect width="2.407" height="3.142" transform="translate(-36.044 49.221)" fill="red"/>
+                <rect width="2.407" height="3.142" transform="translate(-25.247 49.158)" fill="red"/>
+              </g>
+              <path d="M-44.818,56.172V58.51H-13.57V56.172Zm2.711-6.452v6.508h26.56V49.72h-26.56Zm-2.343,21.4v2.339H-13.2V71.117Zm8.374-.723a7.5,7.5,0,0,1,7.3-7.69,7.5,7.5,0,0,1,7.31,7.678c0,.034,0,.062,0,.1m-15.419.339a8.334,8.334,0,0,1,8.109-8.545A8.332,8.332,0,0,1-20.658,70.8c0,.037,0,.069,0,.106M-42.106,59.151V70.843h26.56V59.151ZM-44.819,47.49V49.7h31.247V47.49Zm0-3.119v3.142h2.407V44.371Zm28.855,0v3.142h2.407V44.371Zm-24.056.063v3.142h2.407V44.434Zm19.131-.064v3.142h2.407V44.37Zm-14.46-2.96v3.142h2.407V41.41Zm9.6,0v3.142h2.407V41.409Zm-4.672-.063v3.142h2.407V41.346Zm-4.932,3.228v3h12v-3Z" transform="translate(131.313 131.154)" fill="#ff0" fill-rule="evenodd"/>
+              <g id="g2091" transform="translate(131.901 131.216)">
+                <rect width="2.407" height="3.142" transform="translate(-36.044 49.221)" fill="red"/>
+                <rect width="2.407" height="3.142" transform="translate(-25.247 49.158)" fill="red"/>
+              </g>
+              <path d="M-44.818,56.172V58.51H-13.57V56.172Zm2.711-6.452v6.508h26.56V49.72h-26.56Zm-2.343,21.4v2.339H-13.2V71.117Zm8.374-.723a7.5,7.5,0,0,1,7.3-7.69,7.5,7.5,0,0,1,7.31,7.678c0,.034,0,.062,0,.1m-15.419.339a8.334,8.334,0,0,1,8.109-8.545A8.332,8.332,0,0,1-20.658,70.8c0,.037,0,.069,0,.106M-42.106,59.151V70.843h26.56V59.151ZM-44.819,47.49V49.7h31.247V47.49Zm0-3.119v3.142h2.407V44.371Zm28.855,0v3.142h2.407V44.371Zm-24.056.063v3.142h2.407V44.434Zm19.131-.064v3.142h2.407V44.37Zm-14.46-2.96v3.142h2.407V41.41Zm9.6,0v3.142h2.407V41.409Zm-4.672-.063v3.142h2.407V41.346Zm-4.932,3.228v3h12v-3Z" transform="translate(256.128 130.412)" fill="#ff0" fill-rule="evenodd"/>
+              <g id="g2095" transform="translate(256.707 130.464)">
+                <rect width="2.407" height="3.142" transform="translate(-36.044 49.221)" fill="red"/>
+                <rect width="2.407" height="3.142" transform="translate(-25.247 49.158)" fill="red"/>
+              </g>
+              <path d="M113.541,258.041l1.775,1.526,20.4-23.619-1.775-1.526Zm-3.129-6.261,4.942,4.248,17.337-20.076-4.942-4.248L110.412,251.78Zm14.716,15.739,1.776,1.527,20.4-23.619-1.776-1.527Zm4.917-6.8a7.3,7.3,0,1,1,9.526-11.05l.072.063m-9.807,11.877a8.116,8.116,0,1,1,10.584-12.277l.08.07m-22.928,8.537,8.877,7.631,17.337-20.076-8.877-7.632Zm-10.624-5.562,1.679,1.444,20.4-23.619-1.679-1.444Zm-2.37-2.034,2.385,2.051,1.572-1.82-2.385-2.051Zm18.835-21.811,2.385,2.051,1.572-1.82-2.385-2.051Zm-15.655,18.225,2.385,2.051,1.572-1.82-2.385-2.051Zm12.44-14.5,2.385,2.051,1.572-1.82-2.385-2.051Zm-11.686,9L110.9,243.3l1.572-1.82-2.385-2.051Zm6.264-7.255,2.385,2.051,1.572-1.82-2.385-2.051Zm-3.1,3.491,2.385,2.051,1.572-1.82-2.385-2.051Zm-.768,5.835,2.281,1.961,7.831-9.068-2.281-1.961Z" fill="#ff0" fill-rule="evenodd"/>
+              <g id="g2099">
+                <rect width="2.407" height="3.142" transform="matrix(0.653, -0.758, 0.758, 0.653, 114.413, 246.47)" fill="red"/>
+                <rect width="2.407" height="3.142" transform="matrix(0.653, -0.758, 0.758, 0.653, 121.412, 238.267)" fill="red"/>
+              </g>
+              <path d="M217.046,257.67l-1.775,1.526-20.4-23.619,1.775-1.526Zm3.129-6.261-4.942,4.248L197.9,235.581l4.942-4.248Zm-14.716,15.739-1.776,1.527-20.4-23.619,1.776-1.527Zm-4.917-6.8a7.3,7.3,0,1,0-9.526-11.05l-.072.063m9.807,11.877a8.116,8.116,0,1,0-10.584-12.277l-.08.07m22.928,8.537-8.877,7.631L186.8,245.12l8.877-7.632ZM223.638,252l-1.679,1.444-20.4-23.619,1.679-1.444Zm2.37-2.034-2.385,2.051-1.572-1.82,2.385-2.051Zm-18.835-21.811-2.385,2.051-1.572-1.82,2.385-2.051Zm15.655,18.225-2.385,2.051-1.572-1.82,2.385-2.051Zm-12.44-14.5L208,233.931l-1.572-1.82,2.385-2.051Zm11.686,9-2.385,2.051-1.572-1.82,2.385-2.051Zm-6.264-7.255-2.385,2.051-1.572-1.82,2.385-2.051Zm3.1,3.491-2.385,2.051-1.572-1.82,2.385-2.051Zm.768,5.835-2.281,1.961-7.831-9.068,2.281-1.961Z" fill="#ff0" fill-rule="evenodd"/>
+              <g id="g2103">
+                <rect width="2.407" height="3.142" transform="matrix(-0.653, -0.758, 0.758, -0.653, 213.787, 248.15)" fill="red"/>
+                <rect width="2.407" height="3.142" transform="matrix(-0.653, -0.758, 0.758, -0.653, 206.788, 239.947)" fill="red"/>
+              </g>
+              <g id="g2106" transform="translate(-142.292 337.212)">
+                <g id="g2107" transform="translate(0.391 1.169)">
+                  <g id="g2108" transform="translate(288.179 -220.621)">
+                    <g id="g2109" transform="translate(19.547 134.036)">
+                      <g id="g2110">
+                        <rect width="24.649" height="18.104" transform="translate(-13.183 -110.485)" fill="#3b3bff"/>
+                        <ellipse cx="12.324" cy="11.443" rx="12.324" ry="11.443" transform="translate(-13.184 -104.332)" fill="#3b3bff"/>
+                      </g>
+                      <g id="g2113" transform="translate(-92.4 -53.544)">
+                        <rect width="13.31" height="9.776" transform="translate(84.886 -51.644)" fill="#3b3bff"/>
+                        <ellipse cx="6.655" cy="6.179" rx="6.655" ry="6.179" transform="translate(84.886 -46.957)" fill="#3b3bff"/>
+                      </g>
+                    </g>
+                    <g id="g2116" transform="translate(-71.433 70.918)">
+                      <g id="g2117" transform="translate(90.934 58.319)">
+                        <g id="g2118">
+                          <rect width="23.416" height="17.199" transform="translate(-12.524 -104.961)" fill="#3b3bff"/>
+                          <ellipse cx="11.708" cy="10.871" rx="11.708" ry="10.871" transform="translate(-12.525 -99.115)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2121" transform="translate(-87.78 -50.867)">
+                          <rect width="12.645" height="9.287" transform="translate(80.642 -49.062)" fill="#3b3bff"/>
+                          <ellipse cx="6.322" cy="5.87" rx="6.322" ry="5.87" transform="translate(80.642 -44.61)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                      <g id="g2124" transform="translate(90.606 21.562)">
+                        <g id="g2125">
+                          <rect width="13.976" height="10.265" transform="translate(-7.475 -62.645)" fill="#3b3bff"/>
+                          <ellipse cx="6.988" cy="6.488" rx="6.988" ry="6.488" transform="translate(-7.476 -59.156)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2128" transform="translate(-52.391 -30.359)">
+                          <rect width="7.547" height="5.543" transform="translate(48.13 -29.282)" fill="#3b3bff"/>
+                          <ellipse cx="3.773" cy="3.504" rx="3.773" ry="3.504" transform="translate(48.13 -26.625)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                      <g id="g2131" transform="translate(90.558 16.257)">
+                        <g id="g1168">
+                          <rect width="12.613" height="9.264" transform="translate(-6.746 -56.538)" fill="#3b3bff"/>
+                          <ellipse cx="6.306" cy="5.856" rx="6.306" ry="5.856" transform="translate(-6.747 -53.389)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2135" transform="translate(-47.283 -27.399)">
+                          <rect width="6.811" height="5.003" transform="translate(43.438 -26.427)" fill="#3b3bff"/>
+                          <ellipse cx="3.406" cy="3.162" rx="3.406" ry="3.162" transform="translate(43.438 -24.029)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(295.774 -195.623)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.591 -195.623)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(302.561 -187.878)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(296.311 -180.375)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.445 -180.132)" fill="#fff"/>
+                </g>
+                <g id="g2143" transform="translate(0.391 33.127)">
+                  <g id="g2144" transform="translate(288.179 -220.621)">
+                    <g id="g2145" transform="translate(19.547 134.036)">
+                      <g id="g2146">
+                        <rect width="24.649" height="18.104" transform="translate(-13.183 -110.485)" fill="#3b3bff"/>
+                        <ellipse cx="12.324" cy="11.443" rx="12.324" ry="11.443" transform="translate(-13.184 -104.332)" fill="#3b3bff"/>
+                      </g>
+                      <g id="g2149" transform="translate(-92.4 -53.544)">
+                        <rect width="13.31" height="9.776" transform="translate(84.886 -51.644)" fill="#3b3bff"/>
+                        <ellipse cx="6.655" cy="6.179" rx="6.655" ry="6.179" transform="translate(84.886 -46.957)" fill="#3b3bff"/>
+                      </g>
+                    </g>
+                    <g id="g2152" transform="translate(-71.433 70.918)">
+                      <g id="g2153" transform="translate(90.934 58.319)">
+                        <g id="g2154">
+                          <rect width="23.416" height="17.199" transform="translate(-12.524 -104.961)" fill="#3b3bff"/>
+                          <ellipse cx="11.708" cy="10.871" rx="11.708" ry="10.871" transform="translate(-12.525 -99.115)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2157" transform="translate(-87.78 -50.867)">
+                          <rect width="12.645" height="9.287" transform="translate(80.642 -49.062)" fill="#3b3bff"/>
+                          <ellipse cx="6.322" cy="5.87" rx="6.322" ry="5.87" transform="translate(80.642 -44.61)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                      <g id="g2160" transform="translate(90.606 21.562)">
+                        <g id="g2161">
+                          <rect width="13.976" height="10.265" transform="translate(-7.475 -62.645)" fill="#3b3bff"/>
+                          <ellipse cx="6.988" cy="6.488" rx="6.988" ry="6.488" transform="translate(-7.476 -59.156)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2164" transform="translate(-52.391 -30.359)">
+                          <rect width="7.547" height="5.543" transform="translate(48.13 -29.282)" fill="#3b3bff"/>
+                          <ellipse cx="3.773" cy="3.504" rx="3.773" ry="3.504" transform="translate(48.13 -26.625)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                      <g id="g2167" transform="translate(90.558 16.257)">
+                        <g id="g2168">
+                          <rect width="12.613" height="9.264" transform="translate(-6.746 -56.538)" fill="#3b3bff"/>
+                          <ellipse cx="6.306" cy="5.856" rx="6.306" ry="5.856" transform="translate(-6.747 -53.389)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2171" transform="translate(-47.283 -27.399)">
+                          <rect width="6.811" height="5.003" transform="translate(43.438 -26.427)" fill="#3b3bff"/>
+                          <ellipse cx="3.406" cy="3.162" rx="3.406" ry="3.162" transform="translate(43.438 -24.029)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(295.774 -195.623)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.591 -195.623)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(302.561 -187.878)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(296.311 -180.375)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.445 -180.132)" fill="#fff"/>
+                </g>
+                <g id="g1215" transform="translate(27.732 33.127)">
+                  <g id="g2180" transform="translate(288.179 -220.621)">
+                    <g id="g2181" transform="translate(19.547 134.036)">
+                      <g id="g2182">
+                        <rect width="24.649" height="18.104" transform="translate(-13.183 -110.485)" fill="#3b3bff"/>
+                        <ellipse cx="12.324" cy="11.443" rx="12.324" ry="11.443" transform="translate(-13.184 -104.332)" fill="#3b3bff"/>
+                      </g>
+                      <g id="g2185" transform="translate(-92.4 -53.544)">
+                        <rect width="13.31" height="9.776" transform="translate(84.886 -51.644)" fill="#3b3bff"/>
+                        <ellipse cx="6.655" cy="6.179" rx="6.655" ry="6.179" transform="translate(84.886 -46.957)" fill="#3b3bff"/>
+                      </g>
+                    </g>
+                    <g id="g2188" transform="translate(-71.433 70.918)">
+                      <g id="g2189" transform="translate(90.934 58.319)">
+                        <g id="g2190">
+                          <rect width="23.416" height="17.199" transform="translate(-12.524 -104.961)" fill="#3b3bff"/>
+                          <ellipse cx="11.708" cy="10.871" rx="11.708" ry="10.871" transform="translate(-12.525 -99.115)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2193" transform="translate(-87.78 -50.867)">
+                          <rect width="12.645" height="9.287" transform="translate(80.642 -49.062)" fill="#3b3bff"/>
+                          <ellipse cx="6.322" cy="5.87" rx="6.322" ry="5.87" transform="translate(80.642 -44.61)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                      <g id="g2196" transform="translate(90.606 21.562)">
+                        <g id="g1233">
+                          <rect width="13.976" height="10.265" transform="translate(-7.475 -62.645)" fill="#3b3bff"/>
+                          <ellipse cx="6.988" cy="6.488" rx="6.988" ry="6.488" transform="translate(-7.476 -59.156)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2200" transform="translate(-52.391 -30.359)">
+                          <rect width="7.547" height="5.543" transform="translate(48.13 -29.282)" fill="#3b3bff"/>
+                          <ellipse cx="3.773" cy="3.504" rx="3.773" ry="3.504" transform="translate(48.13 -26.625)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                      <g id="g2203" transform="translate(90.558 16.257)">
+                        <g id="g2204">
+                          <rect width="12.613" height="9.264" transform="translate(-6.746 -56.538)" fill="#3b3bff"/>
+                          <ellipse cx="6.306" cy="5.856" rx="6.306" ry="5.856" transform="translate(-6.747 -53.389)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2207" transform="translate(-47.283 -27.399)">
+                          <rect width="6.811" height="5.003" transform="translate(43.438 -26.427)" fill="#3b3bff"/>
+                          <ellipse cx="3.406" cy="3.162" rx="3.406" ry="3.162" transform="translate(43.438 -24.029)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(295.774 -195.623)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.591 -195.623)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(302.561 -187.878)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(296.311 -180.375)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.445 -180.132)" fill="#fff"/>
+                </g>
+                <g id="g2215" transform="translate(-26.95 33.127)">
+                  <g id="g2216" transform="translate(288.179 -220.621)">
+                    <g id="g2217" transform="translate(19.547 134.036)">
+                      <g id="g2218">
+                        <rect width="24.649" height="18.104" transform="translate(-13.183 -110.485)" fill="#3b3bff"/>
+                        <ellipse cx="12.324" cy="11.443" rx="12.324" ry="11.443" transform="translate(-13.184 -104.332)" fill="#3b3bff"/>
+                      </g>
+                      <g id="g2221" transform="translate(-92.4 -53.544)">
+                        <rect width="13.31" height="9.776" transform="translate(84.886 -51.644)" fill="#3b3bff"/>
+                        <ellipse cx="6.655" cy="6.179" rx="6.655" ry="6.179" transform="translate(84.886 -46.957)" fill="#3b3bff"/>
+                      </g>
+                    </g>
+                    <g id="g2224" transform="translate(-71.433 70.918)">
+                      <g id="g2225" transform="translate(90.934 58.319)">
+                        <g id="g2226">
+                          <rect width="23.416" height="17.199" transform="translate(-12.524 -104.961)" fill="#3b3bff"/>
+                          <ellipse cx="11.708" cy="10.871" rx="11.708" ry="10.871" transform="translate(-12.525 -99.115)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2229" transform="translate(-87.78 -50.867)">
+                          <rect width="12.645" height="9.287" transform="translate(80.642 -49.062)" fill="#3b3bff"/>
+                          <ellipse cx="6.322" cy="5.87" rx="6.322" ry="5.87" transform="translate(80.642 -44.61)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                      <g id="g2232" transform="translate(90.606 21.562)">
+                        <g id="g2233">
+                          <rect width="13.976" height="10.265" transform="translate(-7.475 -62.645)" fill="#3b3bff"/>
+                          <ellipse cx="6.988" cy="6.488" rx="6.988" ry="6.488" transform="translate(-7.476 -59.156)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2236" transform="translate(-52.391 -30.359)">
+                          <rect width="7.547" height="5.543" transform="translate(48.13 -29.282)" fill="#3b3bff"/>
+                          <ellipse cx="3.773" cy="3.504" rx="3.773" ry="3.504" transform="translate(48.13 -26.625)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                      <g id="g2239" transform="translate(90.558 16.257)">
+                        <g id="g2240">
+                          <rect width="12.613" height="9.264" transform="translate(-6.746 -56.538)" fill="#3b3bff"/>
+                          <ellipse cx="6.306" cy="5.856" rx="6.306" ry="5.856" transform="translate(-6.747 -53.389)" fill="#3b3bff"/>
+                        </g>
+                        <g id="g2243" transform="translate(-47.283 -27.399)">
+                          <rect width="6.811" height="5.003" transform="translate(43.438 -26.427)" fill="#3b3bff"/>
+                          <ellipse cx="3.406" cy="3.162" rx="3.406" ry="3.162" transform="translate(43.438 -24.029)" fill="#3b3bff"/>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(295.774 -195.623)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.591 -195.623)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(302.561 -187.878)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(296.311 -180.375)" fill="#fff"/>
+                  <ellipse cx="3.686" cy="3.678" rx="3.686" ry="3.678" transform="translate(309.445 -180.132)" fill="#fff"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
     </symbol>
 </svg>
