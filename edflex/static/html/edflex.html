@@ -1,21 +1,56 @@
 {% load i18n %}
 
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap" rel="stylesheet">
+
+{{ svg_sprite|safe }}
+
 <div class="edflex_block" data-format="{{ resource.type }}">
     {% if resource %}
     <div class="ef-title">
-        <h2 class="small-title">{{ resource.title }}</h2>
-        <span class="title-help icon-{{ resource.type }}">{{ resource.type }}</span>
+        <h2>{{ resource.title }}</h2>
+        <span class="title-help icon-{{ resource.type }}">
+            <svg>
+                <use xlink:href="#{{ resource.type }}"></use>
+            </svg>
+            {{ resource.type }}
+        </span>
     </div>
 
     {% if resource.type == 'mooc' or resource.type == 'article' %}
-    <div class="block-details__media">
-        {% if resource.embed_url %}
-        <div class="block-details__video">
-            <iframe src="{{ resource.embed_url }}" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+    <div class="block-details__holder">
+        <div class="block-details__media">
+            {% if resource.embed_url %}
+            <div class="block-details__video">
+                <iframe src="{{ resource.embed_url }}" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+            </div>
+            {% elif resource.image and resource.image.medium %}
+            <img src="{{ resource.image.medium }}" class="img-responsive" alt="{{ resource.title }}">
+            {% endif %}
         </div>
-        {% elif resource.image and resource.image.medium %}
-        <img src="{{ resource.image.medium }}" class="img-responsive" alt="{{ resource.title }}">
-        {% endif %}
+        <ul class="features-list">
+            <li>
+                <div class="ef-rating">
+                    <div class="ef-stars">
+                        {% for i in stars.full %}
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        {% endfor %}
+                        {% for i in stars.half %}
+                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                        {% endfor %}
+                        {% for i in stars.empty %}
+                        <i class="fa fa-star fa-star-gray-light" aria-hidden="true"></i>
+                        {% endfor %}
+                        {% if stars.total_reviews %}
+                        <span>{{ stars.total_reviews }} {% trans "reviews" %}</span>
+                        <div class="reviews">
+                            <strong>{{ stars.average }}</strong>
+                            <span>{% trans "users’ reviews" %}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
     {% endif %}
 
@@ -48,43 +83,43 @@
     </div>
     {% endif %}
 
-    <ul class="features-list">
-        <li>
-            <div class="ef-rating">
-                <div class="ef-stars">
-                    <strong>{{ stars.average }}</strong>
-                    {% for i in stars.full %}
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    {% endfor %}
-                    {% for i in stars.half %}
-                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    {% endfor %}
-                    {% for i in stars.empty %}
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    {% endfor %}
-                    {% if stars.total_reviews %}
-                    <div class="reviews">
-                        <strong>{{ stars.total_reviews }}</strong>
-                        <span>{% trans "users’ reviews" %}</span>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        </li>
-    </ul>
-
     <div class="features-block">
         <div class="features-block-template">
-            <p>{% trans "About the content" %}</p>
+            <h3 class="medium-title" id="about-content">{% trans "About the content" %}</h3>
+            {% if resource.type == 'video' or resource.type == 'podcast' %}
+            <ul class="features-list">
+                <li>
+                    <div class="ef-rating">
+                        <div class="ef-stars">
+                            {% for i in stars.full %}
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            {% endfor %}
+                            {% for i in stars.half %}
+                            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                            {% endfor %}
+                            {% for i in stars.empty %}
+                            <i class="fa fa-star fa-star-gray-light" aria-hidden="true"></i>
+                            {% endfor %}
+                            {% if stars.total_reviews %}
+                            <span>{{ stars.total_reviews }} {% trans "reviews" %}</span>
+                            <div class="reviews">
+                                <strong>{{ stars.average }}</strong>
+                                <span>{% trans "users’ reviews" %}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            {% endif %}
             {{ resource.description|safe }}
-
             {% if resource.type == 'mooc' or resource.type == 'article' %}
             <button class="btn js-access-resource" title="{{ resource.title }}">
                 {% trans "Access the resource" %}
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
             </button>
             {% endif %}
-            <div class="powered-by-edflex">powered by</div>
+            <a href="https://business.edflex.com/" class="powered-by-edflex" target="_blank">{% trans "powered by" %}</a>
         </div>
     </div>
     {% endif %}
@@ -94,8 +129,12 @@
 <div class="js-modal-overlay" hidden></div>
 <div class="js-modal-dialog" hidden>
     <div class="modal-content">
-        <span class="js-close"></span>
-        <span class="icon-share"></span>
+        <span class="js-close">
+            <svg>
+                <use xlink:href="#icon-close"></use>
+            </svg>
+        </span>
+        <svg class="icon-share"><use xlink:href="#icon-share"></use></svg>
         <div class="modal-body">
             <h3>{% trans "External content" %}</h3>
             <div class="modal-body-text">

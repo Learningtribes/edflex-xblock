@@ -56,10 +56,14 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         if context is None:
             context = {}
 
+        context.update({
+            'svg_sprite': self.resource_string('public/images/sprite.svg'),
+        })
+
         self.update_student_context(context)
         fragment = Fragment()
         fragment.content = loader.render_django_template('static/html/edflex.html', context)
-        fragment.add_css_url(self.runtime.local_resource_url(self, "public/css/edflex.css"))
+        fragment.add_css(self.resource_string("static/css/edflex.css"))
 
         if self.resource.get('type', '') == 'video':
             fragment.add_javascript_url('https://www.youtube.com/iframe_api')
@@ -100,11 +104,14 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
             'language': self.language,
             'resource': self.resource,
         }
+        context.update({
+            'svg_sprite': self.resource_string('public/images/sprite.svg'),
+        })
         self.update_studio_context(context)
         fragment = Fragment()
         fragment.content = loader.render_django_template('static/html/studio_edit.html', context)
-        fragment.add_css_url(self.runtime.local_resource_url(self, "public/css/edflex.css"))
-        fragment.add_css_url(self.runtime.local_resource_url(self, "public/css/select2.css"))
+        fragment.add_css(self.resource_string("static/css/edflex.css"))
+        fragment.add_css(self.resource_string("static/css/select2.css"))
         fragment.add_javascript(loader.load_unicode('static/js/src/studio_edit.js'))
         fragment.initialize_js(
             'StudioEditableEdflexXBlock',

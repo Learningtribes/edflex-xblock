@@ -1,17 +1,20 @@
 {% load i18n %}
 
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap" rel="stylesheet">
+
+{{ svg_sprite|safe }}
+
 <script type="text/template" id="resource-template">
-    <div class="js-old-resource" hidden>
-        {% trans "This information is out of date. What you see is the last saved version." %}
-    </div>
     <div class="features-block-template">
+        <div class="js-old-resource">
+            {% trans "This information is out of date. What you see is the last saved version." %}
+        </div>
         <h4 class="small-title"><%- resource.title %></h4>
         <ul class="features-list">
             <li>
                 <div class="ef-rating">
                     <% if (resource.note) { %>
                     <div class="ef-stars">
-                        <strong><%- resource.note.global %></strong>
                         <%
                             var full = (Math.floor(resource.note.global));
                             var empty = (Math.floor(5 - (resource.note.global)));
@@ -25,18 +28,18 @@
                             <i class="fa fa-star-half-o" aria-hidden="true"></i>
                         <% }) %>
                         <% _.each(new Array(empty), function() { %>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-star-gray" aria-hidden="true"></i>
                         <% }) %>
                     </div>
                     <div class="reviews">
-                        <strong><%- resource.note.total_reviews %></strong>
+                        <strong><%- resource.note.global %></strong>
                         <span>{% trans "users’ reviews" %}</span>
                     </div>
                     <% } else { %>
                     <div class="ef-stars">
                         <strong>-</strong>
                         <% _.each(new Array(5), function() { %>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star fa-star-gray-light" aria-hidden="true"></i>
                         <% }) %>
                     </div>
                     <% } %>
@@ -45,6 +48,9 @@
 
             <% if (resource.price) { %>
             <li class="icon-creditcard">
+                <svg class="icon-box">
+                    <use xlink:href="#creditcard-no"></use>
+                </svg>
                 <% if (resource.price.amount === 0 ) { %>
                     <span>{% trans "<b>Free</b> access" %}</span>
                 <% } else { %>
@@ -54,6 +60,9 @@
             <% } %>
             <% if (resource.is_certifying) { %>
             <li class="icon-pocket">
+                <svg>
+                    <use xlink:href="#pocket"></use>
+                </svg>
                 <% if (resource.is_free_certification) { %>
                     <span><b>Free</b> certificate</span>
                 <% } else { %>
@@ -63,12 +72,15 @@
             <% } %>
             <% if (resource.duration) { %>
             <li class="icon-duration">
+                <svg>
+                    <use xlink:href="#stopwatch"></use>
+                </svg>
                 <span><%= renderDuration(resource.duration) %></span>
             </li>
             <% } %>
         </ul>
         <%= resource.description %>
-        <div class="powered-by-edflex">powered by</div>
+        <a href="https://business.edflex.com/" class="powered-by-edflex" target="_blank">{% trans "powered by" %}</a>
     </div>
 </script>
 
@@ -85,7 +97,7 @@
                     <input id="id-podcast" name="format" value="podcast" type="radio">
                     <label for="id-podcast">
                         <svg class="icon-box">
-                            <use xlink:href="/static/studio/images/sprite.svg#podcast"></use>
+                            <use xlink:href="#podcast"></use>
                         </svg>
                     </label>
                     <span class="format-name">{% trans "Podcast" %}</span>
@@ -94,7 +106,7 @@
                     <input id="id-video" name="format" value="video" type="radio">
                     <label for="id-video">
                         <svg class="icon-box">
-                            <use xlink:href="/static/studio/images/sprite.svg#video"></use>
+                            <use xlink:href="#video"></use>
                         </svg>
                     </label>
                     <span class="format-name">{% trans "Video" %}</span>
@@ -103,7 +115,7 @@
                     <input id="id-mooc" name="format" value="mooc" type="radio">
                     <label for="id-mooc">
                         <svg class="icon-box">
-                            <use xlink:href="/static/studio/images/sprite.svg#mooc"></use>
+                            <use xlink:href="#mooc"></use>
                         </svg>
                     </label>
                     <span class="format-name">{% trans "Mooc" %}</span>
@@ -112,7 +124,7 @@
                     <input id="id-article" name="format" value="article" type="radio">
                     <label for="id-article">
                         <svg class="icon-box">
-                            <use xlink:href="/static/studio/images/sprite.svg#article"></use>
+                            <use xlink:href="#article"></use>
                         </svg>
                     </label>
                     <span class="format-name">{% trans "Article" %}</span>

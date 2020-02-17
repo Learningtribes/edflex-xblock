@@ -220,7 +220,9 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
     });
   });
 
-  $('.cancel-button', element).on('click', function(e) {
+  $('.modal-header').append('<a class="cancel-button"><svg><use xlink:href="#icon-close"></use></svg></a>');
+
+  $('.cancel-button').on('click', function(e) {
     e.preventDefault();
     runtime.notify('cancel', {});
   });
@@ -230,14 +232,19 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
       placeholder: gettext("Choose a category"),
       allowClear: true
     });
+
+    function langFlag (langName) {
+        var $langName = $('<span class="select2-flex"><svg class="img-flag"><use xlink:href="#lang-' + langName.text + '"></use></svg>' + langName.text + '</span>');
+        return $langName;
+    };
+
     $language.select2({
       placeholder: gettext("Choose a language"),
       allowClear: true,
-      templateResult: function (optionClass, container) {
-        $(container).addClass($(optionClass.element).attr("class"));
-        return optionClass.text;
-      }
+      templateResult: langFlag,
+      templateSelection: langFlag
     });
+
     $resource.select2({
       placeholder: gettext("Select the content of your choice"),
     });
