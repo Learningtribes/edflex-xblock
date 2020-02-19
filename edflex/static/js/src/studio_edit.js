@@ -233,10 +233,25 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
       allowClear: true
     });
 
-    function langFlag (langName) {
-        var $langName = $('<span class="select2-flex"><svg class="img-flag"><use xlink:href="#lang-' + langName.text + '"></use></svg>' + langName.text + '</span>');
-        return $langName;
-    };
+    function getTitleLang(lang) {
+      var titleLangs = {
+        fr: 'Français',
+        en: 'English',
+        zh: '中文',
+        ru: 'Русский',
+        pt: 'Português',
+        es: 'Español'
+      };
+      return titleLangs[lang] || lang
+    }
+
+    function langFlag(langName) {
+      return $(
+        '<span class="select2-flex">' +
+        '<svg class="img-flag"><use xlink:href="#lang-' + langName.text + '"></use></svg>'
+        + getTitleLang(langName.text) + '</span>'
+      );
+    }
 
     $language.select2({
       placeholder: gettext("Choose a language"),

@@ -79,6 +79,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         half_stars = int(self.count_stars - full_stars - empty_stars)
         context.update({
             'resource': self.resource,
+            'score': self.score,
             'stars': {
                 'average': note.get('global', '-'),
                 'full': range(full_stars),

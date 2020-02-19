@@ -26,6 +26,8 @@ function EdflexXBlock(runtime, element) {
     $('.js-confirm-access', element).on('click', function() {
       publishGrade(1);
       openInNewTab($(this).data('url'))
+      $modal.prop('hidden', true);
+      $modalOverlay.prop('hidden', true);
     });
     $('.js-close', element).on('click', function() {
       $modal.prop('hidden', true);
@@ -51,7 +53,9 @@ function EdflexXBlock(runtime, element) {
 
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PAUSED) {
-        publishGrade(Number((ytPlayer.getCurrentTime()/duration).toFixed(1)));
+        if (ytPlayer.getCurrentTime()/duration >= 0.5) {
+          publishGrade(1);
+        }
       }
       if (event.data === YT.PlayerState.ENDED) {
         publishGrade(1);
