@@ -5,6 +5,10 @@ class Category(models.Model):
     category_id = models.CharField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
     def __unicode__(self):
         return u"{}".format(self.name)
 

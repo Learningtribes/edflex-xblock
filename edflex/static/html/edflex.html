@@ -12,7 +12,7 @@
             <svg>
                 <use xlink:href="#{{ resource.type }}"></use>
             </svg>
-            {{ resource.type }}
+            <span>{{ resource.type }}</span>
         </span>
     </div>
 
@@ -68,17 +68,19 @@
 
     {% if resource.type == 'podcast'%}
     <div class="product-podcast">
+        {% if not score %}
         <button class="btn js-access-podcast-resource" title="{{ resource.title }}">
             {% trans "Access the resource" %}
             <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
+        {% endif %}
         <iframe
             class="js-iframe-podcast"
             src="{{ resource.embed_url }}"
             scrolling="no"
             width="100%"
             frameborder="0"
-            hidden
+            {% if not score %}hidden{% endif %}
         ></iframe>
     </div>
     {% endif %}
@@ -143,7 +145,7 @@
                     You are about to leave the Triboo platform
                     to follow external training content.
                     We remind you that <b>all content on this
-                    portal is always free.</b> However? the
+                    portal is always free.</b> However, the
                     certification may have a cost and it is not
                     supported by Triboo.
                     {% endblocktrans %}

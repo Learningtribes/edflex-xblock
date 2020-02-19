@@ -154,6 +154,15 @@
   position: relative;
   top: 1px;
 }
+.ef-title .title-help span {
+  display: inline-block;
+}
+.ef-title .title-help span:first-letter {
+  text-transform: uppercase;
+}
+.ef-title .title-help.icon-mooc {
+  text-transform: uppercase;
+}
 
 .edflex_format .format-list {
   display: flex;
@@ -306,6 +315,10 @@
   .features-block .features-block-template {
     padding: 15px;
   }
+}
+.features-block .features-block-template .js-old-resource {
+  color: red;
+  margin-bottom: 15px;
 }
 .xblock-studio_view .features-block .features-block-template {
   padding: 40px 55px;

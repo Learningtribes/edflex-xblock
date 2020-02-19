@@ -178,6 +178,18 @@ $yellow: #fec400;
             position: relative;
             top: 1px;
         }
+
+        span {
+            display: inline-block;
+
+            &:first-letter {
+                text-transform: uppercase;
+            }
+        }
+
+        &.icon-mooc {
+            text-transform: uppercase;
+        }
     }
 }
 
@@ -355,6 +367,11 @@ $yellow: #fec400;
 
         @media screen and (max-width: 767px) {
             padding: 15px;
+        }
+
+        .js-old-resource {
+            color: red;
+            margin-bottom: 15px;
         }
 
         .xblock-studio_view & {
