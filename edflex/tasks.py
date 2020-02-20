@@ -1,26 +1,51 @@
+import logging
 from celery.decorators import periodic_task
 from celery.schedules import crontab
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ImproperlyConfigured
+from django.db.models.query_utils import Q
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
+from xmodule.modulestore.django import modulestore
+from courseware.courses import get_course
 
 from .api import EdflexOauthClient
 from .models import Category, Resource
-from .utils import EDFLEX_CLIENT_ID, EDFLEX_CLIENT_SECRET, EDFLEX_BASE_API_URL
+from .utils import (
+    EDFLEX_CLIENT_ID,
+    EDFLEX_CLIENT_SECRET,
+    EDFLEX_BASE_API_URL,
+    get_edflex_configuration_for_org
+)
 
+log = logging.getLogger(__name__)
+
+# default 'At 01:00 on day-of-month 1'
 EDFLEX_RESOURCES_UPDATE_CRON = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_RESOURCES_UPDATE_CRON', {})
-cron_grade_settings = {
+update_resources_cron = {
     'minute': str(EDFLEX_RESOURCES_UPDATE_CRON.get('MINUTE', '0')),
-    'hour': str(EDFLEX_RESOURCES_UPDATE_CRON.get('HOUR', '0')),
-    'day_of_month': str(EDFLEX_RESOURCES_UPDATE_CRON.get('DAY_OF_MONTH', '0')),
-    'month_of_year': str(EDFLEX_RESOURCES_UPDATE_CRON.get('MONTH_OF_YEAR', '0')),
-    'day_of_week': str(EDFLEX_RESOURCES_UPDATE_CRON.get('DAY_OF_WEEK', '0')),
+    'hour': str(EDFLEX_RESOURCES_UPDATE_CRON.get('HOUR', '1')),
+    'day_of_month': str(EDFLEX_RESOURCES_UPDATE_CRON.get('DAY_OF_MONTH', '1')),
+    'month_of_year': str(EDFLEX_RESOURCES_UPDATE_CRON.get('MONTH_OF_YEAR', '*')),
+    'day_of_week': str(EDFLEX_RESOURCES_UPDATE_CRON.get('DAY_OF_WEEK', '*')),
+}
+
+# default 'At 01:00 on Monday'
+EDFLEX_RESOURCES_FETCH_CRON = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_RESOURCES_FETCH_CRON', {})
+fetch_edflex_data_cron = {
+    'minute': str(EDFLEX_RESOURCES_FETCH_CRON.get('MINUTE', '0')),
+    'hour': str(EDFLEX_RESOURCES_FETCH_CRON.get('HOUR', '1')),
+    'day_of_month': str(EDFLEX_RESOURCES_FETCH_CRON.get('DAY_OF_MONTH', '*')),
+    'month_of_year': str(EDFLEX_RESOURCES_FETCH_CRON.get('MONTH_OF_YEAR', '*')),
+    'day_of_week': str(EDFLEX_RESOURCES_FETCH_CRON.get('DAY_OF_WEEK', '1')),
 }
 
 
-@periodic_task(run_every=crontab(**cron_grade_settings))
+@periodic_task(run_every=crontab(**fetch_edflex_data_cron))
 def fetch_edflex_data():
     if EDFLEX_CLIENT_ID and EDFLEX_CLIENT_SECRET and EDFLEX_BASE_API_URL:
-        resources_update(EDFLEX_CLIENT_ID, EDFLEX_CLIENT_SECRET, EDFLEX_BASE_API_URL)
+        fetch_resources(EDFLEX_CLIENT_ID, EDFLEX_CLIENT_SECRET, EDFLEX_BASE_API_URL)
 
     for site_configuration in SiteConfiguration.objects.filter(enabled=True):
         client_id = site_configuration.get_value('EDFLEX_CLIENT_ID')
@@ -28,10 +53,10 @@ def fetch_edflex_data():
         base_api_url = site_configuration.get_value('EDFLEX_BASE_API_URL')
 
         if client_id and client_secret and base_api_url:
-            resources_update(client_id, client_secret, base_api_url)
+            fetch_resources(client_id, client_secret, base_api_url)
 
 
-def resources_update(client_id, client_secret, base_api_url):
+def fetch_resources(client_id, client_secret, base_api_url):
     edflex_client = EdflexOauthClient({
         'client_id': client_id,
         'client_secret': client_secret,
@@ -71,3 +96,40 @@ def resources_update(client_id, client_secret, base_api_url):
         ).exclude(
             id__in=resource_ids
         ).delete()
+
+
+@periodic_task(run_every=crontab(**update_resources_cron))
+def update_resources():
+    user = get_user_model().objects.filter(
+        Q(is_staff=True) | Q(is_superuser=True), is_active=True
+    ).first()
+
+    if user is None:
+        log.error('The system must have a User is_active=True and staff or superuser')
+        return
+
+    for course_overview in CourseOverview.objects.all():
+        try:
+            course = get_course(course_overview.id, depth=4)
+        except ValueError:
+            continue
+
+        try:
+            edflex_client = EdflexOauthClient(get_edflex_configuration_for_org(course.location.org))
+        except ImproperlyConfigured as er:
+            log.error(er)
+            continue
+
+        for section in course.get_children():
+            for subsection in section.get_children():
+                for unit in subsection.get_children():
+                    for xblock in unit.get_children():
+                        if xblock.location.block_type == 'edflex':
+                            resource_id = xblock.resource.get('id')
+                            if resource_id:
+                                resource = edflex_client.get_resource(resource_id)
+                                if resource and xblock.resource != resource:
+                                    xblock.resource = resource
+                                    xblock.save()
+                                    modulestore().update_item(xblock, user.id, asides=[])
+                                    modulestore().publish(xblock.location, user.id)
