@@ -8,6 +8,7 @@ from django.db.models.query_utils import Q
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 from xmodule.modulestore.django import modulestore
+from xmodule.modulestore import ModuleStoreEnum
 from courseware.courses import get_course
 
 from .api import EdflexOauthClient
@@ -130,6 +131,9 @@ def update_resources():
                                 resource = edflex_client.get_resource(resource_id)
                                 if resource and xblock.resource != resource:
                                     xblock.resource = resource
+                                    old_xblock_location = xblock.location
+                                    xblock.location = xblock.location.for_branch(ModuleStoreEnum.BranchName.draft)
                                     xblock.save()
                                     modulestore().update_item(xblock, user.id, asides=[])
+                                    xblock.location = old_xblock_location
                                     modulestore().publish(xblock.location, user.id)
