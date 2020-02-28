@@ -4,7 +4,7 @@ import pkg_resources
 from web_fragments.fragment import Fragment
 
 from xblock.core import XBlock
-from xblock.fields import String, Scope, Dict, List, Float
+from xblock.fields import String, Scope, Dict, Float
 from xblockutils.resources import ResourceLoader
 from xblockutils.studio_editable import StudioEditableXBlockMixin
 

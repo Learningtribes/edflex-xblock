@@ -104,7 +104,6 @@ def update_resources():
     user = get_user_model().objects.filter(
         Q(is_staff=True) | Q(is_superuser=True), is_active=True
     ).first()
-
     if user is None:
         log.error('The system must have a User is_active=True and staff or superuser')
         return
@@ -114,7 +113,6 @@ def update_resources():
             course = get_course(course_overview.id, depth=4)
         except ValueError:
             continue
-
         try:
             edflex_client = EdflexOauthClient(get_edflex_configuration_for_org(course.location.org))
         except ImproperlyConfigured as er:
