@@ -3,13 +3,15 @@ import json
 import requests_oauthlib
 
 from unittest import TestCase
-from requests import HTTPError
+
 from django.core.exceptions import ImproperlyConfigured
+from django.db.models import Q
+from requests import HTTPError
 from xblock.field_data import DictFieldData
 
 from .api import EdflexOauthClient
 from .utils import get_edflex_configuration, get_edflex_configuration_for_org
-from .tasks import fetch_edflex_data, fetch_resources
+from .tasks import fetch_edflex_data, fetch_resources, update_resources
 from .edflex import EdflexXBlock
 
 
@@ -421,6 +423,181 @@ class TestTasks(TestCase):
         mock_resource_filter.assert_any_call(catalog_id='catalog_id_2')
         mock_resource_filter().exclude.assert_any_call(id__in=['obj_resource_id'])
         mock_resource_filter().exclude().delete.assert_called()
+
+    @mock.patch('edflex.tasks.get_user_model', return_value=mock.Mock(
+        objects=mock.Mock(filter=mock.Mock(return_value=mock.Mock(
+            first=mock.Mock(return_value=mock.Mock(id='user_id'))
+        )))
+    ))
+    @mock.patch('edflex.tasks.CourseOverview.objects.all', return_value=[mock.Mock(id='course_overview_id')])
+    @mock.patch('edflex.tasks.modulestore', return_value=mock.Mock(
+        update_item=mock.Mock(),
+        publish=mock.Mock()
+    ))
+    @mock.patch('edflex.tasks.EdflexOauthClient', return_value=mock.Mock(
+        get_resource=mock.Mock(return_value={'id': 'resource_id',
+                                             'title': 'New title',
+                                             'type': 'video',
+                                             'language': 'en',
+                                             'categories': [
+                                                 {'id': 'category_id',
+                                                  'name': 'Category name'}
+                                             ]})
+    ))
+    @mock.patch('edflex.tasks.get_edflex_configuration_for_org')
+    @mock.patch('edflex.tasks.get_course', return_value=mock.Mock(
+        location=mock.Mock(org='course_org'),
+        get_children=mock.Mock(return_value=[mock.Mock(
+            get_children=mock.Mock(return_value=[mock.Mock(
+                get_children=mock.Mock(return_value=[mock.Mock(
+                    get_children=mock.Mock(return_value=[mock.Mock(
+                        save=mock.Mock(),
+                        location=mock.Mock(block_type='edflex', for_branch=mock.Mock()),
+                        resource={'id': 'resource_id',
+                                  'title': 'title',
+                                  'type': 'video',
+                                  'language': 'fr',
+                                  'categories': [
+                                      {'id': 'category_id',
+                                       'name': 'Category name'}
+                                  ]}
+                    )])
+                )])
+            )])
+        )])
+    ))
+    def test_update_resources(
+            self,
+            mock_get_course,
+            mock_get_edflex_configuration_for_org,
+            mock_edflex_oauth_client,
+            mock_modulestore,
+            mock_course_overview_all,
+            mock_get_user_model,
+    ):
+        # act:
+        update_resources()
+
+        # assert:
+        mock_get_user_model().objects.filter().first.assert_called_once_with()
+        mock_course_overview_all.assert_called_once_with()
+
+        mock_edflex_oauth_client.assert_called_once()
+        mock_get_edflex_configuration_for_org.assert_called_once_with('course_org')
+
+        mock_get_course.assert_called_with('course_overview_id', depth=4)
+        mock_get_course().get_children.assert_called()
+
+        section = mock_get_course().get_children()[0]
+        section.get_children.assert_called()
+
+        subsection = section.get_children()[0]
+        subsection.get_children.assert_called()
+
+        unit = subsection.get_children()[0]
+        unit.get_children.assert_called()
+
+        xblock = unit.get_children()[0]
+
+        mock_edflex_oauth_client().get_resource.assert_called_with('resource_id')
+        xblock.location.for_branch.assert_called_with('draft-branch')
+        xblock.save.assert_called()
+        mock_modulestore().update_item.assert_called_with(xblock, 'user_id', asides=[])
+        mock_modulestore().publish.assert_called_with(xblock.location, 'user_id')
+        self.assertEqual(
+            xblock.resource,
+            {
+                'id': 'resource_id',
+                'title': 'New title',
+                'type': 'video',
+                'language': 'en',
+                'categories': [
+                    {'id': 'category_id',
+                     'name': 'Category name'}
+                ]
+            }
+        )
+
+    @mock.patch('edflex.tasks.get_user_model', return_value=mock.Mock(
+        objects=mock.Mock(filter=mock.Mock(return_value=mock.Mock(
+            first=mock.Mock(return_value=mock.Mock(id='user_id'))
+        )))
+    ))
+    @mock.patch('edflex.tasks.CourseOverview.objects.all', return_value=[mock.Mock(id='course_overview_id')])
+    @mock.patch('edflex.tasks.modulestore', return_value=mock.Mock(
+        update_item=mock.Mock(),
+        publish=mock.Mock()
+    ))
+    @mock.patch('edflex.tasks.EdflexOauthClient', return_value=mock.Mock(
+        get_resource=mock.Mock(return_value={'id': 'resource_id',
+                                             'title': 'title',
+                                             'type': 'video',
+                                             'language': 'fr',
+                                             'categories': [
+                                                 {'id': 'category_id',
+                                                  'name': 'Category name'}
+                                             ]})
+    ))
+    @mock.patch('edflex.tasks.get_edflex_configuration_for_org')
+    @mock.patch('edflex.tasks.get_course', return_value=mock.Mock(
+        location=mock.Mock(org='course_org'),
+        get_children=mock.Mock(return_value=[mock.Mock(
+            get_children=mock.Mock(return_value=[mock.Mock(
+                get_children=mock.Mock(return_value=[mock.Mock(
+                    get_children=mock.Mock(return_value=[mock.Mock(
+                        save=mock.Mock(),
+                        location=mock.Mock(block_type='edflex', for_branch=mock.Mock()),
+                        resource={'id': 'resource_id',
+                                  'title': 'title',
+                                  'type': 'video',
+                                  'language': 'fr',
+                                  'categories': [
+                                      {'id': 'category_id',
+                                       'name': 'Category name'}
+                                  ]}
+                    )])
+                )])
+            )])
+        )])
+    ))
+    def test_update_resources_when_resource_has_not_changed(
+            self,
+            mock_get_course,
+            mock_get_edflex_configuration_for_org,
+            mock_edflex_oauth_client,
+            mock_modulestore,
+            mock_course_overview_all,
+            mock_get_user_model,
+    ):
+        # act:
+        update_resources()
+
+        # assert:
+        mock_get_user_model().objects.filter().first.assert_called_once_with()
+        mock_course_overview_all.assert_called_once_with()
+
+        mock_edflex_oauth_client.assert_called_once()
+        mock_get_edflex_configuration_for_org.assert_called_once_with('course_org')
+
+        mock_get_course.assert_called_with('course_overview_id', depth=4)
+        mock_get_course().get_children.assert_called()
+
+        section = mock_get_course().get_children()[0]
+        section.get_children.assert_called()
+
+        subsection = section.get_children()[0]
+        subsection.get_children.assert_called()
+
+        unit = subsection.get_children()[0]
+        unit.get_children.assert_called()
+
+        xblock = unit.get_children()[0]
+
+        mock_edflex_oauth_client().get_resource.assert_called_with('resource_id')
+        xblock.location.for_branch.assert_not_called()
+        xblock.save.assert_not_called()
+        mock_modulestore().update_item.assert_not_called()
+        mock_modulestore().publish.assert_not_called()
 
 
 class TestEdflex(TestCase):

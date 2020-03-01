@@ -4,7 +4,7 @@ from celery.schedules import crontab
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ImproperlyConfigured
-from django.db.models.query_utils import Q
+from django.db.models import Q
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 from xmodule.modulestore.django import modulestore
@@ -104,6 +104,7 @@ def update_resources():
     user = get_user_model().objects.filter(
         Q(is_staff=True) | Q(is_superuser=True), is_active=True
     ).first()
+
     if user is None:
         log.error('The system must have a User is_active=True and staff or superuser')
         return
@@ -113,6 +114,7 @@ def update_resources():
             course = get_course(course_overview.id, depth=4)
         except ValueError:
             continue
+
         try:
             edflex_client = EdflexOauthClient(get_edflex_configuration_for_org(course.location.org))
         except ImproperlyConfigured as er:
