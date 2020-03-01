@@ -372,6 +372,11 @@
   align-items: center;
   color: #727272;
 }
+
+.features-list.student-view li {
+  margin-left: 35px;
+}
+
 .features-list li:first-child {
   margin-left: 0;
 }
@@ -385,9 +390,15 @@
   .features-list li:nth-child(2) {
     margin-left: 0;
   }
+  .features-list.student-view li:nth-child(2) {
+    margin-left: 0;
+  }
 }
 @media screen and (max-width: 767px) {
   .features-list li {
+    margin: 0 0 20px 0;
+  }
+  .features-list.student-view li {
     margin: 0 0 20px 0;
   }
 }

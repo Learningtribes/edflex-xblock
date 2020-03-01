@@ -3,7 +3,13 @@ function EdflexXBlock(runtime, element) {
   var format = $('.edflex_block', element).data('format');
   var $modal = $('.js-modal-dialog', element);
   var $modalOverlay = $('.js-modal-overlay', element);
+  var $resourceDuration = $('.js-resource-duration', element);
   var publishGradeUrl = runtime.handlerUrl(element, 'set_grade');
+
+  if ($resourceDuration.length) {
+    var duration = renderDuration($resourceDuration.data('duration'));
+    $resourceDuration.html(duration);
+  }
 
   var publishGrade = function(score) {
     $.ajax({
@@ -25,7 +31,7 @@ function EdflexXBlock(runtime, element) {
     });
     $('.js-confirm-access', element).on('click', function() {
       publishGrade(1);
-      openInNewTab($(this).data('url'))
+      openInNewTab($(this).data('url'));
       $modal.prop('hidden', true);
       $modalOverlay.prop('hidden', true);
     });
@@ -37,7 +43,7 @@ function EdflexXBlock(runtime, element) {
 
   if (format === 'video') {
     var ytPlayer;
-    var duration;
+    var videoDuration;
     window.onYouTubeIframeAPIReady = function () {
       ytPlayer = new YT.Player('youtube-player', {
         events: {
@@ -48,12 +54,12 @@ function EdflexXBlock(runtime, element) {
     };
 
     function onPlayerReady(event) {
-      duration = ytPlayer.getDuration();
+      videoDuration = ytPlayer.getDuration();
     }
 
     function onPlayerStateChange(event) {
       if (event.data === YT.PlayerState.PAUSED) {
-        if (ytPlayer.getCurrentTime()/duration >= 0.5) {
+        if (ytPlayer.getCurrentTime()/videoDuration >= 0.5) {
           publishGrade(1);
         }
       }
@@ -64,10 +70,6 @@ function EdflexXBlock(runtime, element) {
   }
 
   if (format === 'podcast') {
-    $('.js-access-podcast-resource', element).one('click', function() {
-      $('.js-iframe-podcast').prop('hidden', false);
-      $(this).prop('hidden', true);
-      publishGrade(1);
-    });
+    publishGrade(1);
   }
 }
