@@ -27,30 +27,15 @@
             <img src="{{ resource.image.medium }}" class="img-responsive" alt="{{ resource.title }}">
             {% endif %}
         </div>
-        <ul class="features-list">
-            <li>
-                <div class="ef-rating">
-                    <div class="ef-stars">
-                        {% for i in stars.full %}
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        {% endfor %}
-                        {% for i in stars.half %}
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        {% endfor %}
-                        {% for i in stars.empty %}
-                        <i class="fa fa-star fa-star-gray-light" aria-hidden="true"></i>
-                        {% endfor %}
-                        {% if stars.total_reviews %}
-                        <span>{{ stars.total_reviews }} {% trans "reviews" %}</span>
-                        <div class="reviews">
-                            <strong>{{ stars.average }}</strong>
-                            <span>{% trans "users’ reviews" %}</span>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-            </li>
-        </ul>
+
+        <button class="btn js-access-resource" title="{{ resource.title }}">
+            {% if resource.type == 'article' %}
+            {% trans "Read the article" %}
+            {% else %}
+            {% trans "Access the course" %}
+            {% endif %}
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </button>
     </div>
     {% endif %}
 
@@ -68,19 +53,12 @@
 
     {% if resource.type == 'podcast'%}
     <div class="product-podcast">
-        {% if not score %}
-        <button class="btn js-access-podcast-resource" title="{{ resource.title }}">
-            {% trans "Access the resource" %}
-            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        </button>
-        {% endif %}
         <iframe
             class="js-iframe-podcast"
             src="{{ resource.embed_url }}"
             scrolling="no"
             width="100%"
             frameborder="0"
-            {% if not score %}hidden{% endif %}
         ></iframe>
     </div>
     {% endif %}
@@ -88,8 +66,8 @@
     <div class="features-block">
         <div class="features-block-template">
             <h3 class="medium-title" id="about-content">{% trans "About the content" %}</h3>
-            {% if resource.type == 'video' or resource.type == 'podcast' %}
-            <ul class="features-list">
+            <ul class="features-list student-view">
+                {% if stars.total_reviews %}
                 <li>
                     <div class="ef-rating">
                         <div class="ef-stars">
@@ -102,25 +80,51 @@
                             {% for i in stars.empty %}
                             <i class="fa fa-star fa-star-gray-light" aria-hidden="true"></i>
                             {% endfor %}
-                            {% if stars.total_reviews %}
                             <span>{{ stars.total_reviews }} {% trans "reviews" %}</span>
                             <div class="reviews">
                                 <strong>{{ stars.average }}</strong>
                                 <span>{% trans "users’ reviews" %}</span>
                             </div>
-                            {% endif %}
                         </div>
                     </div>
                 </li>
+                {% endif %}
+                {% if resource.price %}
+                <li class="icon-creditcard">
+                    <svg class="icon-box">
+                        <use xlink:href="#creditcard-no"></use>
+                    </svg>
+                    {% if resource.price.amount == 0 %}
+                        <span>{% trans "<b>Free</b> access" %}</span>
+                    {% else %}
+                        <span>{% trans "<b>Paid</b> access" %}</span>
+                    {% endif %}
+                </li>
+                {% endif %}
+                {% if resource.is_certifying %}
+                <li class="icon-pocket">
+                    <svg>
+                        <use xlink:href="#pocket"></use>
+                    </svg>
+                    {% if resource.is_free_certification %}
+                        <span>{% trans "<b>Free</b> certificate" %}</span>
+                    {% else %}
+                        <span>{% trans "<b>Paid</b> certificate" %}</span>
+                    {% endif %}
+                </li>
+                {% endif %}
+                {% if resource.duration %}
+                <li class="icon-duration">
+                    <svg>
+                        <use xlink:href="#stopwatch"></use>
+                    </svg>
+                    <span class="js-resource-duration" data-duration="{{ resource.duration }}"></span>
+                </li>
+                {% endif %}
             </ul>
-            {% endif %}
+
             {{ resource.description|safe }}
-            {% if resource.type == 'mooc' or resource.type == 'article' %}
-            <button class="btn js-access-resource" title="{{ resource.title }}">
-                {% trans "Access the resource" %}
-                <i class="fa fa-chevron-right" aria-hidden="true"></i>
-            </button>
-            {% endif %}
+
             <a href="https://business.edflex.com/" class="powered-by-edflex" target="_blank">{% trans "powered by" %}</a>
         </div>
     </div>

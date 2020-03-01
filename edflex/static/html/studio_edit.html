@@ -11,9 +11,9 @@
         </div>
         <h4 class="small-title"><%- resource.title %></h4>
         <ul class="features-list">
+            <% if (resource.note) { %>
             <li>
                 <div class="ef-rating">
-                    <% if (resource.note) { %>
                     <div class="ef-stars">
                         <%
                             var full = (Math.floor(resource.note.global));
@@ -30,21 +30,14 @@
                         <% _.each(new Array(empty), function() { %>
                             <i class="fa fa-star fa-star-gray" aria-hidden="true"></i>
                         <% }) %>
-                    </div>
-                    <div class="reviews">
-                        <strong><%- resource.note.global %></strong>
-                        <span>{% trans "users’ reviews" %}</span>
-                    </div>
-                    <% } else { %>
-                    <div class="ef-stars">
-                        <strong>-</strong>
-                        <% _.each(new Array(5), function() { %>
-                            <i class="fa fa-star fa-star-gray-light" aria-hidden="true"></i>
-                        <% }) %>
-                    </div>
-                    <% } %>
+                        <span><%- resource.note.total_reviews %> {% trans "reviews" %}</span>
+                        <div class="reviews">
+                            <strong><%- resource.note.global %></strong>
+                            <span>{% trans "users’ reviews" %}</span>
+                        </div>
                 </div>
             </li>
+            <% } %>
 
             <% if (resource.price) { %>
             <li class="icon-creditcard">
@@ -64,9 +57,9 @@
                     <use xlink:href="#pocket"></use>
                 </svg>
                 <% if (resource.is_free_certification) { %>
-                    <span><b>Free</b> certificate</span>
+                    <span>{% trans "<b>Free</b> certificate" %}</span>
                 <% } else { %>
-                    <span><b>Paid</b> certificate</span>
+                    <span>{% trans "<b>Paid</b> certificate" %}</span>
                 <% } %>
             </li>
             <% } %>

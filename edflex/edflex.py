@@ -68,6 +68,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         if self.resource.get('type', '') == 'video':
             fragment.add_javascript_url('https://www.youtube.com/iframe_api')
 
+        fragment.add_javascript(loader.load_unicode('static/js/src/parse_duration.js'))
         fragment.add_javascript(self.resource_string("static/js/src/edflex.js"))
         fragment.initialize_js('EdflexXBlock')
         return fragment
@@ -113,6 +114,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         fragment.content = loader.render_django_template('static/html/studio_edit.html', context)
         fragment.add_css(self.resource_string("static/css/edflex.css"))
         fragment.add_css(self.resource_string("static/css/select2.css"))
+        fragment.add_javascript(loader.load_unicode('static/js/src/parse_duration.js'))
         fragment.add_javascript(loader.load_unicode('static/js/src/studio_edit.js'))
         fragment.initialize_js(
             'StudioEditableEdflexXBlock',
