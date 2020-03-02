@@ -589,6 +589,10 @@ $blue: #2ca5de;
 
     .product-podcast {
         margin-bottom: 50px;
+
+        iframe {
+            min-height: 204px;
+        }
     }
 
     button {
