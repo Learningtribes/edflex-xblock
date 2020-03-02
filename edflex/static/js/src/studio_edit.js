@@ -83,7 +83,6 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
       renderDuration: renderDuration,
     }));
     resourceData = resource;
-    console.log(resourceData);
     $saveButton.removeClass('is-disabled');
   };
 
