@@ -509,6 +509,9 @@
 .xblock-student_view-edflex .product-podcast {
   margin-bottom: 50px;
 }
+.xblock-student_view-edflex .product-podcast iframe {
+  min-height: 204px;
+}
 .xblock-student_view-edflex button {
   background: #2ca5de;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) !important;
