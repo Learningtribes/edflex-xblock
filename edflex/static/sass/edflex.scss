@@ -1,6 +1,7 @@
 $red: #e7413c;
 $gray: #a3a3a3;
 $yellow: #fec400;
+$blue: #2ca5de;
 
 [class*="view-"] .modal-window.modal-type-edflex {
     top: 60px !important;
@@ -426,28 +427,28 @@ $yellow: #fec400;
     }
 
     li {
-        margin-left: 90px;
+        margin: 0 0 0 80px !important;
         display: flex;
         align-items: center;
         color: #727272;
 
         &:first-child {
-            margin-left: 0;
+            margin-left: 0 !important;
 
             @media screen and (max-width: 1100px) {
                 width: 100%;
-                margin-bottom: 20px;
+                margin-bottom: 20px !important;
             }
         }
 
         &:nth-child(2) {
             @media screen and (max-width: 1100px) {
-                margin-left: 0;
+                margin-left: 0 !important;
             }
         }
 
         @media screen and (max-width: 767px) {
-            margin: 0 0 20px 0;
+            margin: 0 0 20px 0 !important;
         }
 
         svg {
@@ -554,6 +555,7 @@ $yellow: #fec400;
 
     .block-details__holder {
         display: flex;
+        align-items: center;
         padding-bottom: 38px;
         background: #fcfcfc;
 
@@ -590,7 +592,7 @@ $yellow: #fec400;
     }
 
     button {
-        background: #2ca5de;
+        background: $blue;
         box-shadow: 0 4px 4px rgba(0, 0, 0, .25) !important;
         border: none !important;
         color: #fff;
@@ -614,10 +616,7 @@ $yellow: #fec400;
     }
 
     .js-access-resource {
-        float: right;
-
         @media screen and (max-width: 567px) {
-            float: none;
             width: 100%;
             display: block;
             text-align: center;
@@ -702,6 +701,10 @@ $yellow: #fec400;
         font-size: 16px;
         border-radius: 10px;
         box-shadow: 0 4px 4px rgba(0, 0, 0, .25) !important;
+
+        &:hover {
+            background: $blue;
+        }
     }
 
     .js-close {
