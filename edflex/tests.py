@@ -13,7 +13,7 @@ from .api import EdflexOauthClient
 from .utils import get_edflex_configuration, get_edflex_configuration_for_org
 from .tasks import fetch_edflex_data, fetch_resources, update_resources
 from .edflex import EdflexXBlock
-
+import logging
 
 @mock.patch('edflex.utils.get_edflex_configuration', return_value={
     'client_id': '100',
