@@ -33,6 +33,7 @@ setup(
     ],
     install_requires=[
         'XBlock',
+        'lxml==3.8.0'
     ],
     entry_points={
         'xblock.v1': [
