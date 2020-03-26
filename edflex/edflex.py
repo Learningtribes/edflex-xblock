@@ -156,7 +156,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         category = data.get('category')
         language = data.get('language')
 
-        if not (r_type or category):
+        if not r_type:
             return {'resources': []}
 
         edflex_client = EdflexOauthClient(get_edflex_configuration_for_org(self.location.org))
@@ -165,8 +165,12 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         resources = Resource.objects.filter(
             catalog_id__in=catalog_ids,
             r_type=r_type,
-            categories__category_id=category
         )
+
+        if category:
+            resources = resources.filter(
+                categories__category_id=category
+            )
 
         if language:
             resources = resources.filter(

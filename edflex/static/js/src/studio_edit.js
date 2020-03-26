@@ -29,6 +29,13 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
     } else {
       $resource.empty();
       $resource.prop('disabled', true);
+      $featuresBlock.html(
+        `<div class="ef-title">
+          <span class="title-help">
+            ${gettext("There is no content available for this category or language at the moment")}
+          </span>
+        </div>`
+      );
     }
   };
 
@@ -69,7 +76,7 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
     var categoryValue = $category.val();
     var languageValue = $language.val();
 
-    if (formatValue && categoryValue) {
+    if (formatValue) {
       getListResources(formatValue, categoryValue, languageValue);
     } else {
       $resource.prop('disabled', true)
@@ -106,6 +113,9 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
     var resourceValue = $resource.val();
 
     if (resourceValue) {
+      $featuresBlock.html(
+        '<div class="spinner-holder"><i class="fa fa-spinner fa-spin fa-fw"></i></div>'
+      );
       getResource(resourceValue);
     }
   };
@@ -182,7 +192,8 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
         zh: '中文',
         ru: 'Русский',
         pt: 'Português',
-        es: 'Español'
+        es: 'Español',
+        us: 'English United States'
       };
       return titleLangs[lang] || lang
     }

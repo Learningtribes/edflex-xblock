@@ -71,7 +71,8 @@ class TestEdflexOauthClient(TestCase):
         mock_urljoin.assert_called_with(test_instance.base_api_url, test_instance.CATALOGS_URL)
         mock_get.assert_called_once_with(
             url='https://test.base.url/api/selection/catalogs',
-            headers={'content-type': 'application/json'}
+            headers={'content-type': 'application/json'},
+            params={'locale': 'en'}
         )
         self.assertEqual(test_catalogs_result, [{"id": "catalog_id", "title": "Catalog"}])
 
@@ -91,7 +92,8 @@ class TestEdflexOauthClient(TestCase):
         mock_urljoin.assert_called_with(test_instance.base_api_url, test_instance.CATALOGS_URL)
         mock_get.assert_called_once_with(
             url='https://test.base.url/api/selection/catalogs',
-            headers={'content-type': 'application/json'}
+            headers={'content-type': 'application/json'},
+            params={'locale': 'en'}
         )
         self.assertEqual(test_catalogs_result, [])
 
@@ -124,7 +126,8 @@ class TestEdflexOauthClient(TestCase):
         mock_urljoin.assert_called_with('https://test.base.url', '/api/selection/catalogs/catalog_id')
         mock_get.assert_called_once_with(
             url='https://test.base.url/api/selection/catalogs/catalog_id',
-            headers={'content-type': 'application/json'}
+            headers={'content-type': 'application/json'},
+            params={'locale': 'en'}
         )
         self.assertEqual(
             test_catalog_result,
@@ -157,7 +160,8 @@ class TestEdflexOauthClient(TestCase):
         mock_urljoin.assert_called_with('https://test.base.url', '/api/selection/catalogs/catalog_id')
         mock_get.assert_called_once_with(
             url='https://test.base.url/api/selection/catalogs/catalog_id',
-            headers={'content-type': 'application/json'}
+            headers={'content-type': 'application/json'},
+            params={'locale': 'en'}
         )
         self.assertEqual(test_catalog_result, {'items': []})
 
@@ -214,7 +218,8 @@ class TestEdflexOauthClient(TestCase):
         mock_urljoin.assert_called_with('https://test.base.url', '/api/resource/resources/resource_id')
         mock_get.assert_called_once_with(
             url='https://test.base.url/api/resource/resources/resource_id',
-            headers={'content-type': 'application/json'}
+            headers={'content-type': 'application/json'},
+            params={'locale': 'en'}
         )
         self.assertEqual(
             test_get_resource_result,
@@ -271,7 +276,8 @@ class TestEdflexOauthClient(TestCase):
         mock_urljoin.assert_called_with('https://test.base.url', '/api/resource/resources/resource_id')
         mock_get.assert_called_once_with(
             url='https://test.base.url/api/resource/resources/resource_id',
-            headers={'content-type': 'application/json'}
+            headers={'content-type': 'application/json'},
+            params={'locale': 'en'}
         )
         self.assertEqual(test_get_resource_result, None)
 
@@ -811,9 +817,11 @@ class TestEdflex(TestCase):
         self.assertEqual(response.json, {'resources': []})
 
     @mock.patch('edflex.models.Resource.objects.filter', return_value=mock.Mock(
-        filter=mock.Mock(return_value=mock.Mock(distinct=mock.Mock(
-            return_value=mock.Mock(values=mock.Mock(return_value=[{'resource_id': 'resource_id', 'title': 'title'}]))
-        )))))
+        filter=mock.Mock(return_value=mock.Mock(
+            filter=mock.Mock(return_value=mock.Mock(
+                distinct=mock.Mock(return_value=mock.Mock(
+                    values=mock.Mock(return_value=[{'resource_id': 'resource_id', 'title': 'title'}]))))))
+        )))
     @mock.patch('edflex.edflex.EdflexOauthClient', return_value=mock.Mock(get_catalogs=mock.Mock(return_value=[])))
     @mock.patch('edflex.edflex.get_edflex_configuration_for_org', return_value={
         'client_id': '100',
@@ -846,11 +854,11 @@ class TestEdflex(TestCase):
         mock_resource_filter.assert_called_with(
             catalog_id__in=[],
             r_type='format',
-            categories__category_id='category'
         )
-        mock_resource_filter().filter.assert_called_with(language='language')
-        mock_resource_filter().filter().distinct.assert_called_once()
-        mock_resource_filter().filter().distinct().values.assert_called_with('resource_id', 'title')
+        mock_resource_filter().filter.assert_called_with(categories__category_id='category')
+        mock_resource_filter().filter().filter.assert_called_with(language='language')
+        mock_resource_filter().filter().filter().distinct.assert_called_once()
+        mock_resource_filter().filter().filter().distinct().values.assert_called_with('resource_id', 'title')
         self.assertEqual(
             response.json,
             {'resources': [{'resource_id': 'resource_id', 'title': 'title'}]}

@@ -36,7 +36,11 @@ class EdflexOauthClient(object):
 
     def get_catalogs(self):
         catalogs_url = urljoin(self.base_api_url, self.CATALOGS_URL)
-        resp = self.oauth_client.get(url=catalogs_url, headers={'content-type': 'application/json'})
+        resp = self.oauth_client.get(
+            url=catalogs_url,
+            headers={'content-type': 'application/json'},
+            params={'locale': 'en'}
+        )
         try:
             resp.raise_for_status()
         except HTTPError as er:
@@ -48,7 +52,11 @@ class EdflexOauthClient(object):
 
     def get_catalog(self, catalog_id):
         catalog_url = urljoin(self.base_api_url, self.CATALOG_URL.format(id=catalog_id))
-        resp = self.oauth_client.get(url=catalog_url, headers={'content-type': 'application/json'})
+        resp = self.oauth_client.get(
+            url=catalog_url,
+            headers={'content-type': 'application/json'},
+            params={'locale': 'en'}
+        )
         try:
             resp.raise_for_status()
         except HTTPError as er:
@@ -60,7 +68,11 @@ class EdflexOauthClient(object):
 
     def get_resource(self, resource_id):
         resource_url = urljoin(self.base_api_url, self.RESOURCE_URL.format(id=resource_id))
-        resp = self.oauth_client.get(url=resource_url, headers={'content-type': 'application/json'})
+        resp = self.oauth_client.get(
+            url=resource_url,
+            headers={'content-type': 'application/json'},
+            params={'locale': 'en'}
+        )
         try:
             resp.raise_for_status()
         except HTTPError as er:
