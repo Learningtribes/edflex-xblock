@@ -413,6 +413,17 @@ $blue: #2ca5de;
             display: none;
         }
     }
+
+    .ef-title .title-help {
+        margin-top: 0;
+        color: $red;
+    }
+}
+
+.spinner-holder {
+    text-align: center;
+    font-size: 25px;
+    color: #000;
 }
 
 .features-list {

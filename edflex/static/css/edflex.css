@@ -353,6 +353,16 @@
 .features-block p br {
   display: none;
 }
+.features-block .ef-title .title-help {
+  margin-top: 0;
+  color: #e7413c;
+}
+
+.spinner-holder {
+  text-align: center;
+  font-size: 25px;
+  color: #000;
+}
 
 .features-list {
   display: flex;
@@ -633,3 +643,5 @@
   width: 13px;
   height: 13px;
 }
+
+/*# sourceMappingURL=edflex.css.map */
