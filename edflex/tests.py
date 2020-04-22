@@ -18,6 +18,7 @@ from .edflex import EdflexXBlock
 @mock.patch('edflex.utils.get_edflex_configuration', return_value={
     'client_id': '100',
     'client_secret': 'test_client_secret',
+    'locale': 'en',
     'base_api_url': "https://test.base.url"
 })
 class TestEdflexOauthClient(TestCase):
@@ -290,12 +291,13 @@ class TestUtils(TestCase):
         edflex_configuration_result = get_edflex_configuration()
 
         # assert:
-        self.assertEqual(mock_get_value.call_count, 3)
+        self.assertEqual(mock_get_value.call_count, 4)
         self.assertEqual(
             edflex_configuration_result,
             {
                 'client_id': 'test_value',
                 'client_secret': 'test_value',
+                'locale': 'test_value',
                 'base_api_url': 'test_value'
             }
         )
@@ -315,13 +317,14 @@ class TestUtils(TestCase):
 
         # assert:
         mock_get_edflex_configuration.assert_not_called()
-        self.assertEqual(mock_get_value_for_org.call_count, 3)
+        self.assertEqual(mock_get_value_for_org.call_count, 4)
         self.assertEqual(
             result,
             {
                 'client_secret': 'value',
                 'base_api_url': 'value',
-                'client_id': 'value'
+                'client_id': 'value',
+                'locale': 'value'
             }
         )
 
@@ -337,7 +340,7 @@ class TestUtils(TestCase):
 
         # assert:
         mock_get_edflex_configuration.assert_called()
-        self.assertEqual(mock_get_value_for_org.call_count, 3)
+        self.assertEqual(mock_get_value_for_org.call_count, 4)
         self.assertEqual(result, 'configuration')
 
 
@@ -360,6 +363,7 @@ class TestTasks(TestCase):
 
     @mock.patch('edflex.tasks.EDFLEX_CLIENT_ID', 'client_id')
     @mock.patch('edflex.tasks.EDFLEX_CLIENT_SECRET', 'client_secret')
+    @mock.patch('edflex.tasks.EDFLEX_LOCALE', 'en')
     @mock.patch('edflex.tasks.EDFLEX_BASE_API_URL', 'base_api_url')
     @mock.patch('edflex.tasks.fetch_resources')
     @mock.patch('openedx.core.djangoapps.site_configuration.models.SiteConfiguration.objects.filter', return_value=[])
@@ -369,7 +373,7 @@ class TestTasks(TestCase):
 
         # assert:
         mock_site_configuration_filter.assert_called_once_with(enabled=True)
-        mock_fetch_resources.assert_called_once_with('client_id', 'client_secret', 'base_api_url')
+        mock_fetch_resources.assert_called_once_with('client_id', 'client_secret', 'en', 'base_api_url')
 
     @mock.patch('edflex.models.Category.objects.exclude',
                 return_value=mock.Mock(delete=mock.Mock()))
@@ -405,13 +409,14 @@ class TestTasks(TestCase):
             mock_category_exclude,
     ):
         # act:
-        fetch_resources('client_id', 'client_secret', 'base_api_url')
+        fetch_resources('client_id', 'client_secret', 'en', 'base_api_url')
 
         # assert:
         mock_edflex_oauth_client.assert_called_once_with(
             {
                 'client_id': 'client_id',
                 'client_secret': 'client_secret',
+                'locale': 'en',
                 'base_api_url': 'base_api_url'
             }
         )
