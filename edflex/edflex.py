@@ -27,6 +27,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
     )
     format = String(scope=Scope.settings)
     category = String(scope=Scope.settings)
+    catalog = String(scope=Scope.settings)
     language = String(scope=Scope.settings)
     resource = Dict(scope=Scope.settings)
     weight = Float(
@@ -41,7 +42,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
     count_stars = 5
     has_score = True
     has_author_view = True
-    editable_fields = ['format', 'category', 'language', 'resource', 'weight']
+    editable_fields = ['format', 'category', 'catalog', 'language', 'resource', 'weight']
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -103,6 +104,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         init_values = {
             'format': self.format,
             'category': self.category,
+            'catalog': self.catalog,
             'language': self.language,
             'resource': self.resource,
         }
@@ -153,7 +155,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
     @XBlock.json_handler
     def get_list_resources(self, data, suffix=''):
         r_type = data.get('format')
-        category = data.get('category')
+        category_id = data.get('category_id')
         language = data.get('language')
 
         if not r_type:
@@ -163,13 +165,25 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         r_catalogs = edflex_client.get_catalogs()
         catalog_ids = [r_catalog['id'] for r_catalog in r_catalogs]
         resources = Resource.objects.filter(
-            catalog_id__in=catalog_ids,
             r_type=r_type,
         )
 
-        if category:
+        if category_id:
+            try:
+                category = Category.objects.get(id=category_id)
+            except (Category.DoesNotExist, ValueError) as er:
+                log.error(er)
+                resources = resources.filter(
+                    catalog_id__in=catalog_ids,
+                )
+            else:
+                resources = resources.filter(
+                    categories__id=category.id,
+                    catalog_id=category.catalog_id
+                )
+        else:
             resources = resources.filter(
-                categories__category_id=category
+                catalog_id__in=catalog_ids,
             )
 
         if language:

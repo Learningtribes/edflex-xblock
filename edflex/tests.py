@@ -371,14 +371,23 @@ class TestTasks(TestCase):
         mock_site_configuration_filter.assert_called_once_with(enabled=True)
         mock_fetch_resources.assert_called_once_with('client_id', 'client_secret', 'base_api_url')
 
+    @mock.patch('edflex.models.Category.objects.exclude',
+                return_value=mock.Mock(delete=mock.Mock()))
     @mock.patch('edflex.models.Resource.objects.filter',
                 return_value=mock.Mock(exclude=mock.Mock(return_value=mock.Mock(delete=mock.Mock()))))
-    @mock.patch('edflex.models.Category.objects.update_or_create', return_value=(mock.Mock(), mock.Mock()))
+    @mock.patch('edflex.models.Category.objects.update_or_create',
+                return_value=(mock.Mock(id='obj_category_id'), mock.Mock()))
     @mock.patch('edflex.models.Resource.objects.update_or_create',
                 return_value=(mock.Mock(id='obj_resource_id'), mock.Mock()))
     @mock.patch('edflex.tasks.EdflexOauthClient', return_value=mock.Mock(
-        get_catalogs=mock.Mock(return_value=[{'id': 'catalog_id_1'}, {'id': 'catalog_id_2'}]),
-        get_catalog=mock.Mock(return_value={'id': 'catalog_id', 'items': [{'resource': {'id': 'resource_id'}}]}),
+        get_catalogs=mock.Mock(return_value=[{'id': 'catalog_id_1', 'title': 'Catalog title1'},
+                                             {'id': 'catalog_id_2', 'title': 'Catalog title2'}
+                                             ]),
+        get_catalog=mock.Mock(return_value={'id': 'catalog_id',
+                                            'title': 'Catalog title',
+                                            'items': [
+                                                {'resource': {'id': 'resource_id'}}
+                                            ]}),
         get_resource=mock.Mock(return_value={'id': 'resource_id',
                                              'title': 'title',
                                              'type': 'type',
@@ -393,6 +402,7 @@ class TestTasks(TestCase):
             mock_resources_update_or_create,
             mock_categories_update_or_create,
             mock_resource_filter,
+            mock_category_exclude,
     ):
         # act:
         fetch_resources('client_id', 'client_secret', 'base_api_url')
@@ -423,12 +433,17 @@ class TestTasks(TestCase):
         self.assertEqual(mock_categories_update_or_create.call_count, 2)
         mock_categories_update_or_create.assert_any_call(
             category_id='category_id',
-            defaults={'name': 'Category name'}
+            catalog_id='catalog_id_1',
+            defaults={'name': 'Category name',
+                      'catalog_title': 'Catalog title1'}
         )
 
         mock_resource_filter.assert_any_call(catalog_id='catalog_id_2')
         mock_resource_filter().exclude.assert_any_call(id__in=['obj_resource_id'])
         mock_resource_filter().exclude().delete.assert_called()
+
+        mock_category_exclude.assert_any_call(id__in=['obj_category_id', 'obj_category_id'])
+        mock_category_exclude().delete.assert_called()
 
     @mock.patch('edflex.tasks.get_user_model', return_value=mock.Mock(
         objects=mock.Mock(filter=mock.Mock(return_value=mock.Mock(
@@ -627,6 +642,7 @@ class TestEdflex(TestCase):
         self.assertEqual(test_instance.display_name, "External Resource")
         self.assertEqual(test_instance.format, None)
         self.assertEqual(test_instance.category, None)
+        self.assertEqual(test_instance.catalog, None)
         self.assertEqual(test_instance.language, None)
         self.assertEqual(test_instance.resource, {})
         self.assertEqual(test_instance.weight, 1.0)
@@ -635,7 +651,10 @@ class TestEdflex(TestCase):
         self.assertEqual(test_instance.count_stars, 5)
         self.assertEqual(test_instance.has_score, True)
         self.assertEqual(test_instance.has_author_view, True)
-        self.assertEqual(test_instance.editable_fields, ['format', 'category', 'language', 'resource', 'weight'])
+        self.assertEqual(
+            test_instance.editable_fields,
+            ['format', 'category', 'catalog', 'language', 'resource', 'weight']
+        )
 
     @mock.patch('edflex.edflex.loader.render_django_template', return_value='html')
     @mock.patch('edflex.edflex.EdflexXBlock.update_student_context')
@@ -816,6 +835,7 @@ class TestEdflex(TestCase):
         mock_resource_filter.assert_not_called()
         self.assertEqual(response.json, {'resources': []})
 
+    @mock.patch('edflex.models.Category.objects.get', return_value=mock.Mock(id='id', catalog_id='catalog_id'))
     @mock.patch('edflex.models.Resource.objects.filter', return_value=mock.Mock(
         filter=mock.Mock(return_value=mock.Mock(
             filter=mock.Mock(return_value=mock.Mock(
@@ -832,11 +852,12 @@ class TestEdflex(TestCase):
             self,
             mock_get_edflex_configuration_for_org,
             mock_edflex_oauth_client,
-            mock_resource_filter
+            mock_resource_filter,
+            mock_category_get
     ):
         # arrange:
         test_instance = self.create_one()
-        data = {'format': 'format', 'category': 'category', 'language': 'language'}
+        data = {'format': 'format', 'category_id': 'category_id', 'language': 'language'}
 
         # act:
         response = test_instance.get_list_resources(mock.Mock(method="POST", body=json.dumps(data)))
@@ -852,10 +873,10 @@ class TestEdflex(TestCase):
         )
         mock_edflex_oauth_client().get_catalogs.assert_called_once_with()
         mock_resource_filter.assert_called_with(
-            catalog_id__in=[],
             r_type='format',
         )
-        mock_resource_filter().filter.assert_called_with(categories__category_id='category')
+        mock_category_get.assert_called_with(id='category_id')
+        mock_resource_filter().filter.assert_called_with(categories__id='id', catalog_id='catalog_id')
         mock_resource_filter().filter().filter.assert_called_with(language='language')
         mock_resource_filter().filter().filter().distinct.assert_called_once()
         mock_resource_filter().filter().filter().distinct().values.assert_called_with('resource_id', 'title')
