@@ -16,6 +16,7 @@ from .models import Category, Resource
 from .utils import (
     EDFLEX_CLIENT_ID,
     EDFLEX_CLIENT_SECRET,
+    EDFLEX_LOCALE,
     EDFLEX_BASE_API_URL,
     get_edflex_configuration_for_org
 )
@@ -46,21 +47,23 @@ fetch_edflex_data_cron = {
 @periodic_task(run_every=crontab(**fetch_edflex_data_cron))
 def fetch_edflex_data():
     if EDFLEX_CLIENT_ID and EDFLEX_CLIENT_SECRET and EDFLEX_BASE_API_URL:
-        fetch_resources(EDFLEX_CLIENT_ID, EDFLEX_CLIENT_SECRET, EDFLEX_BASE_API_URL)
+        fetch_resources(EDFLEX_CLIENT_ID, EDFLEX_CLIENT_SECRET, EDFLEX_LOCALE, EDFLEX_BASE_API_URL)
 
     for site_configuration in SiteConfiguration.objects.filter(enabled=True):
         client_id = site_configuration.get_value('EDFLEX_CLIENT_ID')
         client_secret = site_configuration.get_value('EDFLEX_CLIENT_SECRET')
+        locale = site_configuration.get_value('EDFLEX_LOCALE', EDFLEX_LOCALE)
         base_api_url = site_configuration.get_value('EDFLEX_BASE_API_URL')
 
         if client_id and client_secret and base_api_url:
-            fetch_resources(client_id, client_secret, base_api_url)
+            fetch_resources(client_id, client_secret, locale, base_api_url)
 
 
-def fetch_resources(client_id, client_secret, base_api_url):
+def fetch_resources(client_id, client_secret, locale, base_api_url):
     edflex_client = EdflexOauthClient({
         'client_id': client_id,
         'client_secret': client_secret,
+        'locale': locale,
         'base_api_url': base_api_url
     })
     r_catalogs = edflex_client.get_catalogs()

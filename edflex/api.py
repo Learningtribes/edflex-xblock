@@ -21,6 +21,7 @@ class EdflexOauthClient(object):
     def __init__(self, config):
         self.client_id = config['client_id']
         self.client_secret = config['client_secret']
+        self.locale = config['locale']
         self.base_api_url = config['base_api_url']
         client = BackendApplicationClient(client_id=self.client_id)
         self.oauth_client = OAuth2Session(client=client)
@@ -39,7 +40,7 @@ class EdflexOauthClient(object):
         resp = self.oauth_client.get(
             url=catalogs_url,
             headers={'content-type': 'application/json'},
-            params={'locale': 'en'}
+            params={'locale': self.locale}
         )
         try:
             resp.raise_for_status()
@@ -55,7 +56,7 @@ class EdflexOauthClient(object):
         resp = self.oauth_client.get(
             url=catalog_url,
             headers={'content-type': 'application/json'},
-            params={'locale': 'en'}
+            params={'locale': self.locale}
         )
         try:
             resp.raise_for_status()
@@ -71,7 +72,7 @@ class EdflexOauthClient(object):
         resp = self.oauth_client.get(
             url=resource_url,
             headers={'content-type': 'application/json'},
-            params={'locale': 'en'}
+            params={'locale': self.locale}
         )
         try:
             resp.raise_for_status()
@@ -81,5 +82,3 @@ class EdflexOauthClient(object):
         else:
             resource = resp.json()
         return resource
-
-
