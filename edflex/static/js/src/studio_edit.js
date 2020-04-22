@@ -53,7 +53,7 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
   var getListResources = function(formatValue, categoryValue, languageValue) {
     var data = {
       format: formatValue,
-      category: categoryValue,
+      category_id: categoryValue,
       language: languageValue
     };
 
@@ -122,9 +122,11 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
 
   if (isInit) {
     $format.filter(`[value=${initValues.format}]`).prop('checked', true);
-    $category.val(initValues.category);
+    $category.children(
+      `[data-category_id = "${initValues.category}"][data-catalog_id = "${initValues.catalog}"]`
+    ).prop("selected", true);
     $language.val(initValues.language);
-    getListResources(initValues.format, initValues.category, initValues.language)
+    getListResources(initValues.format, $category.val(), initValues.language)
   }
 
   $format.on('change', checkResources);
@@ -160,10 +162,12 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
   $saveButton.on('click', function(e) {
     e.preventDefault();
     var weight = ($weight.val() <= 0) ? 1 : $weight.val();
+    var $categorySelected = $category.children("option:selected");
     studio_submit({
       values: {
         format: $format.filter(":checked").val(),
-        category: $category.val(),
+        category: $categorySelected.data('category_id'),
+        catalog: $categorySelected.data('catalog_id'),
         language: $language.val(),
         resource: resourceData,
         weight: weight

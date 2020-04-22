@@ -64,6 +64,7 @@ def fetch_resources(client_id, client_secret, base_api_url):
         'base_api_url': base_api_url
     })
     r_catalogs = edflex_client.get_catalogs()
+    category_ids = []
 
     for catalog in r_catalogs:
         resource_ids = []
@@ -88,15 +89,22 @@ def fetch_resources(client_id, client_secret, base_api_url):
                 for r_category in r_resource.get('categories', []):
                     category, created = Category.objects.update_or_create(
                         category_id=r_category['id'],
-                        defaults={'name': r_category['name']}
+                        catalog_id=catalog['id'],
+                        defaults={'name': r_category['name'],
+                                  'catalog_title': catalog['title']}
                     )
                     resource.categories.add(category)
+                    category_ids.append(category.id)
 
         Resource.objects.filter(
             catalog_id=catalog['id']
         ).exclude(
             id__in=resource_ids
         ).delete()
+
+    Category.objects.exclude(
+        id__in=category_ids
+    ).delete()
 
 
 @periodic_task(run_every=crontab(**update_resources_cron))
