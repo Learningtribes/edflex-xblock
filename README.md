@@ -54,6 +54,7 @@ Fetch edflex data
 
     ```
     0 1 * * 1 /path/to/virtualenv/bin/python /var/www/myapp/manage.py lms fetch_edflex_data --settings=<name settings>
+    0 */1 * * * /path/to/virtualenv/bin/python /var/www/myapp/manage.py lms fetch_new_edflex_data --settings=<name settings>
     0 1 1 * * /path/to/virtualenv/bin/python /var/www/myapp/manage.py lms update_resources --settings=<name settings>
     ```
     
@@ -72,6 +73,13 @@ Fetch edflex data
                 "DAY_OF_MONTH": "*",
                 "MONTH_OF_YEAR": "*",
                 "DAY_OF_WEEK": 1,
+            },
+             "EDFLEX_NEW_RESOURCES_FETCH_CRON": {
+                "MINUTE": 0,
+                "HOUR": "*/1",
+                "DAY_OF_MONTH": "*",
+                "MONTH_OF_YEAR": "*",
+                "DAY_OF_WEEK": "*",
             },
             "EDFLEX_RESOURCES_UPDATE_CRON": {
                 "MINUTE": 0,
