@@ -135,9 +135,7 @@
                 <option value="{{ category.id }}"
                         data-category_id="{{ category.category_id }}"
                         data-catalog_id="{{ category.catalog_id }}"
-                >
-                    {{ category.catalog_title }} - {{ category.name }}
-                </option>
+                >{{ category.catalog_title }} - {{ category.name }}</option>
                 {% endfor %}
             </select>
         </div>
