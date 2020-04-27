@@ -132,7 +132,10 @@
             <select name="category">
                 <option value="">-------</option>
                 {% for category in categories %}
-                <option value="{{ category.category_id }}">{{ category.name }}</option>
+                <option value="{{ category.id }}"
+                        data-category_id="{{ category.category_id }}"
+                        data-catalog_id="{{ category.catalog_id }}"
+                >{{ category.catalog_title }} - {{ category.name }}</option>
                 {% endfor %}
             </select>
         </div>
