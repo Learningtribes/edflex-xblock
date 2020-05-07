@@ -32,7 +32,7 @@ setup(
         'edflex',
     ],
     install_requires=[
-        'XBlock',
+        'XBlock==1.2.9',
         'lxml==3.8.0'
     ],
     entry_points={
