@@ -16,7 +16,7 @@
         </span>
     </div>
 
-    {% if resource.type == 'mooc' or resource.type == 'article' %}
+    {% if resource.type == 'mooc' or resource.type == 'article' or resource.type == 'book' %}
     <div class="block-details__holder">
         <div class="block-details__media">
             {% if resource.embed_url %}
@@ -31,6 +31,8 @@
         <button class="btn js-access-resource" title="{{ resource.title }}">
             {% if resource.type == 'article' %}
             {% trans "Read the article" %}
+            {% elif resource.type == 'book' %}
+            {% trans "Read the book" %}
             {% else %}
             {% trans "Access the course" %}
             {% endif %}
@@ -121,6 +123,14 @@
                     <span class="js-resource-duration" data-duration="{{ resource.duration }}"></span>
                 </li>
                 {% endif %}
+                {% if resource.pages %}
+                <li class="icon-pages">
+                    <svg>
+                        <use xlink:href="#stopwatch"></use>
+                    </svg>
+                    <span>{{ resource.pages }} {% trans "pages" %}</span>
+                </li>
+                {% endif %}
             </ul>
 
             {{ resource.description|safe }}
@@ -130,7 +140,7 @@
     {% endif %}
 </div>
 
-{% if resource.type == 'mooc' or resource.type == 'article' %}
+{% if resource.type == 'mooc' or resource.type == 'article' or resource.type == 'book' %}
 <div class="js-modal-overlay" hidden></div>
 <div class="js-modal-dialog" hidden>
     <div class="modal-content">
