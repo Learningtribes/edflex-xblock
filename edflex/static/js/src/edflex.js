@@ -24,7 +24,7 @@ function EdflexXBlock(runtime, element) {
     win.focus();
   };
 
-  if (format === 'mooc' || format === 'article') {
+  if (format === 'mooc' || format === 'article' || format === 'book') {
     $('.js-access-resource', element).on('click', function() {
       $modal.prop('hidden', false);
       $modalOverlay.prop('hidden', false);

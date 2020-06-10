@@ -71,6 +71,14 @@
                 <span><%= renderDuration(resource.duration) %></span>
             </li>
             <% } %>
+            <% if (resource.pages) { %>
+            <li class="icon-pages">
+                <svg>
+                    <use xlink:href="#stopwatch"></use>
+                </svg>
+                <span><%= resource.pages %> {% trans "pages" %}</span>
+            </li>
+            <% } %>
         </ul>
         <%= resource.description %>
     </div>
@@ -120,6 +128,15 @@
                         </svg>
                     </label>
                     <span class="format-name">{% trans "Article" %}</span>
+                </li>
+                <li>
+                    <input id="id-book" name="format" value="book" type="radio">
+                    <label for="id-book">
+                        <svg class="icon-box">
+                            <use xlink:href="#book"></use>
+                        </svg>
+                    </label>
+                    <span class="format-name">{% trans "Book" %}</span>
                 </li>
             </ul>
         </div>

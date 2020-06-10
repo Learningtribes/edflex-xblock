@@ -134,6 +134,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         categories = Category.objects.filter(
             resources__catalog_id__in=catalog_ids
         ).order_by(
+            'catalog_title',
             'name'
         ).distinct().values()
         languages = Resource.objects.filter(
@@ -192,7 +193,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
             )
 
         return {
-            'resources': list(resources.distinct().values('resource_id', 'title'))
+            'resources': list(resources.distinct().order_by('title').values('resource_id', 'title'))
         }
 
     @XBlock.json_handler
