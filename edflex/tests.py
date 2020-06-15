@@ -977,7 +977,7 @@ class TestEdflex(TestCase):
         mock_edflex_oauth_client.assert_called_with('configuration')
         mock_get_catalogs.assert_called_once()
         mock_category_filter.assert_called_with(resources__catalog_id__in=[])
-        mock_category_filter().order_by.assert_called_with('name')
+        mock_category_filter().order_by.assert_called_with('catalog_title', 'name')
         mock_category_filter().order_by().distinct.assert_called_once()
         mock_category_filter().order_by().distinct().values.assert_called_once()
         mock_resource_filter.assert_called_with(catalog_id__in=[], language__isnull=False)
@@ -1021,7 +1021,8 @@ class TestEdflex(TestCase):
         filter=mock.Mock(return_value=mock.Mock(
             filter=mock.Mock(return_value=mock.Mock(
                 distinct=mock.Mock(return_value=mock.Mock(
-                    values=mock.Mock(return_value=[{'resource_id': 'resource_id', 'title': 'title'}]))))))
+                    order_by=mock.Mock(return_value=mock.Mock(
+                        values=mock.Mock(return_value=[{'resource_id': 'resource_id', 'title': 'title'}]))))))))
         )))
     @mock.patch('edflex.edflex.EdflexOauthClient', return_value=mock.Mock(get_catalogs=mock.Mock(return_value=[])))
     @mock.patch('edflex.edflex.get_edflex_configuration_for_org', return_value={
@@ -1060,7 +1061,8 @@ class TestEdflex(TestCase):
         mock_resource_filter().filter.assert_called_with(categories__id='id', catalog_id='catalog_id')
         mock_resource_filter().filter().filter.assert_called_with(language='language')
         mock_resource_filter().filter().filter().distinct.assert_called_once()
-        mock_resource_filter().filter().filter().distinct().values.assert_called_with('resource_id', 'title')
+        mock_resource_filter().filter().filter().distinct().order_by.assert_called_with('title')
+        mock_resource_filter().filter().filter().distinct().order_by().values.assert_called_with('resource_id', 'title')
         self.assertEqual(
             response.json,
             {'resources': [{'resource_id': 'resource_id', 'title': 'title'}]}

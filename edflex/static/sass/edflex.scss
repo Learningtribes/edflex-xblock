@@ -1,5 +1,6 @@
 $red: #e7413c;
-$gray: #a3a3a3;
+$grey: #a3a3a3;
+$grey-dark: #727272;
 $yellow: #fec400;
 $blue: #2ca5de;
 
@@ -82,9 +83,15 @@ $blue: #2ca5de;
 
                     .button {
                         border: none !important;
-                        padding: 15px 50px !important;
+                        padding: 15px 10px !important;
                         border-radius: 10px !important;
                         display: block;
+                        font-size: 14px;
+                        font-weight: 700;
+                        min-width: 230px;
+                        box-sizing: border-box;
+                        text-align: center;
+                        transition: all .2s ease;
 
                         &.is-disabled {
                             background: #cecece !important;
@@ -99,17 +106,19 @@ $blue: #2ca5de;
 
                     .save-button {
                         background: $red;
-                        font-size: 16px;
-                        box-shadow: 0 4px 4px rgba(0, 0, 0, .25) !important;
 
                         &:hover {
-                            background: $gray;
+                            background: $blue;
                         }
                     }
 
                     .cancel-button {
+                        background: rgba(231, 65, 60, .15);
                         color: $red;
-                        font-size: 14px;
+
+                        &:hover {
+                            background: rgba(231, 65, 60, .3);
+                        }
                     }
                 }
             }
@@ -119,12 +128,12 @@ $blue: #2ca5de;
 
 .xblock-studio_view-edflex {
     button {
-        background: $gray;
+        background: $grey;
         box-shadow: none !important;
         border: none !important;
         color: #fff;
         text-shadow: none;
-        font-weight: normal;
+        font-weight: 400;
         transition: all .2s ease;
 
         &:hover {
@@ -145,6 +154,10 @@ $blue: #2ca5de;
 .ef-title {
     margin-bottom: 40px;
 
+    .edflex_faq & {
+        margin-bottom: 20px !important;
+    }
+
     .xblock-studio_view & {
         text-align: center;
         margin-bottom: 55px;
@@ -159,7 +172,7 @@ $blue: #2ca5de;
     }
 
     .title-help {
-        color: #727272;
+        color: $grey-dark;
         margin-top: 12px;
         font-size: 14px;
         display: flex;
@@ -175,7 +188,7 @@ $blue: #2ca5de;
             width: 15px;
             height: 15px;
             margin-right: 10px;
-            fill: #727272;
+            fill: $grey-dark;
             position: relative;
             top: 1px;
         }
@@ -190,6 +203,34 @@ $blue: #2ca5de;
 
         &.icon-mooc {
             text-transform: uppercase;
+        }
+    }
+}
+
+.edflex_faq {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $grey-dark;
+    font-size: 14px;
+
+    .faq-content {
+        text-align: left;
+    }
+
+    ol {
+        counter-reset: list 0;
+
+        li {
+            margin-bottom: 2px;
+
+            &:before {
+                counter-increment: list;
+                content: counter(list) ".";
+                color: $red;
+                margin-right: 5px;
+                font-weight: 700;
+            }
         }
     }
 }
@@ -262,11 +303,19 @@ $blue: #2ca5de;
                 }
             }
 
+            input#id-book:checked + label {
+                background: #fbe3e2;
+
+                svg {
+                    fill: $red;
+                }
+            }
+
             svg {
                 display: block;
                 width: 40px;
                 height: 40px;
-                fill: #727272;
+                fill: $grey-dark;
             }
 
             .format-name {
@@ -441,7 +490,7 @@ $blue: #2ca5de;
         margin: 0 0 0 80px !important;
         display: flex;
         align-items: center;
-        color: #727272;
+        color: $grey-dark;
 
         &:first-child {
             margin-left: 0 !important;
@@ -469,6 +518,14 @@ $blue: #2ca5de;
             margin-right: 15px;
         }
 
+        &.icon-duration svg {
+            fill: $red;
+        }
+
+        &.icon-pages svg {
+            fill: $blue;
+        }
+
         b {
             font-weight: 600;
         }
@@ -478,7 +535,7 @@ $blue: #2ca5de;
 .ef-stars {
     strong {
         color: $yellow;
-        font-weight: bold;
+        font-weight: 700;
         font-size: 24px;
         font-family: "Nanum Gothic", sans-serif;
         display: inline-block;
@@ -495,7 +552,7 @@ $blue: #2ca5de;
         margin-right: 7px;
 
         &.fa-star-gray {
-            color: #727272;
+            color: $grey-dark;
         }
 
         &.fa-star-gray-light {
@@ -512,7 +569,7 @@ $blue: #2ca5de;
                 position: absolute;
                 right: 0;
                 top: 0;
-                color: #727272;
+                color: $grey-dark;
                 transform: scaleX(-1);
             }
         }
@@ -524,17 +581,112 @@ $blue: #2ca5de;
 
     strong {
         color: $yellow;
-        font-weight: bold;
+        font-weight: 700;
         font-size: 24px;
         line-height: 26px;
         font-family: "Nanum Gothic", sans-serif !important;
     }
 
     span {
-        color: #727272;
+        color: $grey-dark;
         font-size: 11px;
         line-height: 26px;
         margin-left: 8px;
+    }
+}
+
+//author view
+
+.inner-block {
+    padding: 15px 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .block-icon {
+        background: #fff;
+        border-radius: 10px;
+        width: 52px;
+        height: 52px;
+        box-shadow: 0 1px 4px rgba(114, 114, 114, .25);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            display: block;
+        }
+    }
+
+    strong {
+        display: block;
+        font-size: 20px;
+        line-height: 27px;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .icon-holder {
+        width: 85px;
+        height: 85px;
+        min-width: 85px;
+        min-height: 85px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 30px;
+        overflow: hidden;
+
+        svg {
+            display: block;
+        }
+    }
+}
+
+.blue-block {
+    background: #dee2fc;
+    margin-bottom: 20px;
+
+    .block-icon svg {
+        width: 23px;
+        height: 26px;
+    }
+
+    .icon-holder svg {
+        width: 80px;
+        height: 70px;
+    }
+}
+
+.yellow-block {
+    background: #fbedcd;
+
+    .block-icon svg {
+        width: 22px;
+        height: 25px;
+        fill: $yellow;
+        position: relative;
+        left: 1px;
+        top: 1px;
+    }
+
+    .icon-holder {
+        background: $yellow;
+        border-radius: 50%;
+
+        svg {
+            width: 42px;
+            height: 48px;
+            fill: #fff;
+            position: relative;
+            left: 3px;
+        }
     }
 }
 
@@ -646,7 +798,7 @@ $blue: #2ca5de;
     padding-right: 65px;
     line-height: 18px;
     font-size: 11px !important;
-    color: #727272 !important;
+    color: $grey-dark !important;
     font-weight: 600 !important;
     float: right;
     clear: both;
@@ -690,7 +842,7 @@ $blue: #2ca5de;
 
     h3 {
         font-family: "Nanum Gothic", sans-serif;
-        font-weight: bold;
+        font-weight: 700;
         font-size: 18px;
         color: #000;
         margin: 0 0 15px;
