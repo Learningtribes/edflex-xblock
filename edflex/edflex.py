@@ -93,9 +93,13 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         return context
 
     def author_view(self, context=None):
+        context.update({
+            'svg_sprite': self.resource_string('public/images/sprite.svg'),
+        })
         html = loader.render_django_template("static/html/author_view.html", context)
-        frag = Fragment(html)
-        return frag
+        fragment = Fragment(html)
+        fragment.add_css(self.resource_string("static/css/edflex.css"))
+        return fragment
 
     def studio_view(self, context):
         """
