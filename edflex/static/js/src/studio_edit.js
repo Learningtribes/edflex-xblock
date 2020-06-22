@@ -162,12 +162,20 @@ function StudioEditableEdflexXBlock(runtime, element, jsonArgs) {
   $saveButton.on('click', function(e) {
     e.preventDefault();
     var weight = ($weight.val() <= 0) ? 1 : $weight.val();
-    var $categorySelected = $category.children("option:selected");
+    var category = null;
+    var catalog = null;
+
+    if ($category.val()) {
+      var $categorySelected = $category.children("option:selected");
+      category = $categorySelected.data('category_id');
+      catalog = $categorySelected.data('catalog_id')
+    }
+
     studio_submit({
       values: {
         format: $format.filter(":checked").val(),
-        category: $categorySelected.data('category_id'),
-        catalog: $categorySelected.data('catalog_id'),
+        category: category,
+        catalog: catalog,
         language: $language.val(),
         resource: resourceData,
         weight: weight
