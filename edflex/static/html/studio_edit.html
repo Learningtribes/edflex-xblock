@@ -71,14 +71,35 @@
                 <span><%= renderDuration(resource.duration) %></span>
             </li>
             <% } %>
+            <% if (resource.pages) { %>
+            <li class="icon-pages">
+                <svg>
+                    <use xlink:href="#stopwatch"></use>
+                </svg>
+                <span><b><%= resource.pages %></b> {% trans "pages" %}</span>
+            </li>
+            <% } %>
         </ul>
         <%= resource.description %>
     </div>
 </script>
 
-<!--<div class="edflex_block wrapper-comp-settings is-active editor-with-buttons" id="settings-tab">-->
 <div class="edflex_block is-active editor-with-buttons" id="settings-tab">
     <div class="list-input settings-list">
+        <div class="edflex_section edflex_faq">
+            <div class="ef-title">
+                <h2>{% trans "How it works?" %}</h2>
+            </div>
+            <div class="faq-content">
+                <ol>
+                    <li>{% trans "Select the format of content you want to add" %}</li>
+                    <li>{% trans "Choose a category for your learning content" %}</li>
+                    <li>{% trans "Then a language" %}</li>
+                    <li>{% trans "Pick the content you want to use" %}</li>
+                </ol>
+                <p>{% trans "No content available? Then change one of the parameters you previously selected." %}</p>
+            </div>
+        </div>
         <div class="edflex_section edflex_format">
             <div class="ef-title">
                 <h2>{% trans "Which format of content do you need?" %}</h2>
@@ -120,6 +141,15 @@
                         </svg>
                     </label>
                     <span class="format-name">{% trans "Article" %}</span>
+                </li>
+                <li>
+                    <input id="id-book" name="format" value="book" type="radio">
+                    <label for="id-book">
+                        <svg class="icon-box">
+                            <use xlink:href="#book"></use>
+                        </svg>
+                    </label>
+                    <span class="format-name">{% trans "Book" %}</span>
                 </li>
             </ul>
         </div>

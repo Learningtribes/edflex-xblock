@@ -93,9 +93,13 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         return context
 
     def author_view(self, context=None):
+        context.update({
+            'svg_sprite': self.resource_string('public/images/sprite.svg'),
+        })
         html = loader.render_django_template("static/html/author_view.html", context)
-        frag = Fragment(html)
-        return frag
+        fragment = Fragment(html)
+        fragment.add_css(self.resource_string("static/css/edflex.css"))
+        return fragment
 
     def studio_view(self, context):
         """
@@ -134,6 +138,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
         categories = Category.objects.filter(
             resources__catalog_id__in=catalog_ids
         ).order_by(
+            'catalog_title',
             'name'
         ).distinct().values()
         languages = Resource.objects.filter(
@@ -192,7 +197,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
             )
 
         return {
-            'resources': list(resources.distinct().values('resource_id', 'title'))
+            'resources': list(resources.distinct().order_by('title').values('resource_id', 'title'))
         }
 
     @XBlock.json_handler
