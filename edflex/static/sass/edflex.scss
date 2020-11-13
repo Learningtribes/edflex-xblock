@@ -477,7 +477,7 @@ $blue: #2ca5de;
 
 .features-list {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 42px;
     padding: 0 !important;
     flex-wrap: wrap;
@@ -582,7 +582,7 @@ $blue: #2ca5de;
     strong {
         color: $yellow;
         font-weight: 700;
-        font-size: 24px;
+        font-size: 14px;
         line-height: 26px;
         font-family: "Nanum Gothic", sans-serif !important;
     }
