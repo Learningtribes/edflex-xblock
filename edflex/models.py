@@ -7,6 +7,8 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
     catalog_id = models.CharField(max_length=255, null=True, blank=True)
     catalog_title = models.CharField(max_length=255, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True, db_index=True, null=True)
+    modified = models.DateTimeField(auto_now=True, db_index=True, null=True)
 
     class Meta:
         verbose_name = _("Category")
@@ -23,6 +25,8 @@ class Resource(models.Model):
     r_type = models.CharField(max_length=255, null=True, blank=True)
     categories = models.ManyToManyField(Category, related_name='resources')
     language = models.CharField(max_length=255, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True, db_index=True, null=True)
+    modified = models.DateTimeField(auto_now=True, db_index=True, null=True)
 
     class Meta:
         unique_together = ['catalog_id', 'resource_id']
