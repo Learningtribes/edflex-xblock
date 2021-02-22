@@ -6,7 +6,7 @@ from requests import HTTPError
 from requests_oauthlib import OAuth2Session
 
 
-log = logging.getLogger('external_catalog')
+log = logging.getLogger('edflex_xblock')
 
 
 class EdflexOauthClient(object):

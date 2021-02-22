@@ -21,7 +21,7 @@ from .utils import (
     get_edflex_configuration_for_org
 )
 
-log = logging.getLogger('external_catalog')
+log = logging.getLogger('edflex_xblock')
 
 # default 'At 01:00 on day-of-month 1'
 EDFLEX_RESOURCES_UPDATE_CRON = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_RESOURCES_UPDATE_CRON', {})
