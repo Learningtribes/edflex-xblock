@@ -5,7 +5,7 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
 # default settings
 EDFLEX_CLIENT_ID = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_CLIENT_ID')
 EDFLEX_CLIENT_SECRET = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_CLIENT_SECRET')
-EDFLEX_LOCALE = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_LOCALE', 'en')
+EDFLEX_LOCALE = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_LOCALE', ['en'])[0]
 EDFLEX_BASE_API_URL = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_BASE_API_URL')
 
 
