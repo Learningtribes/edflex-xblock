@@ -15,7 +15,7 @@ from .utils import get_edflex_configuration_for_org
 # Make '_' a no-op so we can scrape strings
 _ = lambda text: text
 
-log = logging.getLogger(__name__)
+log = logging.getLogger('edflex_xblock')
 loader = ResourceLoader(__name__)
 
 
