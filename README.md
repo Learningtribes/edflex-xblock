@@ -30,7 +30,7 @@ add ```'edflex'``` to ```ADDL_INSTALL_APPS``` .
         "EdflexXBlock": {
             "EDFLEX_CLIENT_ID": "client_id",
             "EDFLEX_CLIENT_SECRET": "client_secret",
-            "EDFLEX_LOCALE": "en",
+            "EDFLEX_LOCALE": ["en"],
             "EDFLEX_BASE_API_URL": "https://base/api/url"
         }
     },

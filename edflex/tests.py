@@ -365,7 +365,7 @@ class TestTasks(TestCase):
 
     @mock.patch('edflex.tasks.EDFLEX_CLIENT_ID', 'client_id')
     @mock.patch('edflex.tasks.EDFLEX_CLIENT_SECRET', 'client_secret')
-    @mock.patch('edflex.tasks.EDFLEX_LOCALE', 'en')
+    @mock.patch('edflex.tasks.EDFLEX_LOCALE', ['en'])
     @mock.patch('edflex.tasks.EDFLEX_BASE_API_URL', 'base_api_url')
     @mock.patch('edflex.tasks.fetch_resources')
     @mock.patch('openedx.core.djangoapps.site_configuration.models.SiteConfiguration.objects.filter', return_value=[])
@@ -650,7 +650,7 @@ class TestTasks(TestCase):
 
     @mock.patch('edflex.tasks.EDFLEX_CLIENT_ID', 'client_id')
     @mock.patch('edflex.tasks.EDFLEX_CLIENT_SECRET', 'client_secret')
-    @mock.patch('edflex.tasks.EDFLEX_LOCALE', 'en')
+    @mock.patch('edflex.tasks.EDFLEX_LOCALE', ['en'])
     @mock.patch('edflex.tasks.EDFLEX_BASE_API_URL', 'base_api_url')
     @mock.patch('edflex.tasks.fetch_new_resources_and_delete_old_resources')
     @mock.patch('openedx.core.djangoapps.site_configuration.models.SiteConfiguration.objects.filter', return_value=[])
