@@ -10,10 +10,11 @@ pip install -e git+https://github.com/Learningtribes/edflex-xblock.git#egg=edfle
 ```
 
 ## Set uping
-In ```lms.env.json``` and ```cms.env.json```
-add ```'edflex'``` to ```ADDL_INSTALL_APPS``` .
+In ```lms/env/common.py``` and ```cms/env/common.py```
+add ```'edflex'``` to ```INSTALLED_APPS``` .
 ```
-"ADDL_INSTALLED_APPS": [
+"INSTALLED_APPS": [
+    ...,
     "edflex"
 ],
 ```
