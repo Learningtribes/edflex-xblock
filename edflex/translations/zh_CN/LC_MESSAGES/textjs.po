@@ -1,0 +1,90 @@
+#: edflex/static/js/src/parse_duration.js:25
+msgid "year"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:25
+msgid "years"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:29
+msgid "month"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:29
+msgid "months"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:33
+msgid "week"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:33
+msgid "weeks"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:37
+msgid "day"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:37
+msgid "days"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:41
+msgid "hour"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:41
+msgid "hours"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:45
+msgid "minute"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:45
+msgid "minutes"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:49
+msgid "second"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:49
+msgid "seconds"
+msgstr ""
+
+#: edflex/static/js/src/parse_duration.js:53
+msgid "in total"
+msgstr ""
+
+#: edflex/static/js/src/studio_edit.js:35
+msgid "There is no content available for this category or language at the moment"
+msgstr ""
+
+#: edflex/static/js/src/studio_edit.js:139
+msgid "Saving"
+msgstr ""
+
+#: edflex/static/js/src/studio_edit.js:148
+msgid "This may be happening because of an error with our server or your internet connection. "
+"Try refreshing the page or making sure you are online."
+msgstr ""
+
+#: edflex/static/js/src/studio_edit.js:158
+msgid "Unable to update settings"
+msgstr ""
+
+#: edflex/static/js/src/studio_edit.js:196
+msgid "Choose a category"
+msgstr ""
+
+#: edflex/static/js/src/studio_edit.js:222
+msgid "Choose a language"
+msgstr ""
+
+#: edflex/static/js/src/studio_edit.js:229
+msgid "Select the content of your choice"
+msgstr ""
+
+ 

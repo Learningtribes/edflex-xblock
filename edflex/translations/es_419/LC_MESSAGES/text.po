@@ -1,0 +1,184 @@
+#: edflex/static/html/author_view.html:11
+msgid "Use External Content component"
+msgstr "Utilice el componente de recursos externos"
+
+#: edflex/static/html/author_view.html:13
+msgid "Add resources to your course, curated by Edflex technology. "
+"Choose from a selection of MOOCs, Videos, Podcasts, Books, and Articles to accompany and enhance the creation of your trainings!"
+msgstr "Agregue recursos a su curso, seleccionados por la tecnología Edflex. "
+"¡Elija entre una selección de MOOC, videos, pódcasts, libros y artículos para respaldar y mejorar la creación de su formación!"
+
+#: edflex/static/html/author_view.html:25
+msgid "You are now ready"
+msgstr "Ya esta listo"
+
+#: edflex/static/html/author_view.html:26
+msgid "Integrate external content to enrich your course!"
+msgstr "¡Integre contenido externo para enriquecer su curso!"
+
+#: edflex/static/html/edflex.html:33
+msgid "Read the article"
+msgstr "Leer el artículo"
+
+#: edflex/static/html/edflex.html:35
+msgid "Read the book"
+msgstr "Leer el libro"
+
+#: edflex/static/html/edflex.html:37
+msgid "Access the course"
+msgstr "Acceder al curso"
+
+#: edflex/static/html/edflex.html:70
+msgid "About the content"
+msgstr "En resumen"
+
+#: edflex/static/html/edflex.html:85
+#: edflex/static/html/studio_edit.html:33
+msgid "reviews"
+msgstr "opiniones"
+
+#: edflex/static/html/edflex.html:88
+#: edflex/static/html/studio_edit.html:36
+msgid "users’ reviews"
+msgstr "Opiniones de los usuarios"
+
+#: edflex/static/html/edflex.html:100
+#: edflex/static/html/studio_edit.html:48
+msgid "<b>Free</b> access"
+msgstr "Acceso <b>gratuito</b>"
+
+#: edflex/static/html/edflex.html:102
+#: edflex/static/html/studio_edit.html:50
+msgid "<b>Paid</b> access"
+msgstr "Acceso <b>pagado</b>"
+
+#: edflex/static/html/edflex.html:112
+#: edflex/static/html/studio_edit.html:60
+msgid "<b>Free</b> certificate"
+msgstr "Certificado <b>gratuito</b>"
+
+#: edflex/static/html/edflex.html:114
+#: edflex/static/html/studio_edit.html:62
+msgid "<b>Paid</b> certificate"
+msgstr "Certificado <b>pagado</b>"
+
+#: edflex/static/html/edflex.html:131
+#: edflex/static/html/studio_edit.html:79
+msgid "pages"
+msgstr "paginas"
+
+#: edflex/static/html/edflex.html:154
+msgid "External content"
+msgstr "Contenido externo"
+
+#: edflex/static/html/edflex.html:157
+msgid "You are about to leave the Triboo platform to follow external training content. "
+"We remind you that <b>all content on this portal is always free.</b> "
+"However, the certification may have a cost and it is not supported by Triboo."
+msgstr "Está a punto de abandonar la plataforma Triboo para seguir el contenido de formación externo. "
+"Le recordamos que <b>todo el contenido de este portal es siempre gratuito</b>. "
+"Sin embargo, la certificación puede tener un costo y no se admite por Triboo."
+
+#: edflex/static/html/edflex.html:166
+msgid "See you soon on Triboo!"
+msgstr "Hasta pronto en Triboo"
+
+#: edflex/static/html/edflex.html:169
+msgid "Access"
+msgstr "Acceder"
+
+#: edflex/static/html/studio_edit.html:10
+msgid "This information is out of date. What you see is the last saved version."
+msgstr "Esta información está desactualizada. Lo que ves es la última versión registrada."
+
+#: edflex/static/html/studio_edit.html:91
+msgid "How it works?"
+msgstr "¿Cómo funciona?"
+
+#: edflex/static/html/studio_edit.html:95
+msgid "Select the format of content you want to add"
+msgstr "Seleccione el formato de contenido que desea agregar"
+
+#: edflex/static/html/studio_edit.html:96
+msgid "Choose a category for your learning content"
+msgstr "Elija una categoría para su contenido de aprendizaje"
+
+#: edflex/static/html/studio_edit.html:97
+msgid "Then a language"
+msgstr "Entonces un idioma"
+
+#: edflex/static/html/studio_edit.html:98
+msgid "Pick the content you want to use"
+msgstr "Elija el contenido que desea utilizar"
+
+#: edflex/static/html/studio_edit.html:100
+msgid "No content available? Then change one of the parameters you previously selected."
+msgstr "¿No hay contenido disponible? Cambie uno de los parámetros que seleccionó previamente"
+
+#: edflex/static/html/studio_edit.html:105
+msgid "Which format of content do you need?"
+msgstr "¿Qué formato de contenido necesita?"
+
+#: edflex/static/html/studio_edit.html:106
+msgid "Choose a format. It is mandatory."
+msgstr "Elija un formato. Esto es obligatorio."
+
+#: edflex/static/html/studio_edit.html:116
+msgid "Podcast"
+msgstr "Pódcast"
+
+#: edflex/static/html/studio_edit.html:125
+msgid "Video"
+msgstr "Video"
+
+#: edflex/static/html/studio_edit.html:134
+msgid "Mooc"
+msgstr "MOOC"
+
+#: edflex/static/html/studio_edit.html:143
+msgid "Article"
+msgstr "Artículo"
+
+#: edflex/static/html/studio_edit.html:152
+msgid "Book"
+msgstr "Libro"
+
+#: edflex/static/html/studio_edit.html:158
+msgid "Select one of the categories below"
+msgstr "Seleccione una de las siguientes categorías"
+
+#: edflex/static/html/studio_edit.html:159
+msgid "Choose a category."
+msgstr "Elige una categoría."
+
+#: edflex/static/html/studio_edit.html:173
+msgid "Which language for the content?"
+msgstr "¿Qué idioma para el contenido?"
+
+#: edflex/static/html/studio_edit.html:174
+msgid "Choose a language."
+msgstr "Elige un idioma."
+
+#: edflex/static/html/studio_edit.html:185
+msgid "Select the title of the content"
+msgstr "Seleccione el título del contenido"
+
+#: edflex/static/html/studio_edit.html:186
+msgid "Choose a content."
+msgstr "Elige un contenido."
+
+#: edflex/static/html/studio_edit.html:196
+msgid "Weight"
+msgstr "Peso"
+
+#: edflex/static/html/studio_edit.html:197
+msgid "Relative weight in this course section"
+msgstr "Peso relativo en esta sección del curso"
+
+#: edflex/static/html/studio_edit.html:205
+msgid "Add this content"
+msgstr "Agregar este contenido"
+
+#: edflex/static/html/studio_edit.html:208
+msgid "Cancel"
+msgstr "Anular"
