@@ -1,6 +1,4 @@
 import logging
-from celery.decorators import periodic_task
-from celery.schedules import crontab
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ImproperlyConfigured
@@ -23,42 +21,7 @@ from .utils import (
 
 log = logging.getLogger('edflex_xblock')
 
-# default 'At 01:00 on day-of-month 1'
-EDFLEX_RESOURCES_UPDATE_CRON = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_RESOURCES_UPDATE_CRON', {})
-update_resources_cron = {
-    'minute': str(EDFLEX_RESOURCES_UPDATE_CRON.get('MINUTE', '0')),
-    'hour': str(EDFLEX_RESOURCES_UPDATE_CRON.get('HOUR', '1')),
-    'day_of_month': str(EDFLEX_RESOURCES_UPDATE_CRON.get('DAY_OF_MONTH', '1')),
-    'month_of_year': str(EDFLEX_RESOURCES_UPDATE_CRON.get('MONTH_OF_YEAR', '*')),
-    'day_of_week': str(EDFLEX_RESOURCES_UPDATE_CRON.get('DAY_OF_WEEK', '*')),
-}
 
-# default 'At 01:00 on Monday'
-EDFLEX_RESOURCES_FETCH_CRON = settings.XBLOCK_SETTINGS.get('EdflexXBlock', {}).get('EDFLEX_RESOURCES_FETCH_CRON', {})
-fetch_edflex_data_cron = {
-    'minute': str(EDFLEX_RESOURCES_FETCH_CRON.get('MINUTE', '0')),
-    'hour': str(EDFLEX_RESOURCES_FETCH_CRON.get('HOUR', '1')),
-    'day_of_month': str(EDFLEX_RESOURCES_FETCH_CRON.get('DAY_OF_MONTH', '*')),
-    'month_of_year': str(EDFLEX_RESOURCES_FETCH_CRON.get('MONTH_OF_YEAR', '*')),
-    'day_of_week': str(EDFLEX_RESOURCES_FETCH_CRON.get('DAY_OF_WEEK', '1')),
-}
-
-# default 'At minute 0 past every hour.'
-EDFLEX_NEW_RESOURCES_FETCH_CRON = settings.XBLOCK_SETTINGS.get(
-    'EdflexXBlock', {}
-).get(
-    'EDFLEX_NEW_RESOURCES_FETCH_CRON', {}
-)
-fetch_new_edflex_data_cron = {
-    'minute': str(EDFLEX_RESOURCES_FETCH_CRON.get('MINUTE', '0')),
-    'hour': str(EDFLEX_RESOURCES_FETCH_CRON.get('HOUR', '*/1')),
-    'day_of_month': str(EDFLEX_RESOURCES_FETCH_CRON.get('DAY_OF_MONTH', '*')),
-    'month_of_year': str(EDFLEX_RESOURCES_FETCH_CRON.get('MONTH_OF_YEAR', '*')),
-    'day_of_week': str(EDFLEX_RESOURCES_FETCH_CRON.get('DAY_OF_WEEK', '*')),
-}
-
-
-@periodic_task(run_every=crontab(**fetch_edflex_data_cron))
 def fetch_edflex_data():
     if EDFLEX_CLIENT_ID and EDFLEX_CLIENT_SECRET and EDFLEX_BASE_API_URL:
         fetch_resources(EDFLEX_CLIENT_ID, EDFLEX_CLIENT_SECRET, EDFLEX_LOCALE, EDFLEX_BASE_API_URL)
@@ -73,7 +36,6 @@ def fetch_edflex_data():
             fetch_resources(client_id, client_secret, locale, base_api_url)
 
 
-@periodic_task(run_every=crontab(**fetch_new_edflex_data_cron))
 def fetch_new_edflex_data():
     if EDFLEX_CLIENT_ID and EDFLEX_CLIENT_SECRET and EDFLEX_BASE_API_URL:
         fetch_new_resources_and_delete_old_resources(
@@ -93,7 +55,6 @@ def fetch_new_edflex_data():
             fetch_new_resources_and_delete_old_resources(client_id, client_secret, locale, base_api_url)
 
 
-@periodic_task(run_every=crontab(**update_resources_cron))
 def update_resources():
     user = get_user_model().objects.filter(
         Q(is_staff=True) | Q(is_superuser=True), is_active=True
