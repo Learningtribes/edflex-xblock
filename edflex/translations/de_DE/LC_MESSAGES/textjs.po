@@ -5,14 +5,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-
-
-
-
-
-
-
-
 #: edflex/static/js/src/parse_duration.js:25
 msgid "year"
 msgstr "Jahr"
@@ -84,7 +76,7 @@ msgstr "Während der Aufnahme"
 #: edflex/static/js/src/studio_edit.js:148
 msgid "This may be happening because of an error with our server or your internet connection. "
 "Try refreshing the page or making sure you are online."
-msgstr "Dies kann auf einen Fehler mit unserem Server oder Ihrer Internetverbindung zurückzuführen sein."
+msgstr "Dies kann auf einen Fehler mit unserem Server oder Ihrer Internetverbindung zurückzuführen sein. "
 "Aktualisieren Sie die Seite oder stellen Sie sicher, dass Sie online sind."
 
 #: edflex/static/js/src/studio_edit.js:158

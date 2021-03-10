@@ -1,3 +1,10 @@
+msgid ""
+msgstr ""
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
 #: edflex/static/js/src/parse_duration.js:25
 msgid "year"
 msgstr "an"
@@ -64,7 +71,7 @@ msgstr "Il n'y a pas de contenu disponible pour cette catégorie ou langue pour 
 
 #: edflex/static/js/src/studio_edit.js:139
 msgid "Saving"
-msgstr "En cours d'enregistrement"
+msgstr "Enregistrement en cours"
 
 #: edflex/static/js/src/studio_edit.js:148
 msgid "This may be happening because of an error with our server or your internet connection. "

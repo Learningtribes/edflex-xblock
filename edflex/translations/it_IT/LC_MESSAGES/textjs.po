@@ -1,90 +1,98 @@
+msgid ""
+msgstr ""
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
 #: edflex/static/js/src/parse_duration.js:25
 msgid "year"
-msgstr ""
+msgstr "anno"
 
 #: edflex/static/js/src/parse_duration.js:25
 msgid "years"
-msgstr ""
+msgstr "anni"
 
 #: edflex/static/js/src/parse_duration.js:29
 msgid "month"
-msgstr ""
+msgstr "mese"
 
 #: edflex/static/js/src/parse_duration.js:29
 msgid "months"
-msgstr ""
+msgstr "mesi"
 
 #: edflex/static/js/src/parse_duration.js:33
 msgid "week"
-msgstr ""
+msgstr "settimana"
 
 #: edflex/static/js/src/parse_duration.js:33
 msgid "weeks"
-msgstr ""
+msgstr "settimane"
 
 #: edflex/static/js/src/parse_duration.js:37
 msgid "day"
-msgstr ""
+msgstr "giorno"
 
 #: edflex/static/js/src/parse_duration.js:37
 msgid "days"
-msgstr ""
+msgstr "giorni"
 
 #: edflex/static/js/src/parse_duration.js:41
 msgid "hour"
-msgstr ""
+msgstr "ora"
 
 #: edflex/static/js/src/parse_duration.js:41
 msgid "hours"
-msgstr ""
+msgstr "ore"
 
 #: edflex/static/js/src/parse_duration.js:45
 msgid "minute"
-msgstr ""
+msgstr "minuto"
 
 #: edflex/static/js/src/parse_duration.js:45
 msgid "minutes"
-msgstr ""
+msgstr "minuti"
 
 #: edflex/static/js/src/parse_duration.js:49
 msgid "second"
-msgstr ""
+msgstr "secondo"
 
 #: edflex/static/js/src/parse_duration.js:49
 msgid "seconds"
-msgstr ""
+msgstr "secondi"
 
 #: edflex/static/js/src/parse_duration.js:53
 msgid "in total"
-msgstr ""
+msgstr "in totale"
 
 #: edflex/static/js/src/studio_edit.js:35
 msgid "There is no content available for this category or language at the moment"
-msgstr ""
+msgstr "Al momento non sono disponibili contenuti per questa categoria o lingua"
 
 #: edflex/static/js/src/studio_edit.js:139
 msgid "Saving"
-msgstr ""
+msgstr "Salvataggio in corso"
 
 #: edflex/static/js/src/studio_edit.js:148
 msgid "This may be happening because of an error with our server or your internet connection. "
 "Try refreshing the page or making sure you are online."
-msgstr ""
+msgstr "Ciò potrebbe accadere a causa di un errore con il nostro server o la tua connessione Internet. "
+"Prova ad aggiornare la pagina o ad assicurarti di essere online."
 
 #: edflex/static/js/src/studio_edit.js:158
 msgid "Unable to update settings"
-msgstr ""
+msgstr "Impossibile aggiornare le impostazioni"
 
 #: edflex/static/js/src/studio_edit.js:196
 msgid "Choose a category"
-msgstr ""
+msgstr "Scegli una categoria"
 
 #: edflex/static/js/src/studio_edit.js:222
 msgid "Choose a language"
-msgstr ""
+msgstr "Scegli una lingua"
 
 #: edflex/static/js/src/studio_edit.js:229
 msgid "Select the content of your choice"
-msgstr ""
+msgstr "Seleziona il contenuto che preferisci"
 
  
