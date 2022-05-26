@@ -23,7 +23,7 @@ class EdflexXBlock(StudioEditableXBlockMixin, XBlock):
 
     display_name = String(
         scope=Scope.settings,
-        default=_("External Resource")
+        default=_("Currated Content")
     )
     format = String(scope=Scope.settings)
     category = String(scope=Scope.settings)
