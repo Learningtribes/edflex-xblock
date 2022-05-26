@@ -1,5 +1,5 @@
 # Xblock Edflex
-Use External Content component to add more resourse to you course.
+Use Currated Content component to add more resourse to you course.
 Find according to your needs, MOOC, video, podcasts or articles.
 A large choice of contents curated by Edflex technology to accompany you in creation or your trainings!
 ## Instalation
