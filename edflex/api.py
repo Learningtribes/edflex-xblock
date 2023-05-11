@@ -1,7 +1,7 @@
 import logging
 from urlparse import urljoin
 
-from oauthlib.oauth2 import BackendApplicationClient
+from oauthlib.oauth2 import BackendApplicationClient, TokenExpiredError
 from requests import HTTPError
 from requests_oauthlib import OAuth2Session
 
@@ -37,48 +37,60 @@ class EdflexOauthClient(object):
 
     def get_catalogs(self):
         catalogs_url = urljoin(self.base_api_url, self.CATALOGS_URL)
-        resp = self.oauth_client.get(
-            url=catalogs_url,
-            headers={'content-type': 'application/json'},
-            params={'locale': self.locale}
-        )
         try:
+            resp = self.oauth_client.get(
+                url=catalogs_url,
+                headers={'content-type': 'application/json'},
+                params={'locale': self.locale}
+            )
             resp.raise_for_status()
-        except HTTPError as er:
-            log.error(er)
+        except HTTPError as err:
+            log.error(err)
             catalogs = []
+        except TokenExpiredError:
+            log.info(u"Token expired, fetching new token...")
+            self.fetch_token()
+            catalogs = self.get_catalogs()
         else:
             catalogs = resp.json()
         return catalogs
 
     def get_catalog(self, catalog_id):
         catalog_url = urljoin(self.base_api_url, self.CATALOG_URL.format(id=catalog_id))
-        resp = self.oauth_client.get(
-            url=catalog_url,
-            headers={'content-type': 'application/json'},
-            params={'locale': self.locale}
-        )
         try:
+            resp = self.oauth_client.get(
+                url=catalog_url,
+                headers={'content-type': 'application/json'},
+                params={'locale': self.locale}
+            )
             resp.raise_for_status()
-        except HTTPError as er:
-            log.error(er)
+        except HTTPError as err:
+            log.error(err)
             catalog = {'items': []}
+        except TokenExpiredError:
+            log.info(u"Token expired, fetching new token...")
+            self.fetch_token()
+            catalog = self.get_catalog(catalog_id)
         else:
             catalog = resp.json()
         return catalog
 
     def get_resource(self, resource_id):
         resource_url = urljoin(self.base_api_url, self.RESOURCE_URL.format(id=resource_id))
-        resp = self.oauth_client.get(
-            url=resource_url,
-            headers={'content-type': 'application/json'},
-            params={'locale': self.locale}
-        )
         try:
+            resp = self.oauth_client.get(
+                url=resource_url,
+                headers={'content-type': 'application/json'},
+                params={'locale': self.locale}
+            )
             resp.raise_for_status()
-        except HTTPError as er:
-            log.error(er)
+        except HTTPError as err:
+            log.error(err)
             resource = None
+        except TokenExpiredError:
+            log.info(u"Token expired, fetching new token...")
+            self.fetch_token()
+            resource = self.get_resource(resource_id)
         else:
             resource = resp.json()
         return resource
