@@ -37,66 +37,60 @@ class EdflexOauthClient(object):
 
     def get_catalogs(self):
         catalogs_url = urljoin(self.base_api_url, self.CATALOGS_URL)
-        while True:
-            try:
-                resp = self.oauth_client.get(
-                    url=catalogs_url,
-                    headers={'content-type': 'application/json'},
-                    params={'locale': self.locale}
-                )
-                resp.raise_for_status()
-            except HTTPError as err:
-                log.error(err)
-                catalogs = []
-                break
-            except TokenExpiredError:
-                log.info(u"Token expired, fetching new token...")
-                self.fetch_token()
-            else:
-                catalogs = resp.json()
-                break
+        try:
+            resp = self.oauth_client.get(
+                url=catalogs_url,
+                headers={'content-type': 'application/json'},
+                params={'locale': self.locale}
+            )
+            resp.raise_for_status()
+        except HTTPError as err:
+            log.error(err)
+            catalogs = []
+        except TokenExpiredError:
+            log.info(u"Token expired, fetching new token...")
+            self.fetch_token()
+            catalogs = self.get_catalogs()
+        else:
+            catalogs = resp.json()
         return catalogs
 
     def get_catalog(self, catalog_id):
         catalog_url = urljoin(self.base_api_url, self.CATALOG_URL.format(id=catalog_id))
-        while True:
-            try:
-                resp = self.oauth_client.get(
-                    url=catalog_url,
-                    headers={'content-type': 'application/json'},
-                    params={'locale': self.locale}
-                )
-                resp.raise_for_status()
-            except HTTPError as err:
-                log.error(err)
-                catalog = {'items': []}
-                break
-            except TokenExpiredError:
-                log.info(u"Token expired, fetching new token...")
-                self.fetch_token()
-            else:
-                catalog = resp.json()
-                break
+        try:
+            resp = self.oauth_client.get(
+                url=catalog_url,
+                headers={'content-type': 'application/json'},
+                params={'locale': self.locale}
+            )
+            resp.raise_for_status()
+        except HTTPError as err:
+            log.error(err)
+            catalog = {'items': []}
+        except TokenExpiredError:
+            log.info(u"Token expired, fetching new token...")
+            self.fetch_token()
+            catalog = self.get_catalog(catalog_id)
+        else:
+            catalog = resp.json()
         return catalog
 
     def get_resource(self, resource_id):
         resource_url = urljoin(self.base_api_url, self.RESOURCE_URL.format(id=resource_id))
-        while True:
-            try:
-                resp = self.oauth_client.get(
-                    url=resource_url,
-                    headers={'content-type': 'application/json'},
-                    params={'locale': self.locale}
-                )
-                resp.raise_for_status()
-            except HTTPError as err:
-                log.error(err)
-                resource = None
-                break
-            except TokenExpiredError:
-                log.info(u"Token expired, fetching new token...")
-                self.fetch_token()
-            else:
-                resource = resp.json()
-                break
+        try:
+            resp = self.oauth_client.get(
+                url=resource_url,
+                headers={'content-type': 'application/json'},
+                params={'locale': self.locale}
+            )
+            resp.raise_for_status()
+        except HTTPError as err:
+            log.error(err)
+            resource = None
+        except TokenExpiredError:
+            log.info(u"Token expired, fetching new token...")
+            self.fetch_token()
+            resource = self.get_resource(resource_id)
+        else:
+            resource = resp.json()
         return resource
