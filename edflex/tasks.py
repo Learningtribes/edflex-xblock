@@ -152,7 +152,13 @@ def fetch_resources(client_id, client_secret, locale, base_api_url):
             r_resource = edflex_client.get_resource(resource['resource']['id'])
 
             if r_resource:
-                clean_title = emoji.get_emoji_regexp().sub(r'', r_resource['title']) if r_resource.get('title') else ''
+                if not r_resource.get('title'):
+                    log.info(u"Ignoring Resource <{id}>: no title({title})".format(
+                        id=r_resource['id'],
+                        title=str(r_resource.get('title'))
+                    ))
+                    continue
+                clean_title = emoji.get_emoji_regexp().sub(r'', r_resource['title'])
                 resource, created = Resource.objects.update_or_create(
                     catalog_id=catalog['id'],
                     resource_id=r_resource['id'],
@@ -166,7 +172,13 @@ def fetch_resources(client_id, client_secret, locale, base_api_url):
                 resource.categories.clear()
 
                 for r_category in r_resource.get('categories', []):
-                    clean_name = emoji.get_emoji_regexp().sub(r'', r_category['name']) if r_category.get('name') else ''
+                    if not r_category.get('name'):
+                        log.info(u"Ignoring Category <{id}>: no name({name})".format(
+                            id=r_category['id'],
+                            name=str(r_category.get('name'))
+                        ))
+                        continue
+                    clean_name = emoji.get_emoji_regexp().sub(r'', r_category['name'])
                     category, created = Category.objects.update_or_create(
                         category_id=r_category['id'],
                         catalog_id=catalog['id'],
@@ -214,7 +226,13 @@ def fetch_new_resources_and_delete_old_resources(client_id, client_secret, local
                 r_resource = edflex_client.get_resource(item_resource['resource']['id'])
 
                 if r_resource:
-                    clean_title = emoji.get_emoji_regexp().sub(r'', r_resource['title']) if r_resource.get('title') else ''
+                    if not r_resource.get('title'):
+                        log.info(u"Ignoring Resource <{id}>: no title({title})".format(
+                            id=r_resource['id'],
+                            title=str(r_resource.get('title'))
+                        ))
+                        continue
+                    clean_title = emoji.get_emoji_regexp().sub(r'', r_resource['title'])
                     resource, created = Resource.objects.update_or_create(
                         catalog_id=catalog['id'],
                         resource_id=r_resource['id'],
@@ -227,7 +245,13 @@ def fetch_new_resources_and_delete_old_resources(client_id, client_secret, local
                     resource.categories.clear()
 
                     for r_category in r_resource.get('categories', []):
-                        clean_name = emoji.get_emoji_regexp().sub(r'', r_category['name']) if r_category.get('name') else ''
+                        if not r_category.get('name'):
+                            log.info(u"Ignoring Category <{id}>: no name({name})".format(
+                                id=r_category['id'],
+                                name=str(r_category.get('name'))
+                            ))
+                            continue
+                        clean_name = emoji.get_emoji_regexp().sub(r'', r_category['name'])
                         category, created = Category.objects.update_or_create(
                             category_id=r_category['id'],
                             catalog_id=catalog['id'],
