@@ -1,4 +1,5 @@
 import logging
+import emoji
 from celery.decorators import periodic_task
 from celery.schedules import crontab
 from django.conf import settings
@@ -151,11 +152,12 @@ def fetch_resources(client_id, client_secret, locale, base_api_url):
             r_resource = edflex_client.get_resource(resource['resource']['id'])
 
             if r_resource:
+                clean_title = emoji.get_emoji_regexp().sub(r'', r_resource['title']) if r_resource.get('title') else ''
                 resource, created = Resource.objects.update_or_create(
                     catalog_id=catalog['id'],
                     resource_id=r_resource['id'],
                     defaults={
-                        'title': r_resource['title'],
+                        'title': clean_title,
                         'r_type': r_resource['type'],
                         'language': r_resource['language']
                     },
@@ -164,10 +166,11 @@ def fetch_resources(client_id, client_secret, locale, base_api_url):
                 resource.categories.clear()
 
                 for r_category in r_resource.get('categories', []):
+                    clean_name = emoji.get_emoji_regexp().sub(r'', r_category['name']) if r_category.get('name') else ''
                     category, created = Category.objects.update_or_create(
                         category_id=r_category['id'],
                         catalog_id=catalog['id'],
-                        defaults={'name': r_category['name'],
+                        defaults={'name': clean_name,
                                   'catalog_title': catalog['title']}
                     )
                     resource.categories.add(category)
@@ -211,11 +214,12 @@ def fetch_new_resources_and_delete_old_resources(client_id, client_secret, local
                 r_resource = edflex_client.get_resource(item_resource['resource']['id'])
 
                 if r_resource:
+                    clean_title = emoji.get_emoji_regexp().sub(r'', r_resource['title']) if r_resource.get('title') else ''
                     resource, created = Resource.objects.update_or_create(
                         catalog_id=catalog['id'],
                         resource_id=r_resource['id'],
                         defaults={
-                            'title': r_resource['title'],
+                            'title': clean_title,
                             'r_type': r_resource['type'],
                             'language': r_resource['language']
                         },
@@ -223,10 +227,11 @@ def fetch_new_resources_and_delete_old_resources(client_id, client_secret, local
                     resource.categories.clear()
 
                     for r_category in r_resource.get('categories', []):
+                        clean_name = emoji.get_emoji_regexp().sub(r'', r_category['name']) if r_category.get('name') else ''
                         category, created = Category.objects.update_or_create(
                             category_id=r_category['id'],
                             catalog_id=catalog['id'],
-                            defaults={'name': r_category['name'],
+                            defaults={'name': clean_name,
                                       'catalog_title': catalog['title']}
                         )
                         resource.categories.add(category)
